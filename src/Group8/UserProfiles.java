@@ -39,7 +39,6 @@ public class UserProfiles extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         p2Lbl.setVisible(false);
         p2LoadBtn.setVisible(false);
-        p2NewBtn.setVisible(false);
         
         this.playerinfo1 = user1;
     }    
@@ -76,7 +75,6 @@ public class UserProfiles extends javax.swing.JFrame {
         p1Lbl = new javax.swing.JLabel();
         p2Lbl = new javax.swing.JLabel();
         p2LoadBtn = new javax.swing.JButton();
-        p2NewBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         profileInfo1 = new javax.swing.JTextArea();
 
@@ -140,13 +138,6 @@ public class UserProfiles extends javax.swing.JFrame {
             }
         });
 
-        p2NewBtn.setText("New User");
-        p2NewBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                p2NewBtnActionPerformed(evt);
-            }
-        });
-
         profileInfo1.setColumns(20);
         profileInfo1.setRows(5);
         jScrollPane3.setViewportView(profileInfo1);
@@ -178,8 +169,7 @@ public class UserProfiles extends javax.swing.JFrame {
                                 .addComponent(p2Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(p2LoadBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(p2NewBtn))
+                                .addGap(85, 85, 85))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(p1Lbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -210,7 +200,6 @@ public class UserProfiles extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(p2LoadBtn)
-                    .addComponent(p2NewBtn)
                     .addComponent(p2Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(returnBtn)
@@ -222,7 +211,7 @@ public class UserProfiles extends javax.swing.JFrame {
 
     private void p1LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1LoadBtnActionPerformed
         // TODO add your handling code here:
-        if (playerinfo2 != null) {
+        if (playerinfo1 != null) {
             String selected = profilesList.getSelectedValue();
             this.playerinfo1.setUsername(selected);
             FileHandler fh = new FileHandler(selected);
@@ -233,7 +222,7 @@ public class UserProfiles extends javax.swing.JFrame {
 
             for (int i = 0; i < lines.length; i++) {
                 profileInfo1.append(lines[i]);
-                profileInfo1.append(" ");
+                profileInfo1.append("\n");
             }
         }
     }//GEN-LAST:event_p1LoadBtnActionPerformed
@@ -280,10 +269,16 @@ public class UserProfiles extends javax.swing.JFrame {
         } else {
             String firstLine = "Games Played: 0\n";
             String secondLine = "Games Won: 0\n";
+            String thirdLine = "Screen Resolution: (1280,720)\n";
+            String fourthLine = "Color Scheme: Blue Gray\n";
+            String fifthLine = "Icons: X O\n";
             
             try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
                 writer.write(firstLine, 0, firstLine.length());
                 writer.write(secondLine, 0, secondLine.length());
+                writer.write(thirdLine, 0, thirdLine.length());
+                writer.write(fourthLine, 0, fourthLine.length());
+                writer.write(fifthLine, 0, fifthLine.length());
             } catch (IOException x) {
                 System.err.format("IOException: %s%n", x);
             }
@@ -292,33 +287,6 @@ public class UserProfiles extends javax.swing.JFrame {
         System.out.println(newname);
         userListModel.addElement(newname);
     }//GEN-LAST:event_p1NewBtnActionPerformed
-
-    private void p2NewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2NewBtnActionPerformed
-        // TODO add your handling code here:
-        String newname = (String)JOptionPane.showInputDialog(null, "Enter your username", "New Profile", JOptionPane.PLAIN_MESSAGE, null, null, "");
-
-        Charset charset = Charset.forName("US-ASCII");
-        String filePathString = "userProfiles/" + newname;
-        Path file = Paths.get(filePathString);
-        File f = new File(filePathString);
-        
-        if (f.exists()) {
-            JOptionPane.showMessageDialog(null, "Profile already exists for :" + newname);
-        } else {
-            String firstLine = "Games Played: 0\n";
-            String secondLine = "Games Won: 0\n";
-            
-            try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
-                writer.write(firstLine, 0, firstLine.length());
-                writer.write(secondLine, 0, secondLine.length());
-            } catch (IOException x) {
-                System.err.format("IOException: %s%n", x);
-            }
-        }
-
-        System.out.println(newname);
-        userListModel.addElement(newname);
-    }//GEN-LAST:event_p2NewBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -372,7 +340,6 @@ public class UserProfiles extends javax.swing.JFrame {
     private javax.swing.JButton p1NewBtn;
     private javax.swing.JLabel p2Lbl;
     private javax.swing.JButton p2LoadBtn;
-    private javax.swing.JButton p2NewBtn;
     private javax.swing.JTextArea profileInfo1;
     private javax.swing.JTextArea profileInfo2;
     private javax.swing.JList<String> profilesList;

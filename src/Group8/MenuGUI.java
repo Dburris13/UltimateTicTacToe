@@ -54,6 +54,7 @@ public class MenuGUI extends javax.swing.JFrame {
         if (user1 != null) {
             user1.setColor1(user.getColor1());
             user1.setColor2(user.getColor2());
+            user1.setResolution(user.getResolution());
             user1.setUsername(user.getUsername());
             if (user1.getGamemode() == 0) {
                 System.out.println(user1.getGamemode());
@@ -261,7 +262,7 @@ public class MenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSettingsActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        Game s = new Game(user1.getColor1(),user1.getColor2(), user1.getUsername());
+        Game s = new Game(user1);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnStartActionPerformed

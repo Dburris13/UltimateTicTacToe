@@ -15,6 +15,7 @@ public class UserInfo {
     private Color btn2Color = Color.CYAN;
     private Color brdColor;
     private int gamemode;
+    private Dimension resolution = new Dimension(1280,720);
     private String username;
 
     public UserInfo()
@@ -56,6 +57,14 @@ public class UserInfo {
     
     public void setGamemode(int game) {
         this.gamemode = game;
+    }
+    
+    public Dimension getResolution() {
+        return this.resolution;
+    }
+    
+    public void setResolution(Dimension playerRes) {
+        this.resolution = playerRes;
     }
 }
 

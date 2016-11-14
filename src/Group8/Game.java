@@ -30,16 +30,18 @@ public class Game extends JFrame{
     private Color c1, c2;
     private JLabel lbl1 = new JLabel();
     private String username = "";
+    private UserInfo userInfo = new UserInfo();
     
     public Game() {
         initGame();   
         updateUserProfile();     
     }
     
-    public Game(Color c1, Color c2, String name) {
-        this.c1 = c1;
-        this.c2 = c2;
-        this.username = name;
+    public Game(UserInfo user) {
+        this.c1 = user.getColor1();
+        this.c2 = user.getColor2();
+        this.username = user.getUsername();
+        this.userInfo = user;
         initGame();   
         updateUserProfile();     
     }
@@ -48,7 +50,7 @@ public class Game extends JFrame{
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1280, 720);
+        this.setSize(userInfo.getResolution());
         BorderLayout bL = new BorderLayout(5,5);
         this.setLayout(bL);
          
