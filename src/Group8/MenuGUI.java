@@ -9,23 +9,21 @@ import GUIStuff.AnimatedPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.PopupMenu;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
  * @author kcnre
  */
 public class MenuGUI extends javax.swing.JFrame {
+ 
     private UserInfo user1 = new UserInfo("Guest");
     private UserInfo user2 = new UserInfo("Guest2");    
-    
+
     /**
      * Creates new form MenuGUI
      * Called on game startup
@@ -95,6 +93,7 @@ public class MenuGUI extends javax.swing.JFrame {
         PlayerNameField2 = new javax.swing.JTextField();
         PlayerRadioButton = new javax.swing.JRadioButton();
         btnProfiles = new javax.swing.JButton();
+        btnRank = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,19 +171,17 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
 
+        btnRank.setText("Leaderboard");
+        btnRank.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRankMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSettings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProfiles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(138, 138, 138))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(184, 184, 184)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -202,6 +199,16 @@ public class MenuGUI extends javax.swing.JFrame {
                     .addComponent(PlayerRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PlayerNameField2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSettings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProfiles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(138, 138, 138))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,15 +225,17 @@ public class MenuGUI extends javax.swing.JFrame {
                     .addComponent(VersusLabel)
                     .addComponent(ComputerRadioButton)
                     .addComponent(PlayerRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(31, 31, 31)
                 .addComponent(btnStart)
-                .addGap(10, 10, 10)
+                .addGap(18, 18, 18)
                 .addComponent(btnProfiles)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRank)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSettings)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnQuit)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -262,7 +271,13 @@ public class MenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSettingsActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        Game s = new Game(user1);
+        //set fieldname to user1.username
+        String username_1 = PlayerNameField1.getText();
+        user1.setUsername(username_1);
+        //set fieldname to user2.username
+        String username_2 = PlayerNameField2.getText();
+        user2.setUsername(username_2);
+        Game s = new Game(user1, user2);   
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnStartActionPerformed
@@ -299,6 +314,15 @@ public class MenuGUI extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnProfilesActionPerformed
 
+    private void btnRankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankMouseClicked
+        // TODO add your handling code here:
+        Rank_table ranking = new Rank_table();
+        ranking.FileReader();
+        ranking.addRowtoJtable();
+        ranking.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRankMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup CompVPlayerGroup;
     private javax.swing.JRadioButton ComputerRadioButton;
@@ -309,6 +333,7 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel VersusLabel;
     private javax.swing.JButton btnProfiles;
     private javax.swing.JButton btnQuit;
+    private javax.swing.JButton btnRank;
     private javax.swing.JButton btnSettings;
     private javax.swing.JButton btnStart;
     private javax.swing.JPanel jPanel1;

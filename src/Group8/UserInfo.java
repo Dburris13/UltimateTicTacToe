@@ -17,6 +17,8 @@ public class UserInfo {
     private int gamemode;
     private Dimension resolution = new Dimension(1280,720);
     private String username;
+    private int score;
+    //private int score;
 
     public UserInfo()
     {
@@ -65,6 +67,13 @@ public class UserInfo {
     
     public void setResolution(Dimension playerRes) {
         this.resolution = playerRes;
+    }
+    public int getScore() {
+        return this.score;
+    }
+    
+    public void setScore(int score) {
+        this.score = score;
     }
 }
 

@@ -24,6 +24,7 @@ public class Tile extends JButton implements ActionListener {
     private Game game;
     private Board brd;
     private int tileIndex =0, brdIndex = 0;
+   
     
     public Tile(Game game, Board brd, char turn, Color color) {
         this.setSize(BTN_SIZE, BTN_SIZE);
@@ -49,7 +50,7 @@ public class Tile extends JButton implements ActionListener {
             for(int k =0; k<9; k++)
             {
             if(ae.getSource() == game.return_Board_Tile(i, k))
-                {
+            {
                 //JOptionPane.showMessageDialog(null, "at board: "+i+" tile: "+k);
                 tileIndex = k;
                 brdIndex = i;

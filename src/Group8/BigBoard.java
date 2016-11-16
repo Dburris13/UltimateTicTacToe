@@ -8,6 +8,10 @@ package Group8;
 import java.awt.*;
 import java.applet.Applet;
 import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class BigBoard extends Applet  {
     private String turn;
@@ -35,7 +39,7 @@ public class BigBoard extends Applet  {
         }
     }
     
-    public void CheckWinner() {
+    public void CheckWinner(String user1, int score1, String user2, int score2) {
         for (int i = 0; i < 9; i++) {
             brdArray[i].CheckWinner();
         }
@@ -48,7 +52,8 @@ public class BigBoard extends Applet  {
             ||brdArray[2].returnStatus() == "X" && brdArray[5].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
             ||brdArray[0].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
             ||brdArray[2].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[6].returnStatus() == "X") {
-            JOptionPane.showMessageDialog(null, "X IS THE WINNER");
+            JOptionPane.showMessageDialog(null,"THE WINNER: "+user1+"  total move: "+score1 );
+            UserToRank(user1,score1);
             game.goToMenu();
         }
         
@@ -60,7 +65,8 @@ public class BigBoard extends Applet  {
             ||brdArray[2].returnStatus() == "O" && brdArray[5].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
             ||brdArray[0].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
             ||brdArray[2].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[6].returnStatus() == "O") {            
-            JOptionPane.showMessageDialog(null, "O IS THE WINNER");
+            JOptionPane.showMessageDialog(null, "THE WINNER: "+user2+"  total move: "+score2);
+            UserToRank(user2, score2);
             game.goToMenu();
         }           
     }
@@ -247,5 +253,28 @@ public class BigBoard extends Applet  {
     public Board returnIndex_Board(int index_btnArray) //return boardArray at specific index
     {
         return brdArray[index_btnArray];
+    }
+    
+    //add winner to ranking system database rank.data file
+    public void UserToRank(String name, int score)
+    {
+     try
+    {
+        String path = "Rank.data";
+
+        File file = new File(path);
+
+        FileWriter fileWriter = new FileWriter(file,true);
+
+        BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
+
+        fileWriter.append(name+","+score);
+
+        bufferFileWriter.close();
+
+    }catch(Exception ex)
+    {
+        System.out.println(ex);
+    }
     }
 }
