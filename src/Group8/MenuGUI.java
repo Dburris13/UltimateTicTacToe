@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class MenuGUI extends javax.swing.JFrame {
  
-    private UserInfo user1 = new UserInfo("Guest");
-    private UserInfo user2 = new UserInfo("Guest2");    
+    private UserInfo user1;
+    private UserInfo user2;   
 
     /**
      * Creates new form MenuGUI
@@ -30,12 +30,18 @@ public class MenuGUI extends javax.swing.JFrame {
      */
     public MenuGUI() {
        //Creates a jpanel that is behind the menu
+       user1 = new UserInfo("Guest");
+       user2 = new UserInfo("Guest2");  
        this.setContentPane(new AnimatedPanel());
        initComponents();
        //sets the background color
        this.getContentPane().setBackground(Color.decode( "#d4f4dd" )); 
        this.setLocationRelativeTo(null);
        this.PlayerRadioButton.setSelected(true);
+       
+       PlayerNameField1.setText(user1.getUsername());
+       PlayerNameField2.setText(user2.getUsername());
+       System.out.println(user1.getColorScheme() + " " + user1.getWindowSize());
     }
     
     /**
@@ -43,32 +49,16 @@ public class MenuGUI extends javax.swing.JFrame {
      * Called when switching back to menu after game is started
      * @param user
      */
-    public MenuGUI(UserInfo user, UserInfo user2) {
-        //Creates a jpanel that is behind the menu
+    public MenuGUI(UserInfo param1, UserInfo param2) {
+                //Creates a jpanel that is behind the menu
+        this.user1 = param1;
+        this.user2 = param2;
         this.setContentPane(new AnimatedPanel());
         initComponents();
         this.setLocationRelativeTo(null);
-       
-        if (user1 != null) {
-            user1.setColor1(user.getColor1());
-            user1.setColor2(user.getColor2());
-            user1.setResolution(user.getResolution());
-            user1.setUsername(user.getUsername());
-            if (user1.getGamemode() == 0) {
-                System.out.println(user1.getGamemode());
-                this.ComputerRadioButton.setSelected(true); 
-            } else {
-                System.out.println(user1.getGamemode());
-                this.PlayerRadioButton.setSelected(true); 
-            }
-        }
-        PlayerNameField1.setText(user1.getUsername());
-        if (user2 != null) {
-             user2.setUsername(user2.getUsername());
-             PlayerNameField2.setText(user2.getUsername()); 
-        }
         //sets the background color  
-        this.getContentPane().setBackground(Color.decode( "#d4f4dd" ));     
+        this.getContentPane().setBackground(Color.decode( "#d4f4dd" ));      
+        System.out.println(user1.getColorScheme() + " " + user1.getWindowSize());
     }    
     
     /**
@@ -265,18 +255,13 @@ public class MenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSettingsActionPerformed
-        Settings s = new Settings();
+        Settings s = new Settings(user1, user2);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSettingsActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        //set fieldname to user1.username
-        String username_1 = PlayerNameField1.getText();
-        user1.setUsername(username_1);
-        //set fieldname to user2.username
-        String username_2 = PlayerNameField2.getText();
-        user2.setUsername(username_2);
+        System.out.println(user1.getColorScheme() + " " + user1.getWindowSize());
         Game s = new Game(user1, user2);   
         s.setVisible(true);
         dispose();
@@ -316,7 +301,7 @@ public class MenuGUI extends javax.swing.JFrame {
 
     private void btnRankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankMouseClicked
         // TODO add your handling code here:
-        Rank_table ranking = new Rank_table();
+        Rank_table ranking = new Rank_table(user1, user2);
         ranking.FileReader();
         ranking.addRowtoJtable();
         ranking.setVisible(true);

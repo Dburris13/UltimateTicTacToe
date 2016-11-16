@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Rank_table extends javax.swing.JFrame {
 
+    private UserInfo p1,p2;
     /**
      * Creates new form Rank_table
      */
@@ -41,6 +42,13 @@ public class Rank_table extends javax.swing.JFrame {
     public Rank_table() {
         initComponents();
     }
+    
+    public Rank_table(UserInfo userinfo1, UserInfo userinfo2) {
+        this.p1 = userinfo1;
+        this.p2 = userinfo2;
+        initComponents();
+    }
+    
     public ArrayList TopTen()
     {
     ArrayList<PlayerInfo> list = new ArrayList<PlayerInfo>();
@@ -134,7 +142,7 @@ public class Rank_table extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        MenuGUI s = new MenuGUI();
+        MenuGUI s = new MenuGUI(p1,p2);
         s.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked

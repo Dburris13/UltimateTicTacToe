@@ -11,14 +11,18 @@ import java.awt.*;
  * @author Daniel
  */
 public class UserInfo {
+    
+    // Default Settings
     private Color btn1Color = Color.GRAY;
     private Color btn2Color = Color.CYAN;
-    private Color brdColor;
-    private int gamemode;
+    private String colorScheme = "Blue/Red";
+    private String icons = "Item 2";
+    private int gamemode = 2; // 1,2
     private Dimension resolution = new Dimension(1280,720);
-    private String username;
+    private String windowSize = "1280x720";
+    private String username = "Guest";
+    
     private int score;
-    //private int score;
 
     public UserInfo()
     {
@@ -40,6 +44,24 @@ public class UserInfo {
     public Color getColor2 () {
         return btn2Color;
     }
+    
+    public String getColorScheme () {
+        return colorScheme;
+    }
+    public void setColorScheme (String colorCombo) {
+        this.colorScheme = colorCombo;
+    }
+    
+    public String getIcons () {
+        return icons;
+    }
+    public String getWindowSize () {
+        return windowSize;
+    }    
+    public void setWindowSize (String windowRes) {
+        this.windowSize = windowRes;
+    }
+
 
     public void setColor2 (Color color2) {
         this.btn2Color = color2;

@@ -33,16 +33,19 @@ public class Game extends JFrame{
     private String username2 = "";
     private int count_X=0;
     private int count_O=0;
-    
-    private UserInfo userInfo = new UserInfo();
-    private UserInfo userInfo2 = new UserInfo();
+    private UserInfo userInfo;
+    private UserInfo userInfo2;    
     
     public Game() {
+        userInfo = new UserInfo();
+        userInfo2 = new UserInfo();        
         initGame();   
         updateUserProfile();     
     }
     
     public Game(UserInfo user1, UserInfo user2) {
+        userInfo = user1;
+        userInfo2 = user2;
         this.c1 = user1.getColor1();
         this.c2 = user1.getColor2();
         this.username1 = user1.getUsername();
@@ -145,10 +148,7 @@ public class Game extends JFrame{
     }         
     
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-        MenuGUI s = new MenuGUI();
-        s.setVisible(true);
-        this.dispose();
+        goToMenu();
     }         
     
     public void endTurn() {
@@ -156,7 +156,7 @@ public class Game extends JFrame{
     }
     
     public void goToMenu() {
-        MenuGUI s = new MenuGUI();
+        MenuGUI s = new MenuGUI(userInfo,userInfo2);
         s.setVisible(true);
         dispose();
     }

@@ -28,7 +28,8 @@ import java.nio.file.Paths;
 
 public class Settings extends javax.swing.JFrame {
 
-    private UserInfo userInfo  = new UserInfo();
+    private UserInfo user1Settings;
+    private UserInfo user2Settings;
     private String username;
     
     public Settings() {
@@ -36,11 +37,15 @@ public class Settings extends javax.swing.JFrame {
         readUserProfile();
     }
     
-    public Settings(String username) {
-        this.username = username;
-        
+    public Settings(UserInfo param1, UserInfo param2) {
+        this.user1Settings = param1;
+        this.user2Settings = param2;
         initComponents();
         readUserProfile();
+
+        this.cbColor.setSelectedItem(param1.getColorScheme());
+        this.cbIcons.setSelectedItem(param1.getIcons());
+        this.cbScreen.setSelectedItem(param1.getWindowSize());
     }
 
     /**
@@ -65,6 +70,8 @@ public class Settings extends javax.swing.JFrame {
 
         jLabel1.setText("Color Schemes");
 
+        
+        
         cbColor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cyan/Gray", "Blue/Red", "Magenta/Yellow", "Orange/Green"  }));
         cbColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,8 +155,10 @@ public class Settings extends javax.swing.JFrame {
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-        if (userInfo.getUsername() != null) {
-            FileHandler fh = new FileHandler(userInfo.getUsername());
+        if (false) {
+        System.out.println("TEST");
+        if (user1Settings.getUsername() != null) {
+            FileHandler fh = new FileHandler(user1Settings.getUsername());
             String[] lines = new String[6];
             lines = fh.readStatistics();
             
@@ -159,10 +168,10 @@ public class Settings extends javax.swing.JFrame {
                     // Add code to print settings
                 }
             }
-            
         }
-        
-        MenuGUI s = new MenuGUI(userInfo, null);              //NEW MENU
+        }
+        System.out.println(user1Settings.getColorScheme() + " " + user1Settings.getWindowSize());
+        MenuGUI s = new MenuGUI(user1Settings, user2Settings);
         s.setVisible(true);     
         dispose();
     }                  
@@ -172,20 +181,24 @@ public class Settings extends javax.swing.JFrame {
         String resolution = (String)cbScreen.getSelectedItem();
         if (null != resolution) switch (resolution) {
             case "1920x1080":
-                userInfo.setResolution(new Dimension(1920,1080));
+                user1Settings.setResolution(new Dimension(1920,1080));
+                user1Settings.setWindowSize("1920x1080");
                 break;
             case "1600x900":
-                userInfo.setResolution(new Dimension(1600,900));
+                user1Settings.setResolution(new Dimension(1600,900));
+                user1Settings.setWindowSize("1600x900");
                 break;
             case "1280x720":
-                userInfo.setResolution(new Dimension(1280,720));
+                user1Settings.setResolution(new Dimension(1280,720));
+                user1Settings.setWindowSize("1280x720");
                 break;
             case "1024x576":
-                userInfo.setResolution(new Dimension(1024,576));
+                user1Settings.setResolution(new Dimension(1024,576));
+                user1Settings.setWindowSize("1024x576");
                 break;
             default:
                 break;
-        }        
+        }
     }                                        
 
     private void cbIconsActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -197,20 +210,24 @@ public class Settings extends javax.swing.JFrame {
         String colorScheme = (String)cbColor.getSelectedItem();
         if (null != colorScheme) switch (colorScheme) {
             case "Cyan/Gray":
-                userInfo.setColor1(Color.CYAN);
-                userInfo.setColor2(Color.GRAY);
+                user1Settings.setColor1(Color.CYAN);
+                user1Settings.setColor2(Color.GRAY);
+                user1Settings.setColorScheme("Cyan/Gray");
                 break;
             case "Blue/Red":
-                userInfo.setColor1(Color.BLUE);
-                userInfo.setColor2(Color.RED);
+                user1Settings.setColor1(Color.BLUE);
+                user1Settings.setColor2(Color.RED);
+                user1Settings.setColorScheme("Blue/Red");
                 break;
             case "Magenta/Yellow":
-                userInfo.setColor1(Color.MAGENTA);
-                userInfo.setColor2(Color.YELLOW); 
+                user1Settings.setColor1(Color.MAGENTA);
+                user1Settings.setColor2(Color.YELLOW); 
+                user1Settings.setColorScheme("Magenta/Yellow");
                 break;
             case "Orange/Green":
-                userInfo.setColor1(Color.ORANGE);
-                userInfo.setColor2(Color.GREEN);
+                user1Settings.setColor1(Color.ORANGE);
+                user1Settings.setColor2(Color.GREEN);
+                user1Settings.setColorScheme("Orange/Green");
                 break;
             default:
                 break;
@@ -219,6 +236,8 @@ public class Settings extends javax.swing.JFrame {
 
     private void readUserProfile() {
 // Once the user has entered his username, it will create or read his profile
+    if (false) {
+        System.out.println("TEST");
         Charset charset = Charset.forName("US-ASCII");
         String filePathString = "userProfiles/" + username + "profile";
         Path file = Paths.get(filePathString);
@@ -235,7 +254,7 @@ public class Settings extends javax.swing.JFrame {
             }
         } 
     }
-    
+    }
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnReturn;
     private javax.swing.JComboBox<String> cbColor;
