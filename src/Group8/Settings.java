@@ -46,6 +46,8 @@ public class Settings extends javax.swing.JFrame {
         this.cbColor.setSelectedItem(param1.getColorScheme());
         this.cbIcons.setSelectedItem(param1.getIcons());
         this.cbScreen.setSelectedItem(param1.getWindowSize());
+        
+        System.out.println(user1Settings.getGamemode());
     }
 
     /**
@@ -156,7 +158,6 @@ public class Settings extends javax.swing.JFrame {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         if (false) {
-        System.out.println("TEST");
         if (user1Settings.getUsername() != null) {
             FileHandler fh = new FileHandler(user1Settings.getUsername());
             String[] lines = new String[6];

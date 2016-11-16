@@ -5,6 +5,8 @@
  */
 package Group8;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
@@ -32,28 +34,14 @@ public class UserProfiles extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
-    // If one player
-    public UserProfiles(java.awt.Frame parent, boolean modal, UserInfo user1) {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        p2Lbl.setVisible(false);
-        p2LoadBtn.setVisible(false);
-        
-        this.playerinfo1 = user1;
-    }    
     
     // If two players
     public UserProfiles(java.awt.Frame parent, boolean modal, UserInfo user1, UserInfo user2) {
+        this.playerinfo1 = user1;
+        this.playerinfo2 = user2;
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        this.playerinfo1 = user1;
-        if (user2 != null) {
-            this.playerinfo2 = user2;
-        } else {
-            this.playerinfo2 = null;
-        }
     }  
     
     /**
@@ -221,15 +209,68 @@ public class UserProfiles extends javax.swing.JFrame {
             profileInfo1.setText(null);
 
             for (int i = 0; i < lines.length; i++) {
-                profileInfo1.append(lines[i]);
-                profileInfo1.append("\n");
+                String[] parts = lines[i].split(" ");
+                if (null != parts) switch (parts[0]) {
+                    case "GamesPlayed:":
+                        profileInfo1.append(lines[i]);
+                        profileInfo1.append("\n");
+                        break;
+                    case "GamesWon:":                
+                        profileInfo1.append(lines[i]);
+                        profileInfo1.append("\n");
+                        break;
+                    case "ScreenResolution:":
+                        int w = Integer.parseInt(parts[1]);
+                        int h = Integer.parseInt(parts[2]);
+                        playerinfo1.setResolution(new Dimension(w,h));
+                        playerinfo1.setWindowSize("("+w+","+h+")");                        
+                        break;
+                    case "ColorScheme:": 
+                        Color c1 = associateColor(parts[1]);
+                        Color c2 = associateColor(parts[2]);
+                        playerinfo1.setColor1(c1);
+                        playerinfo1.setColor2(c2);
+                        playerinfo1.setColorScheme(parts[1]+","+parts[2]);
+                        break;
+                    case "Icons:":
+                        break;
+                    default:
+                        break;
+                
+                }
             }
         }
     }//GEN-LAST:event_p1LoadBtnActionPerformed
 
+    private Color associateColor(String str) {
+        Color returnColor;
+        
+        if (null != str) switch (str) {
+            case "Cyan":
+                return Color.CYAN;
+            case "Gray":
+                return Color.GRAY;
+            case "Blue":
+                return Color.BLUE;
+            case "Red":
+                return Color.RED;
+            case "Magenta":
+                return Color.MAGENTA;
+            case "Yellow":
+                return Color.YELLOW;
+            case "Orange":
+                return Color.ORANGE;                
+            case "Green":
+                return Color.GREEN;                    
+        }
+        
+        return null;
+    }
+    
     private void p2LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2LoadBtnActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
+        playerinfo1.setGamemode(2);
         if (playerinfo2 != null) {
             String selected = profilesList.getSelectedValue();
             this.playerinfo2.setUsername(selected);
@@ -248,8 +289,6 @@ public class UserProfiles extends javax.swing.JFrame {
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         // TODO add your handling code here:
-        
-        
         MenuGUI s = new MenuGUI(playerinfo1, playerinfo2);
         s.setVisible(true);
         dispose();        
@@ -267,8 +306,8 @@ public class UserProfiles extends javax.swing.JFrame {
         if (f.exists()) {
             JOptionPane.showMessageDialog(null, "Profile already exists for :" + newname);
         } else {
-            String firstLine = "Games Played: 0\n";
-            String secondLine = "Games Won: 0\n";
+            String firstLine = "GamesPlayed: 0\n";
+            String secondLine = "GamesWon: 0\n";
             String thirdLine = "Screen Resolution: (1280,720)\n";
             String fourthLine = "Color Scheme: Blue Gray\n";
             String fifthLine = "Icons: X O\n";

@@ -7,13 +7,6 @@ package Group8;
 
 import GUIStuff.AnimatedPanel;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.PopupMenu;
-import java.nio.charset.Charset;
-import javax.swing.JPanel;
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  *
@@ -29,9 +22,9 @@ public class MenuGUI extends javax.swing.JFrame {
      * Called on game startup
      */
     public MenuGUI() {
-       //Creates a jpanel that is behind the menu
        user1 = new UserInfo("Guest");
        user2 = new UserInfo("Guest2");  
+       //Creates a jpanel that is behind the menu
        this.setContentPane(new AnimatedPanel());
        initComponents();
        //sets the background color
@@ -53,12 +46,24 @@ public class MenuGUI extends javax.swing.JFrame {
                 //Creates a jpanel that is behind the menu
         this.user1 = param1;
         this.user2 = param2;
+        
         this.setContentPane(new AnimatedPanel());
         initComponents();
         this.setLocationRelativeTo(null);
         //sets the background color  
         this.getContentPane().setBackground(Color.decode( "#d4f4dd" ));      
-        System.out.println(user1.getColorScheme() + " " + user1.getWindowSize());
+        
+        
+        if (user1.getGamemode() == 1) {
+            this.ComputerRadioButton.setSelected(true);
+            PlayerNameField2.setVisible(false);
+            this.PlayerNameField1.setText(user1.getUsername());
+        } else {
+            this.PlayerRadioButton.setSelected(true);
+            PlayerNameField2.setVisible(true);
+            this.PlayerNameField1.setText(user1.getUsername());
+            this.PlayerNameField2.setText(user2.getUsername());
+        }
     }    
     
     /**
@@ -244,10 +249,12 @@ public class MenuGUI extends javax.swing.JFrame {
 
     private void PlayerRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayerRadioButtonActionPerformed
         PlayerNameField2.setVisible(true);
+        user1.setGamemode(2);
     }//GEN-LAST:event_PlayerRadioButtonActionPerformed
 
     private void ComputerRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComputerRadioButtonActionPerformed
         PlayerNameField2.setVisible(false);
+        user1.setGamemode(1);
     }//GEN-LAST:event_ComputerRadioButtonActionPerformed
 
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
@@ -285,18 +292,9 @@ public class MenuGUI extends javax.swing.JFrame {
     
     private void btnProfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilesActionPerformed
         // TODO add your handling code here:
-        if (getRadioButton() == "Computer") {
-            user1.setGamemode(0);
-            UserProfiles s = new UserProfiles(this, true, user1, null);
-            s.setVisible(true);       
-            dispose();
-        } else {
-            user1.setGamemode(1);
-            user2.setGamemode(1);
-            UserProfiles s = new UserProfiles(this, true, user1, user2);     
-            s.setVisible(true);  
-            dispose();
-        } 
+        UserProfiles s = new UserProfiles(this, true, user1, user2);     
+        s.setVisible(true);  
+        dispose();
     }//GEN-LAST:event_btnProfilesActionPerformed
 
     private void btnRankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankMouseClicked
