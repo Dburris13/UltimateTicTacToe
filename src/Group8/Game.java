@@ -4,63 +4,70 @@
  * and open the template in the editor.
  */
 package Group8;
-
+import MenuScenes.MenuGUI;
 import java.awt.*;
-import java.applet.Applet;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
+/**
+ * This class is the jFrame that holds our entire game board. It
+ * encapsulates the class BigBoard, Board, and Tile. It is organized
+ * with a border layout, display the BigBoard into the CENTER position
+ * and the "helper" test into the NORTH position.
+ * 
+ * Upon entering the game scene it will update the user's profile if one
+ * has been selected. It uses the FileHandler class to update the user's
+ * "GamesPlayed" statistic. It will update the user's "GamesWon" statistic
+ * on exit if the player is a winner. 
+ * 
+ * This scene is different from the rest of the GUIs that we have because
+ * it is not constructed with the NetBeans drop and drop interface. We didn't
+ * use the drag and drop interface here because we are manually drawing our
+ * BigBoard, Board, and Tile classes and it was easier to code our own JFrame
+ * with a borderLayout instead of user the NetBeans GUI to do it. However, we
+ * did pull code from the drop and drop generated code to get a head start.
+ * 
+ * @author Daniel
+ */
 public class Game extends JFrame{
         
     public Player currentPlayer = new Player(true);
     private BigBoard bboard;
-    private Color c1, c2;
     private JLabel lbl1 = new JLabel();
-    private String username1 = "";
-    private String username2 = "";
     private int count_X=0;
     private int count_O=0;
-    private UserInfo userInfo;
-    private UserInfo userInfo2;    
+    private UserInfo player1;
+    private UserInfo player2;    
     
-    public Game() {
-        userInfo = new UserInfo();
-        userInfo2 = new UserInfo();        
+    /**
+     * Default constructor
+     * Conducts the same business as the default constructor, but allows us to pass in necessary information to it
+     * 
+     * @param profile1
+     * @param profile2 
+     */
+    public Game(UserInfo profile1, UserInfo profile2) {
+        this.player1 = profile1;
+        this.player2 = profile2;
         initGame();   
-        updateUserProfile();     
+        
+        try {     
+            updateUserProfile();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public Game(UserInfo user1, UserInfo user2) {
-        userInfo = user1;
-        userInfo2 = user2;
-        this.c1 = user1.getColor1();
-        this.c2 = user1.getColor2();
-        this.username1 = user1.getUsername();
-        this.userInfo = user1;
-        this.username2 = user2.getUsername();
-        this.userInfo2 = user2;
-        initGame();   
-        updateUserProfile();     
-    }
-    
+    /**
+     * Creates the JFrame and Menu
+     */
     private void initGame() {
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(userInfo.getResolution());
+        this.setSize(player1.getResolution());
         BorderLayout bL = new BorderLayout(5,5);
         this.setLayout(bL);
          
@@ -98,102 +105,192 @@ public class Game extends JFrame{
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1); 
+        
+        /**
+         * Building our BigBoard class on the and adding it to the JFrame.
+         */
         bboard = new BigBoard(this);
-        Dimension dim = new Dimension(720,480);
-        bboard.setSize(dim);
-        lbl1.setText("Player's Turn: " + (currentPlayer.returnStatus() ? "X": "O") + "     " + "Username: " + username1);    
         
-        //bL.addLayoutComponent(lbl1, 1);
-        this.add(lbl1, bL.NORTH);
-        this.add(bboard, bL.CENTER);
+        lbl1.setText("X: " + player1.getUsername() + "     Player's Turn     " + player2.getUsername() + " :O");
+        lbl1.setText(String.format("<html> <font color = 'red'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'black'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()));
+        lbl1.setHorizontalAlignment(SwingConstants.CENTER);
+        lbl1.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        
+        this.add(lbl1, BorderLayout.NORTH);
+        this.add(bboard, BorderLayout.CENTER);
         this.setLocationRelativeTo(null);
-       // bL.addLayoutComponent(bboard, SOMEBITS);
-       // this.add(lbl1);
-       // this.add(bboard);  
     }
     
-    private void updateUserProfile() {
-        String filePathString = "userProfiles/" + username1;
-        File f = new File(filePathString);
-        
-        if (f.exists()) {
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(f));
-                String line;String input = "";    
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(" ");
-                    input += line + '\n';       
-                    
-                    if (parts[1].matches("Played:")) {
-                        int gamesPlayed = Integer.parseInt(parts[2]);
+    /**
+     * This method increments the GamePlayed attribute of the current user's profile.
+     * 
+     * This method creates a new instance of the FileHandler class and passes in the
+     * usernames of 1 or both players depending on the game mode. The FileHandler class
+     * returns all the players current statistics and uses a simple line replace
+     * function we updated the gamesPlayed statistic.
+     * 
+     * This method is private because it only needs to be called at the start of game.
+     * 
+     * @throws IOException if File cannot be accessed
+     */
+    private void updateUserProfile() throws IOException {
+        /**
+         * Writing to player1's user profile
+         * Incrementing games played by 1
+         * Only executed is a player's profile is loaded and not the default
+         * Guest profile
+         */        
+        if (player1.getUsername().equals("Guest")) {
+        } else {
+            FileHandler fh = new FileHandler(player1.getUsername());
+            String[] lines;
+            lines = fh.readStatistics();
+            
+            String input = "";
+            for (String line : lines) {
+                String[] parts = line.split(" ");
+                input += line + '\n';
+                if (null != parts) switch (parts[0]) {
+                    case "GamesPlayed:":       
+                        int gamesPlayed = Integer.parseInt(parts[1]);
                         int newGamesPlayed = gamesPlayed+1;
-                        input = input.replace("Games Played: " + gamesPlayed, "Games Played: " + newGamesPlayed);
-                        
-                         // check if the new input is right
-                        System.out.println("----------------------------------"  + '\n' + input);
-                    }
-                    
-                    FileOutputStream fileOut = new FileOutputStream(filePathString);
-                    fileOut.write(input.getBytes());
-                    fileOut.close();
+                        input = input.replace("GamesPlayed: " + gamesPlayed, "GamesPlayed: " + newGamesPlayed);
+                        break;
+                    default:
+                        break;
                 }
-            } catch (IOException x) {
-                System.err.format("IOException: %s%n", x);
-            } 
-        }      
+            }
+            fh.writeSettings(input);
+        }
+        /**
+         * Writing to player2's user profile
+         * Incrementing games played by 1
+         * Only executed is a player's profile is loaded and not the default
+         * Guest profile
+         */
+        if (player2.getUsername().equals("Guest2")) {
+        } else {
+            FileHandler fh = new FileHandler(player2.getUsername());
+            String[] lines;
+            lines = fh.readStatistics();
+            
+            String input = "";
+            for (String line : lines) {
+                String[] parts = line.split(" ");
+                input += line + '\n';
+                if (null != parts) switch (parts[0]) {
+                    case "GamesPlayed:":       
+                        int gamesPlayed = Integer.parseInt(parts[1]);
+                        int newGamesPlayed = gamesPlayed+1;
+                        input = input.replace("GamesPlayed: " + gamesPlayed, "GamesPlayed: " + newGamesPlayed);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            fh.writeSettings(input);
+        }
     }
     
+    /**
+     * Closes the application.
+     * Called from the menu item.
+     * @param evt 
+     */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         System.exit(0);
     }         
     
+    /**
+     * Returns us to the menu.
+     * Called from the menu item.
+     * @param evt 
+     */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         goToMenu();
     }         
     
+    /**
+     * This is a method that is passed all the way down to the lowest level of 
+     * the class hierarchy here. 
+     * 
+     * It is a simple function that swaps the status of the Player so that the
+     * Tile knows what his status will be when he is clicked.
+     */
     public void endTurn() {
         currentPlayer.switchPlayer();
     }
     
+    /**
+     * Sends us back into the menu
+     */
     public void goToMenu() {
-        MenuGUI s = new MenuGUI(userInfo,userInfo2);
+        MenuGUI s = new MenuGUI(player1,player2);
         s.setVisible(true);
         dispose();
     }
     
+    /**
+     * 
+     * @return returns button color 1 
+     */
     public Color returnColor1() {
-        return c1;    
+        return player1.getColor1();    
     }
     
+    /**
+     * 
+     * @return returns button color 2 
+     */
     public Color returnColor2() {
-        return c2;    
+        return player1.getColor2();    
     }
     
+    /**
+     * Called after every turn is taken to see if any of the win cases are met. 
+     */
     public void checkWinner() {
-        //count move for X
+        /**
+         * count move for X
+         */
         if(currentPlayer.returnStatus()==true)
             {count_X++;}
-        //count move for O
+        /**
+         * count move for O
+         */
         if(currentPlayer.returnStatus()==false)
             {count_O++;}
         
-        lbl1.setText("Player's Turn: " + (currentPlayer.returnStatus() ? "X     "+"UserName: "+username1 +"     Total move: "+count_X : "O     "+"UserName: "+username2 + "     Total move: "+count_O));  
-        //check overall winner and pass username and score
-        bboard.CheckWinner(username1, count_X, username2, count_O);
+        String text = (currentPlayer.returnStatus() ? String.format("<html> <font color = 'red'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'black'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()) : String.format("<html> <font color = 'black'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()));
+        lbl1.setText(String.format("<html> <font color = 'red'> X: %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s :O </html>", player1.getUsername(), player2.getUsername()));
+        lbl1.setText("<html><div style='text-align: center;'>" + text + "</div></html>");  
+        /**
+         * check overall winner and pass username and score
+         */
+        bboard.checkWinner(player1.getUsername(), count_X, player2.getUsername(), count_O);
 
     }
-    public void checkTile()
+    
+    /**
+     * 
+     * @param i
+     * @param k
+     * @return 
+     */
+    public Tile returnBoardTile(int i, int k)
     {
-        //bboard.CheckTile();
-    }
-    public Tile return_Board_Tile(int i, int k)
-    {
-        return bboard.brdArray[i].returnIndex_Tile(k);
+        return bboard.brdArray[i].returnTileIndex(k);
     }
     
-     public void Disabled_EnabledBoard(int Enabled_index, int brdIndex)
+    /**
+     * 
+     * @param Enabled_index
+     * @param brdIndex 
+     */
+     public void manageBoard(int Enabled_index, int brdIndex)
     {
-        bboard.Disabled_EnabledBoard(Enabled_index, brdIndex);
+        bboard.manageBoard(Enabled_index, brdIndex);
     }
      
     // Variables declaration - do not modify                     

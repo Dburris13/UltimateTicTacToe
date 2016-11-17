@@ -9,22 +9,19 @@ package Group8;
  *
  * @author Daniel
  */
-import java.awt.FlowLayout;
+import MenuScenes.MenuGUI;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Settings extends javax.swing.JFrame {
 
@@ -102,7 +99,11 @@ public class Settings extends javax.swing.JFrame {
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReturnActionPerformed(evt);
+                try {
+                    btnReturnActionPerformed(evt);
+                } catch (IOException ex) {
+                    Logger.getLogger(Settings.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
@@ -155,27 +156,87 @@ public class Settings extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }// </editor-fold>                        
 
-    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                          
         // TODO add your handling code here:
-        if (false) {
-        if (user1Settings.getUsername() != null) {
+        if (user1Settings.getUsername() != "Guest") {
             FileHandler fh = new FileHandler(user1Settings.getUsername());
             String[] lines = new String[6];
             lines = fh.readStatistics();
             
+            String input = "";
             for (int i = 0; i < lines.length; i++) {
                 String[] parts = lines[i].split(" ");
-                if (parts[i].matches("Resolution")) {
-                    // Add code to print settings
+                input += lines[i] + '\n';
+                if (null != parts) switch (parts[0]) {
+                    case "ScreenResolution:":       
+                        int w = Integer.parseInt(parts[1]);
+                        int h = Integer.parseInt(parts[2]);
+                        input = input.replace("ScreenResolution: " + w + " " + h, "ScreenResolution: " + (int)user1Settings.getResolution().getWidth() + " " + (int)user1Settings.getResolution().getHeight());
+                        break;
+                    case "ColorScheme:": 
+                        input = input.replace("ColorScheme: " + parts[1] + " " + parts[2], "ColorScheme: " + getColor1Value() + " " + getColor2Value());
+                        break;
+                    case "Icons:":
+                        break;
+                    default:
+                        break;
+                    }
                 }
+                fh.writeSettings(input);
             }
-        }
-        }
-        System.out.println(user1Settings.getColorScheme() + " " + user1Settings.getWindowSize());
+        
         MenuGUI s = new MenuGUI(user1Settings, user2Settings);
         s.setVisible(true);     
         dispose();
     }                  
+    
+    private String getColor1Value() {
+        String colorStr = "";
+        
+        if (user1Settings.getColor1() == Color.BLUE) {
+            return "Blue";
+        } else if (user1Settings.getColor1() == Color.RED) {
+            return "Red";
+        } else if (user1Settings.getColor1() == Color.CYAN) {
+            return "Cyan";
+        } else if (user1Settings.getColor1() == Color.GRAY) {
+            return "Gray";
+        } else if (user1Settings.getColor1() == Color.MAGENTA) {
+            return "Magenta";
+        } else if (user1Settings.getColor1() == Color.YELLOW) {
+            return "Yellow";
+        } else if (user1Settings.getColor1() == Color.ORANGE) {
+            return "Orange";
+        } else if (user1Settings.getColor1() == Color.GREEN) {
+            return "Green";
+        }
+        
+        return colorStr;
+    }
+    
+    private String getColor2Value() {
+        String colorStr = "";
+        
+        if (user1Settings.getColor2() == Color.BLUE) {
+            return "Blue";
+        } else if (user1Settings.getColor2() == Color.RED) {
+            return "Red";
+        } else if (user1Settings.getColor2() == Color.CYAN) {
+            return "Cyan";
+        } else if (user1Settings.getColor2() == Color.GRAY) {
+            return "Gray";
+        } else if (user1Settings.getColor2() == Color.MAGENTA) {
+            return "Magenta";
+        } else if (user1Settings.getColor2() == Color.YELLOW) {
+            return "Yellow";
+        } else if (user1Settings.getColor2() == Color.ORANGE) {
+            return "Orange";
+        } else if (user1Settings.getColor2() == Color.GREEN) {
+            return "Green";
+        }
+        
+        return colorStr;
+    }
     
     private void cbScreenActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:

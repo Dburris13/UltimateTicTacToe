@@ -7,6 +7,8 @@ package Group8;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,6 +51,13 @@ public class FileHandler {
         return lines.toArray(new String[lines.size()]);
     }
 
+    public boolean writeSettings(String input) throws FileNotFoundException, IOException {
+        FileOutputStream fileOut = new FileOutputStream(filePathString);
+        fileOut.write(input.getBytes());
+        fileOut.close();
+        return true;
+    }
+    
     public void readSettings() {
         if (f.exists()) {
             try (BufferedReader reader = new BufferedReader(new FileReader(f))) {

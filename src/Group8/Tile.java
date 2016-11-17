@@ -1,69 +1,92 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Group8;
-
-import java.awt.*;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
-
+import java.awt.Color;
+import java.awt.Font;
 
 /**
- *
+ * This is the tile class. 
+ * It is the lowest level of our game's hierarchy.
+ * 
+ * It is a sub-class of a JButton and overrides its ActionListener
+ * Any action performed on a tile advanced the state of the game,
+ * by calling function directly from Game. This was the whole logic
+ * behind our hierarchy system.
+ * 
  * @author Daniel
  */
 public class Tile extends JButton implements ActionListener {
-    //private JButton btn = new JButton();
-    private int BTN_SIZE = 70;
-    private char btnText = ' ';
-    private boolean whoseTurn; 
+    
     private Game game;
     private Board brd;
     private int tileIndex =0, brdIndex = 0;
    
     
+    /**
+     * Default Constructor .
+     * 
+     * This constructor is given the top-level function needed to progress the game
+     * and the board that he is apart of. 
+     * 
+     * @param game game methods
+     * @param brd board index
+     * @param turn status to be set
+     * @param color color to be set to
+     */
     public Tile(Game game, Board brd, char turn, Color color) {
-        this.setSize(BTN_SIZE, BTN_SIZE);
         this.addActionListener(this);
-        this.setActionCommand("Geeks");
         this.setBackground(color);
         this.setForeground(Color.PINK);
         this.game = game;
         this.brd = brd;
-        btnText = turn;
     }
     
+    /**
+     * This method is called when we're checking for the state of the game.
+     * Each Tile has the responsibility to return it's own status when his board
+     * asks for it. His status is given to him from the Game. 
+     * 
+     * @return String representing his status
+     */
     public String returnStatus() {
-        System.out.println("Button is : " + getText());
         return getText();
     }
     
+    /**
+     * This method is called when the Tile is pressed.
+     * This method has only to worry about itself. It figures out what it's
+     * index in the game it is and determines what it's status will be. 
+     * 
+     * It then advances the state of the game using top-level methods passed to it.
+     * 
+     * @param ae 
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        String action = ae.getActionCommand();
-        for(int i =0; i<9; i++) //loop to check which Tile is being pressed
-        {
-            for(int k =0; k<9; k++)
-            {
-            if(ae.getSource() == game.return_Board_Tile(i, k))
-            {
-                //JOptionPane.showMessageDialog(null, "at board: "+i+" tile: "+k);
-                tileIndex = k;
-                brdIndex = i;
-            }
+        /**
+         * Grabbing the indexes of the Tile
+         */
+        for(int i =0; i<9; i++) {
+            for(int k =0; k<9; k++) {
+                if(ae.getSource() == game.returnBoardTile(i, k)) {
+                    tileIndex = k;
+                    brdIndex = i;
+                }
             }
         }
-        if (action.equals("Geeks")) {
-            this.setFont(new Font("Arial", Font.PLAIN, 40));
-            this.setText((game.currentPlayer.returnStatus() ? "X" : "O"));
-           // this.setEnabled(false);
-            game.endTurn();
-            game.checkWinner();
-            game.Disabled_EnabledBoard(tileIndex, brdIndex); //set where to go if Tile clicked
-        }
+        
+        /**
+         * Visually displaying the status of Tile.
+         */
+        this.setFont(new Font("Arial", Font.PLAIN, 80));
+        this.setText((game.currentPlayer.returnStatus() ? "X" : "O"));
+        
+        /**
+         * Advancing the state of the game usually top-level methods. 
+         */
+        game.endTurn();
+        game.checkWinner();
+        game.manageBoard(tileIndex, brdIndex);
     }
 }

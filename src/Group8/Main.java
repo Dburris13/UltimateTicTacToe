@@ -5,9 +5,11 @@
  */
 package Group8;
 
+import MenuScenes.MenuGUI;
+
 /**
  *
- * @author Daniel
+ * @author Daniel, Irene, Ben, Zach
  */
 public class Main {
     private static void createAndShowGUI() {
@@ -18,11 +20,8 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-
-        public void run() {
+        javax.swing.SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
-        }        
         });
     
     }
