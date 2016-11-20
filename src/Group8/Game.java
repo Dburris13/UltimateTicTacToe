@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
  */
 package Group8;
 import MenuScenes.MenuGUI;
@@ -12,8 +14,11 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- * This class is the jFrame that holds our entire game board. It
- * encapsulates the class BigBoard, Board, and Tile. It is organized
+ * This class represents our game scene.
+ * This class features a small menu bar, text to display whose turn it is, and 
+ * our BigBoard class.
+ * 
+ * It encapsulates the class BigBoard, Board, and Tile. It is organized
  * with a border layout, display the BigBoard into the CENTER position
  * and the "helper" test into the NORTH position.
  * 
@@ -30,9 +35,13 @@ import javax.swing.*;
  * did pull code from the drop and drop generated code to get a head start.
  * 
  * @author Daniel
+ * @author Ben
  */
 public class Game extends JFrame{
         
+    /** 
+     * Player represents the active user in the game, whoever's turn it is
+     */
     public Player currentPlayer = new Player(true);
     private BigBoard bboard;
     private JLabel lbl1 = new JLabel();
@@ -43,7 +52,6 @@ public class Game extends JFrame{
     
     /**
      * Default constructor
-     * Conducts the same business as the default constructor, but allows us to pass in necessary information to it
      * 
      * @param profile1
      * @param profile2 
@@ -61,7 +69,10 @@ public class Game extends JFrame{
     }
     
     /**
-     * Creates the JFrame and Menu
+     * Class Initialization
+     * 
+     * Creates the JFrame and Menu layout / design
+     * A lot of this code was borrowed from the drag and drop GUI features of NetBeans
      */
     private void initGame() {
         this.pack();
@@ -82,15 +93,6 @@ public class Game extends JFrame{
 
         jMenu1.setText("File");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
-        jMenuItem1.setText("Exit");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
         jMenuItem2.setText("Return to Menu");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +101,15 @@ public class Game extends JFrame{
         });        
         jMenu1.add(jMenuItem2);
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
+        jMenuItem1.setText("Exit");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+        
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -123,6 +134,7 @@ public class Game extends JFrame{
     }
     
     /**
+     * Update User Profile.
      * This method increments the GamePlayed attribute of the current user's profile.
      * 
      * This method creates a new instance of the FileHandler class and passes in the
@@ -194,6 +206,8 @@ public class Game extends JFrame{
     }
     
     /**
+     * Menu Bar - Exit Application
+     * 
      * Closes the application.
      * Called from the menu item.
      * @param evt 
@@ -203,6 +217,8 @@ public class Game extends JFrame{
     }         
     
     /**
+     * Menu bar - Return to Menu.
+     * 
      * Returns us to the menu.
      * Called from the menu item.
      * @param evt 
@@ -212,6 +228,8 @@ public class Game extends JFrame{
     }         
     
     /**
+     * End Turn.
+     * 
      * This is a method that is passed all the way down to the lowest level of 
      * the class hierarchy here. 
      * 
@@ -223,6 +241,8 @@ public class Game extends JFrame{
     }
     
     /**
+     * Go to Menu.
+     * 
      * Sends us back into the menu
      */
     public void goToMenu() {
@@ -232,6 +252,7 @@ public class Game extends JFrame{
     }
     
     /**
+     * Return Color 1.
      * 
      * @return returns button color 1 
      */
@@ -240,6 +261,7 @@ public class Game extends JFrame{
     }
     
     /**
+     * Return Color 2.
      * 
      * @return returns button color 2 
      */
@@ -248,6 +270,8 @@ public class Game extends JFrame{
     }
     
     /**
+     * Status Check.
+     * 
      * Called after every turn is taken to see if any of the win cases are met. 
      */
     public void checkWinner() {
@@ -273,10 +297,11 @@ public class Game extends JFrame{
     }
     
     /**
+     * Return Tile Index of Board i
      * 
-     * @param i
-     * @param k
-     * @return 
+     * @param i board
+     * @param k tile
+     * @return Tile
      */
     public Tile returnBoardTile(int i, int k)
     {
@@ -284,6 +309,8 @@ public class Game extends JFrame{
     }
     
     /**
+     * Board Manager.
+     * Simply calls BigBoard's manageBoard method.
      * 
      * @param Enabled_index
      * @param brdIndex 
