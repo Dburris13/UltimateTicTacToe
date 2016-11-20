@@ -1,3 +1,10 @@
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
+ */
 package GUIStuff;
 
 import java.awt.Color;

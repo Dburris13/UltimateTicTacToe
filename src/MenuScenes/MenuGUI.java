@@ -1,5 +1,9 @@
-/**
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
  * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
 
@@ -10,7 +14,11 @@ import Group8.UserInfo;
 import java.awt.Color;
 
 /**
- * This is the main menu scene.
+ * This class represents our main menu scene.
+ * This class features 4 jButtons which each take you into another scene and 1
+ * jButton which exits the application. It also features 4 radio buttons to 
+ * allow the user to select between an AI opponent or player opponent. It will
+ * also display the current profiles loaded into the game.
  * 
  * @author Daniel
  * @author Irene
@@ -368,7 +376,7 @@ public class MenuGUI extends javax.swing.JFrame {
      */
     private void btnProfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilesActionPerformed
         // TODO add your handling code here:
-        UserProfiles s = new UserProfiles(this, true, user1, user2);     
+        UserProfiles s = new UserProfiles(user1, user2);     
         s.setVisible(true);  
         dispose();
     }//GEN-LAST:event_btnProfilesActionPerformed

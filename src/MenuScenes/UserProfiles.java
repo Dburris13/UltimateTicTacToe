@@ -1,7 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
 
@@ -20,7 +22,13 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This class represents our user profiles scene.
+ * This class features a jList which contains all the current user profiles.
+ * It has 2 jTextBoxes that load user profile statistics on load. It has 2 
+ * load buttons that appear for each user to be loaded (only 1 button is visible
+ * if versus computer is selected). It has a new button for creating a new user
+ * profile. It also has a button to return us to the main menu.
+ * 
  * @author Daniel
  */
 public class UserProfiles extends javax.swing.JFrame {
@@ -29,15 +37,23 @@ public class UserProfiles extends javax.swing.JFrame {
     private UserInfo playerinfo2;
     private DefaultListModel<String> userListModel;
     /**
+     * Default Constructor.
+     * 
      * Creates new form UserProfiles
      */
-    public UserProfiles(java.awt.Frame parent, boolean modal) {
+    public UserProfiles() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
     
-    // If two players
-    public UserProfiles(java.awt.Frame parent, boolean modal, UserInfo user1, UserInfo user2) {
+    /**
+     * Constructor Method.
+     * Takes in two user profiles as parameters.
+     * 
+     * @param user1
+     * @param user2 
+     */
+    public UserProfiles(UserInfo user1, UserInfo user2) {
         this.playerinfo1 = user1;
         this.playerinfo2 = user2;
         
@@ -198,7 +214,14 @@ public class UserProfiles extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Player 1 Load Button.
+     * This button allows player 1's user profile to be loaded.
+     * Player 1's settings are used to determine game settings.
+     * 
+     * @param evt 
+     */
     private void p1LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1LoadBtnActionPerformed
         // TODO add your handling code here:
         if (playerinfo1 != null) {
@@ -244,9 +267,14 @@ public class UserProfiles extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_p1LoadBtnActionPerformed
 
-    private Color associateColor(String str) {
-        Color returnColor;
-        
+    /**
+     * Associate Color.
+     * Takes in a string as an input, outputs the associated color.
+     * 
+     * @param str String of Color
+     * @return Color of String
+     */
+    private Color associateColor(String str) {        
         if (null != str) switch (str) {
             case "Cyan":
                 return Color.CYAN;
@@ -269,9 +297,14 @@ public class UserProfiles extends javax.swing.JFrame {
         return null;
     }
     
+    /**
+     * Player 2 Load Button.
+     * This button allows player 2's user profile to be loaded.
+     * Player 2's settings are not used.
+     * 
+     * @param evt 
+     */
     private void p2LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2LoadBtnActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
         playerinfo1.setGamemode(2);
         if (playerinfo2 != null) {
             String selected = profilesList.getSelectedValue();
@@ -289,6 +322,12 @@ public class UserProfiles extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_p2LoadBtnActionPerformed
 
+    /**
+     * Return Button.
+     * Takes us bake to the menu.
+     * 
+     * @param evt 
+     */
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         // TODO add your handling code here:
         MenuGUI s = new MenuGUI(playerinfo1, playerinfo2);
@@ -296,6 +335,12 @@ public class UserProfiles extends javax.swing.JFrame {
         dispose();        
     }//GEN-LAST:event_returnBtnActionPerformed
 
+    /**
+     * New Button.
+     * Creates a new user profile.
+     * 
+     * @param evt 
+     */
     private void p1NewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1NewBtnActionPerformed
         // TODO add your handling code here:
         String newname = (String)JOptionPane.showInputDialog(null, "Enter your username", "New Profile", JOptionPane.PLAIN_MESSAGE, null, null, "");
@@ -308,6 +353,9 @@ public class UserProfiles extends javax.swing.JFrame {
         if (f.exists()) {
             JOptionPane.showMessageDialog(null, "Profile already exists for :" + newname);
         } else {
+            /**
+             * Writing default information to file
+             */
             String firstLine = "GamesPlayed: 0\n";
             String secondLine = "GamesWon: 0\n";
             String thirdLine = "ScreenResolution: " + (int)playerinfo1.getResolution().getWidth() + " " + (int)playerinfo1.getResolution().getHeight() + "\n";
@@ -325,56 +373,12 @@ public class UserProfiles extends javax.swing.JFrame {
             }
         }
 
-        //userListModel.addElement(newname);
         userListModel.addElement(newname);
         profilesList.setModel(userListModel);
         jScrollPane1.setViewportView(profilesList);
         profilesList.repaint();
         profilesList.revalidate();
     }//GEN-LAST:event_p1NewBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserProfiles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserProfiles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserProfiles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserProfiles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                UserProfiles dialog = new UserProfiles(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,8 +1,11 @@
 <#if licenseFirst??>
 ${licenseFirst}
 </#if>
-${licensePrefix}This is a test of how to user the lisceen headers
-${licensePrefix}Each line should be prefixed with ${licensePrefix}
+${licensePrefix}CS321 - Java Programming
+${licensePrefix}Final Project - Team 8 - Ultimate Tic-Tac-Toe
+${licensePrefix}
+${licensePrefix}Members:
+${licensePrefix}Daniel, Ben, Irene, Zach
 <#if licenseLast??>
 ${licenseLast}
 </#if>

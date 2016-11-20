@@ -1,12 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
  */
 package Group8;
 
 /**
- *
+ * This class represents our settings scene.
+ * This class features 3 combo boxes that allow the user to customize his game
+ * settings. It has a button to return us to the menu. 
+ * 
  * @author Daniel
  */
 import MenuScenes.MenuGUI;
@@ -23,28 +28,41 @@ import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class represents our user settings scene.
+ * It features 2 combo boxes that allow the user change game settings.
+ * It features a button that returns us to the menu.
+ * 
+ * @author Daniel
+ */
 public class Settings extends javax.swing.JFrame {
 
     private UserInfo user1Settings;
     private UserInfo user2Settings;
     private String username;
     
+    /**
+     * Default Constructor.
+     * 
+     */
     public Settings() {
         initComponents();
-        readUserProfile();
     }
     
+    /**
+     * Constructor Method.
+     * Takes in two user profiles as parameters.
+     * 
+     * @param param1 user 1 class
+     * @param param2 user 2 class
+     */
     public Settings(UserInfo param1, UserInfo param2) {
         this.user1Settings = param1;
         this.user2Settings = param2;
         initComponents();
-        readUserProfile();
 
         this.cbColor.setSelectedItem(param1.getColorScheme());
-        this.cbIcons.setSelectedItem(param1.getIcons());
         this.cbScreen.setSelectedItem(param1.getWindowSize());
-        
-        System.out.println(user1Settings.getGamemode());
     }
 
     /**
@@ -61,8 +79,6 @@ public class Settings extends javax.swing.JFrame {
         cbColor = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         cbScreen = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        cbIcons = new javax.swing.JComboBox<>();
         btnReturn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,16 +102,7 @@ public class Settings extends javax.swing.JFrame {
                 cbScreenActionPerformed(evt);
             }
         });
-
-        jLabel3.setText("Icon Schemes");
-
-        cbIcons.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbIcons.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbIconsActionPerformed(evt);
-            }
-        });
-
+        
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,9 +131,7 @@ public class Settings extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbScreen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbIcons, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(btnReturn)))
@@ -144,9 +149,7 @@ public class Settings extends javax.swing.JFrame {
                     .addComponent(cbColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbScreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbIcons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(btnReturn)
                 .addContainerGap())
@@ -156,6 +159,12 @@ public class Settings extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }// </editor-fold>                        
 
+    /**
+     * Return Button.
+     * Takes us bake to the menu.
+     * 
+     * @param evt 
+     */
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                          
         // TODO add your handling code here:
         if (user1Settings.getUsername() != "Guest") {
@@ -190,6 +199,12 @@ public class Settings extends javax.swing.JFrame {
         dispose();
     }                  
     
+    /**
+     * Get Color 1.
+     * Gets color 1 attribute from UserInfo object.
+     * 
+     * @return returns button color 1 
+     */
     private String getColor1Value() {
         String colorStr = "";
         
@@ -214,6 +229,12 @@ public class Settings extends javax.swing.JFrame {
         return colorStr;
     }
     
+    /**
+     * Get Color 2.
+     * Gets color 2 attribute from UserInfo object.
+     * 
+     * @return returns button color 2 
+     */    
     private String getColor2Value() {
         String colorStr = "";
         
@@ -238,6 +259,11 @@ public class Settings extends javax.swing.JFrame {
         return colorStr;
     }
     
+    /**
+     * Screen Combo Box Action Performed.
+     * Updated UserInfo when the combo box selection changes.
+     * @param evt 
+     */        
     private void cbScreenActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
         String resolution = (String)cbScreen.getSelectedItem();
@@ -263,10 +289,11 @@ public class Settings extends javax.swing.JFrame {
         }
     }                                        
 
-    private void cbIconsActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-    }                   
-
+    /**
+     * Color Combo Box Action Performed.
+     * Updated UserInfo when the combo box selection changes.
+     * @param evt 
+     */
     private void cbColorActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
         String colorScheme = (String)cbColor.getSelectedItem();
@@ -296,34 +323,11 @@ public class Settings extends javax.swing.JFrame {
         }
     }    
 
-    private void readUserProfile() {
-// Once the user has entered his username, it will create or read his profile
-    if (false) {
-        System.out.println("TEST");
-        Charset charset = Charset.forName("US-ASCII");
-        String filePathString = "userProfiles/" + username + "profile";
-        Path file = Paths.get(filePathString);
-        File f = new File(filePathString);
-        
-        if (f.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
-                }
-            } catch (IOException x) {
-                System.err.format("IOException: %s%n", x);
-            }
-        } 
-    }
-    }
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnReturn;
     private javax.swing.JComboBox<String> cbColor;
-    private javax.swing.JComboBox<String> cbIcons;
     private javax.swing.JComboBox<String> cbScreen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration                   
 }

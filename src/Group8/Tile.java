@@ -1,3 +1,10 @@
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
+ */
 package Group8;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
@@ -6,43 +13,56 @@ import java.awt.Color;
 import java.awt.Font;
 
 /**
- * This is the tile class. 
+ * This class represents a Tile of the Tic-Tac-Toe board.
  * It is the lowest level of our game's hierarchy.
  * 
- * It is a sub-class of a JButton and overrides its ActionListener
- * Any action performed on a tile advanced the state of the game,
- * by calling function directly from Game. This was the whole logic
- * behind our hierarchy system.
+ * This class extends a JButton and overrides its ActionListener. Any action
+ * performed on a Tile advances the state of the game. It does this by calling
+ * public Game functions where all "global" variables are kept. Since each level
+ * of our game's hierarchy inherits from its parent, the variables used to 
+ * track the state of the game are seen by all classes instantiated in our game
+ * scene. By declaring public function in Game that can be called by our 
+ * ActionListener, we can very easily control the flow of the game. 
  * 
  * @author Daniel
+ * @author Ben
  */
 public class Tile extends JButton implements ActionListener {
     
-    private Game game;
-    private Board brd;
+    private final Game game;
+    private final Board brd;
     private int tileIndex =0, brdIndex = 0;
-   
     
     /**
-     * Default Constructor .
+     * Default Constructor.
      * 
-     * This constructor is given the top-level function needed to progress the game
-     * and the board that he is apart of. 
-     * 
-     * @param game game methods
-     * @param brd board index
-     * @param turn status to be set
-     * @param color color to be set to
+     * @param game inherits Game methods
+     * @param brd inherits Board methods
+     * @param turn status to be set (X or O)
+     * @param color color to be set to (user settings)
      */
     public Tile(Game game, Board brd, char turn, Color color) {
-        this.addActionListener(this);
-        this.setBackground(color);
-        this.setForeground(Color.PINK);
         this.game = game;
         this.brd = brd;
+        initComponents(color);
     }
     
     /**
+     * Object initialization. 
+     * 
+     * Draws the object and overrides its ActionListener.
+     * 
+     * @param color of Tile
+     */
+    private void initComponents(Color color) {
+        this.addActionListener(this);
+        this.setBackground(color);
+        this.setForeground(Color.PINK);
+    }
+    
+    /**
+     * Status Return.
+     * 
      * This method is called when we're checking for the state of the game.
      * Each Tile has the responsibility to return it's own status when his board
      * asks for it. His status is given to him from the Game. 
@@ -54,11 +74,13 @@ public class Tile extends JButton implements ActionListener {
     }
     
     /**
-     * This method is called when the Tile is pressed.
-     * This method has only to worry about itself. It figures out what it's
-     * index in the game it is and determines what it's status will be. 
+     * Action Performed.
      * 
-     * It then advances the state of the game using top-level methods passed to it.
+     * This method is called when the Tile is pressed.
+     * It will set its status and index based on what is based to him from Board
+     * and from Game.
+     * 
+     * It then advances the state of the game using it's inherited Game methods.
      * 
      * @param ae 
      */
@@ -77,13 +99,13 @@ public class Tile extends JButton implements ActionListener {
         }
         
         /**
-         * Visually displaying the status of Tile.
+         * Visually displaying the status of Tile
          */
         this.setFont(new Font("Arial", Font.PLAIN, 80));
         this.setText((game.currentPlayer.returnStatus() ? "X" : "O"));
         
         /**
-         * Advancing the state of the game usually top-level methods. 
+         * Advancing the state of the game using inherited methods
          */
         game.endTurn();
         game.checkWinner();

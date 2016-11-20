@@ -1,3 +1,10 @@
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
+ */
 package Group8;
 
 import java.awt.*;
@@ -8,7 +15,9 @@ import java.io.File;
 import java.io.FileWriter;
 
 /**
- * This class is the BigBoard class that encapsulates 9 Board classes.
+ * This class represents a BigBoard of 9 Boards.
+ * This class is made up of 9 Board classes. 
+ * 
  * It is the 2nd highest level of our game's hierarchy. It is responsible
  * for checking its own win cases and visually identifying winning boards
  * to the user.
@@ -30,16 +39,18 @@ public class BigBoard extends Applet  {
     private Game game;
         
     /** 
-     * Default Constructor 
+     * Default Constructor.
+     * 
      * The whole game scene is interconnected with each other.
-     * @param game 
+     * Game instantiated BigBoard which instantiates Board which instantiates Tile.
+     * @param game inherits Game methods
      */
     public BigBoard (Game game) {
         /**
-         * The BigBoard itself is just a GridLayout. 
-         * It places 9 Boards into each of its grid slots.
+         * The BigBoard itself is just a GridLayout 
+         * It places 9 Boards into each of its grid slots
          */
-        GridLayout gl = new GridLayout (3,3, 3, 3);
+        GridLayout gl = new GridLayout (3,3,3,3);
         this.setLayout(gl);
         this.game = game;
                 
@@ -53,7 +64,9 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * This is a general method that determines if num is even.
+     * Return Even Number.
+     * 
+     * This is a general method that determines if an integer is even.
      * @param num integer passed into method
      * @return true is num is even
      */
@@ -66,7 +79,9 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * This method is called by the game scene when after each turn to determine whether the game has been won.
+     * Status Check.
+     * 
+     * This method is called by the game scene after each turn to determine whether the BigBoard has been won.
      * This function simply just looks at its 9 boards and calls their checkWinner functions. 
      * It then compares their statuses to each other to see what status it should return to game.
      * 
@@ -87,14 +102,14 @@ public class BigBoard extends Applet  {
         /**
          * Looking at all win cases for X
          */
-        if (brdArray[0].returnStatus() == "X" && brdArray[1].returnStatus() == "X" && brdArray[2].returnStatus() == "X"
-            ||brdArray[3].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[5].returnStatus() == "X"
-            ||brdArray[6].returnStatus() == "X" && brdArray[7].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[0].returnStatus() == "X" && brdArray[3].returnStatus() == "X" && brdArray[6].returnStatus() == "X"
-            ||brdArray[1].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[7].returnStatus() == "X"
-            ||brdArray[2].returnStatus() == "X" && brdArray[5].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[0].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[2].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[6].returnStatus() == "X") {
+        if ("X".equals(brdArray[0].returnStatus()) && "X".equals(brdArray[1].returnStatus()) && "X".equals(brdArray[2].returnStatus())
+            ||"X".equals(brdArray[3].returnStatus()) && "X".equals(brdArray[4].returnStatus()) && "X".equals(brdArray[5].returnStatus())
+            ||"X".equals(brdArray[6].returnStatus()) && "X".equals(brdArray[7].returnStatus()) && "X".equals(brdArray[8].returnStatus())
+            ||"X".equals(brdArray[0].returnStatus()) && "X".equals(brdArray[3].returnStatus()) && "X".equals(brdArray[6].returnStatus())
+            ||"X".equals(brdArray[1].returnStatus()) && "X".equals(brdArray[4].returnStatus()) && "X".equals(brdArray[7].returnStatus())
+            ||"X".equals(brdArray[2].returnStatus()) && "X".equals(brdArray[5].returnStatus()) && "X".equals(brdArray[8].returnStatus())
+            ||"X".equals(brdArray[0].returnStatus()) && "X".equals(brdArray[4].returnStatus()) && "X".equals(brdArray[8].returnStatus())
+            ||"X".equals(brdArray[2].returnStatus()) && "X".equals(brdArray[4].returnStatus()) && "X".equals(brdArray[6].returnStatus())) {
             JOptionPane.showMessageDialog(null,"THE WINNER: "+user1+"  total move: "+score1 );
             UserToRank(user1,score1);
             game.goToMenu();
@@ -103,14 +118,14 @@ public class BigBoard extends Applet  {
         /**
          * Looking at all win cases for O
          */
-        if (brdArray[0].returnStatus() == "O" && brdArray[1].returnStatus() == "O" && brdArray[2].returnStatus() == "O"
-            ||brdArray[3].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[5].returnStatus() == "O"
-            ||brdArray[6].returnStatus() == "O" && brdArray[7].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[0].returnStatus() == "O" && brdArray[3].returnStatus() == "O" && brdArray[6].returnStatus() == "O"
-            ||brdArray[1].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[7].returnStatus() == "O"
-            ||brdArray[2].returnStatus() == "O" && brdArray[5].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[0].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[2].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[6].returnStatus() == "O") {            
+        if ("O".equals(brdArray[0].returnStatus()) && "O".equals(brdArray[1].returnStatus()) && "O".equals(brdArray[2].returnStatus())
+            ||"O".equals(brdArray[3].returnStatus()) && "O".equals(brdArray[4].returnStatus()) && "O".equals(brdArray[5].returnStatus())
+            ||"O".equals(brdArray[6].returnStatus()) && "O".equals(brdArray[7].returnStatus()) && "O".equals(brdArray[8].returnStatus())
+            ||"O".equals(brdArray[0].returnStatus()) && "O".equals(brdArray[3].returnStatus()) && "O".equals(brdArray[6].returnStatus())
+            ||"O".equals(brdArray[1].returnStatus()) && "O".equals(brdArray[4].returnStatus()) && "O".equals(brdArray[7].returnStatus())
+            ||"O".equals(brdArray[2].returnStatus()) && "O".equals(brdArray[5].returnStatus()) && "O".equals(brdArray[8].returnStatus())
+            ||"O".equals(brdArray[0].returnStatus()) && "O".equals(brdArray[4].returnStatus()) && "O".equals(brdArray[8].returnStatus())
+            ||"O".equals(brdArray[2].returnStatus()) && "O".equals(brdArray[4].returnStatus()) && "O".equals(brdArray[6].returnStatus())) {            
             JOptionPane.showMessageDialog(null, "THE WINNER: "+user2+"  total move: "+score2);
             UserToRank(user2, score2);
             game.goToMenu();
@@ -118,8 +133,9 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * This methods paints an entire board like an X character 
+     * Paint X.
      * 
+     * This methods paints an entire board like an X character.
      * @param brd board to be painted
      */
     private void paintX(Board brd) {
@@ -162,7 +178,10 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * This methods paints an entire board to RED, to signify that the board is a tie. 
+     * Paint Red.
+     * 
+     * This methods paints an entire board to RED, to signify that the board is a tie.
+     * When the board is tie, it means the counts for both players. 
      * 
      * @param brd board to be painted
      */
@@ -206,6 +225,8 @@ public class BigBoard extends Applet  {
     }
     
     /**
+     * Paint O
+     * 
      * This methods paints an entire board like an O character 
      * 
      * @param brd board to be painted
@@ -248,7 +269,8 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(8).setEnabled(false);        
     }
     /**
-     * This function handles the painting of the BigBoard class.
+     * Board Manager.
+     * This function handles the painting of the BigBoard class
      * 
      * It has many responsibilities. The board is originally painted when BigBoard is created.
      * This method has to repaint the board after every turn depending on which board is active,
@@ -357,16 +379,20 @@ public class BigBoard extends Applet  {
     }
     
     /**
+     * Return Board Index
+     * 
      * return boardArray at specific index
      * @param btnArrayIndex
      * @return 
      */
-    public Board returnIndex_Board(int btnArrayIndex) 
+    public Board returnIndexBoard(int btnArrayIndex) 
     {
         return brdArray[btnArrayIndex];
     }
     
     /**
+     * HighScore updates
+     * 
      * add winner to ranking system database rank.data file
      * @param name
      * @param score 
