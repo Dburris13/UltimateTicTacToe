@@ -1,5 +1,6 @@
 package Group8;
 
+import GUIStuff.WinDialog;
 import java.awt.*;
 import java.applet.Applet;
 import javax.swing.JOptionPane;
@@ -95,9 +96,11 @@ public class BigBoard extends Applet  {
             ||brdArray[2].returnStatus() == "X" && brdArray[5].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
             ||brdArray[0].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
             ||brdArray[2].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[6].returnStatus() == "X") {
-            JOptionPane.showMessageDialog(null,"THE WINNER: "+user1+"  total move: "+score1 );
+            //JOptionPane.showMessageDialog(null,"THE WINNER: "+user1+"  total move: "+score1 );
             UserToRank(user1,score1);
-            game.goToMenu();
+            WinDialog w = new WinDialog(game,game,user1,score1);
+            w.setVisible(true);
+            //game.goToMenu();
         }
         
         /**
@@ -111,9 +114,12 @@ public class BigBoard extends Applet  {
             ||brdArray[2].returnStatus() == "O" && brdArray[5].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
             ||brdArray[0].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
             ||brdArray[2].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[6].returnStatus() == "O") {            
-            JOptionPane.showMessageDialog(null, "THE WINNER: "+user2+"  total move: "+score2);
+            //JOptionPane.showMessageDialog(null, "THE WINNER: "+user2+"  total move: "+score2);
             UserToRank(user2, score2);
-            game.goToMenu();
+            WinDialog w = new WinDialog(game,game,user2,score2);
+            w.setVisible(true);
+            //game.dispose();
+            //game.goToMenu();
         }           
     }
     
