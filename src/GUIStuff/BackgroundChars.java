@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUIStuff;
 
 import java.awt.Color;
@@ -10,47 +5,42 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 /**
- *
- * @author kcnre
+ * An abstract class defining the characters that will be displayed in the 
+ * AnimatedPanel class
+ * @author Irene
  */
-public class BackgroundChars {
+public abstract class BackgroundChars {
     int D_HEIGHT = 500; //height of the jFrame
+    int D_WIDTH = 750; //width of the jframe
     int randXLoc;
-    int y = D_HEIGHT;
-    private static final int INCREMENT = 8;
+    int randYLoc;
     int randomDelayedStart;
     boolean draw = false;
     boolean down = false;
     Color color;
 
-    public BackgroundChars(int randXLoc, int randomDelayedStart, Color color) {
+    /**
+     * Constructor that initializes the characters settings. Sets the starting 
+     * x and y position of the character. Then it sets a counter integer to
+     * delay the drawing of the character, and the color.
+     * @param randXLoc the random starting x location of the character
+     * @param randYLoc the random starting y location of the character
+     * @param randomDelayedStart an integer used to delay the drawing of the 
+     * character
+     * @param color color of the character
+     */
+    public BackgroundChars(int randXLoc,int randYLoc, int randomDelayedStart, Color color) {
         this.randXLoc = randXLoc;
+        this.randYLoc = randYLoc;
         this.randomDelayedStart = randomDelayedStart;
         this.color = color;
     }
 
-    public void drawShape(Graphics g) {
-        if (draw) {
-            g.setColor(color);
-            g.setFont(new Font("TimesRoman", Font.BOLD, 30));
-            g.drawString("X", randXLoc, y);
-            g.drawString("O", y, randXLoc);
-        }
-    }
-
-    public void move() {
-        if (draw) {
-            if (y <= 20) down = true;
-            else if (y>=(D_HEIGHT-20)) down = false;
-
-            if (down) {
-                y += INCREMENT;
-            } else {
-                y -= INCREMENT;
-            }
-        }
-    }
-
+    /**
+     * A function that delays the drawing of a character. When the int 
+     * randomDelayedStart reaches 0, the boolean value draw is changed to true 
+     * so that the new character will be drawn.
+     */
     public void decreaseDelay() {
         if (randomDelayedStart <= 0) {
             draw = true;
@@ -58,6 +48,15 @@ public class BackgroundChars {
             randomDelayedStart -= 1;
         }
     }
+    /**
+     * An abstract method of what will be drawn.
+     * @param g 
+     */
+    abstract void drawShape(Graphics g); 
+    
+    /**
+     * An abstract method of character movement. 
+     */
+    abstract void move(); 
 
 }
-    
