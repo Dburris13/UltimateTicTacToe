@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * This class is the BigBoard class that encapsulates 9 Board classes.
@@ -77,7 +78,7 @@ public class BigBoard extends Applet  {
      * @param user2 player2's name
      * @param score2 player2's score count
      */
-    public void checkWinner(String user1, int score1, String user2, int score2) {
+    public void checkWinner(String user1, int score1, String user2, int score2) throws IOException {
         /**
          * Grabbing the status of all 9 boards
          */
@@ -88,38 +89,35 @@ public class BigBoard extends Applet  {
         /**
          * Looking at all win cases for X
          */
-        if (brdArray[0].returnStatus() == "X" && brdArray[1].returnStatus() == "X" && brdArray[2].returnStatus() == "X"
-            ||brdArray[3].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[5].returnStatus() == "X"
-            ||brdArray[6].returnStatus() == "X" && brdArray[7].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[0].returnStatus() == "X" && brdArray[3].returnStatus() == "X" && brdArray[6].returnStatus() == "X"
-            ||brdArray[1].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[7].returnStatus() == "X"
-            ||brdArray[2].returnStatus() == "X" && brdArray[5].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[0].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[8].returnStatus() == "X"
-            ||brdArray[2].returnStatus() == "X" && brdArray[4].returnStatus() == "X" && brdArray[6].returnStatus() == "X") {
-            //JOptionPane.showMessageDialog(null,"THE WINNER: "+user1+"  total move: "+score1 );
+        if (brdArray[0].returnStatus().matches("X|T") && brdArray[1].returnStatus().matches("X|T") && brdArray[2].returnStatus().matches("X|T")
+            ||(brdArray[3].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[5].returnStatus().matches("X|T"))
+            ||(brdArray[6].returnStatus().matches("X|T")) && (brdArray[7].returnStatus().matches("X|T")) && (brdArray[8].returnStatus().matches("X|T"))
+            ||(brdArray[0].returnStatus().matches("X|T")) && (brdArray[3].returnStatus().matches("X|T")) && (brdArray[6].returnStatus().matches("X|T"))
+            ||(brdArray[1].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[7].returnStatus().matches("X|T"))
+            ||(brdArray[2].returnStatus().matches("X|T")) && (brdArray[5].returnStatus().matches("X|T")) && (brdArray[8].returnStatus().matches("X|T"))
+            ||(brdArray[0].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[8].returnStatus().matches("X|T"))
+            ||(brdArray[2].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[6].returnStatus().matches("X|T"))) {
+            game.updateGamesWon();
             UserToRank(user1,score1);
             WinDialog w = new WinDialog(game,game,user1,score1);
             w.setVisible(true);
-            //game.goToMenu();
         }
         
         /**
          * Looking at all win cases for O
          */
-        if (brdArray[0].returnStatus() == "O" && brdArray[1].returnStatus() == "O" && brdArray[2].returnStatus() == "O"
-            ||brdArray[3].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[5].returnStatus() == "O"
-            ||brdArray[6].returnStatus() == "O" && brdArray[7].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[0].returnStatus() == "O" && brdArray[3].returnStatus() == "O" && brdArray[6].returnStatus() == "O"
-            ||brdArray[1].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[7].returnStatus() == "O"
-            ||brdArray[2].returnStatus() == "O" && brdArray[5].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[0].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[8].returnStatus() == "O"
-            ||brdArray[2].returnStatus() == "O" && brdArray[4].returnStatus() == "O" && brdArray[6].returnStatus() == "O") {            
-            //JOptionPane.showMessageDialog(null, "THE WINNER: "+user2+"  total move: "+score2);
+        if (brdArray[0].returnStatus().matches("O|T") && brdArray[1].returnStatus().matches("O|T") && brdArray[2].returnStatus().matches("O|T")
+            ||(brdArray[3].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[5].returnStatus().matches("O|T"))
+            ||(brdArray[6].returnStatus().matches("O|T")) && (brdArray[7].returnStatus().matches("O|T")) && (brdArray[8].returnStatus().matches("O|T"))
+            ||(brdArray[0].returnStatus().matches("O|T")) && (brdArray[3].returnStatus().matches("O|T")) && (brdArray[6].returnStatus().matches("O|T"))
+            ||(brdArray[1].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[7].returnStatus().matches("O|T"))
+            ||(brdArray[2].returnStatus().matches("O|T")) && (brdArray[5].returnStatus().matches("O|T")) && (brdArray[8].returnStatus().matches("O|T"))
+            ||(brdArray[0].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[8].returnStatus().matches("O|T"))
+            ||(brdArray[2].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[6].returnStatus().matches("O|T"))) {      
+            game.updateGamesWon();
             UserToRank(user2, score2);
             WinDialog w = new WinDialog(game,game,user2,score2);
             w.setVisible(true);
-            //game.dispose();
-            //game.goToMenu();
         }           
     }
     
@@ -364,12 +362,12 @@ public class BigBoard extends Applet  {
     
     /**
      * return boardArray at specific index
-     * @param btnArrayIndex
+     * @param brdArrayIndex
      * @return 
      */
-    public Board returnIndex_Board(int btnArrayIndex) 
+    public Board returnIndex_Board(int brdArrayIndex) 
     {
-        return brdArray[btnArrayIndex];
+        return brdArray[brdArrayIndex];
     }
     
     /**

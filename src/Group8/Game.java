@@ -62,7 +62,7 @@ public class Game extends JFrame{
         initGame();   
         
         try {     
-            updateUserProfile();
+            updateGamesPlayed();
         } catch (IOException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,7 +134,82 @@ public class Game extends JFrame{
     }
     
     /**
-     * Update User Profile.
+     * Update Games Won.
+     * This method increments the GamesWon attribute of the current user's profile.
+     * 
+     * This method creates a new instance of the FileHandler class and passes in the
+     * usernames of 1 or both players depending on the game mode. The FileHandler class
+     * returns all the players current statistics and uses a simple line replace
+     * function we updated the gamesPlayed statistic.
+     * 
+     * This method is private because it only needs to be called at the end of a game.
+     * 
+     * @throws IOException if File cannot be accessed
+     */
+    public void updateGamesWon() throws IOException {
+        /**
+         * Writing to player1's user profile
+         * Incrementing games won by 1
+         * Only executed is a player's profile is loaded and not the default
+         * Guest profile and player 1 won
+         */        
+        if (currentPlayer.returnStatus() == false) {
+            if (player1.getUsername().equals("Guest")) {
+            } else {
+                FileHandler fh = new FileHandler(player1.getUsername());
+                String[] lines;
+                lines = fh.readStatistics();
+
+                String input = "";
+                for (String line : lines) {
+                    String[] parts = line.split(" ");
+                    input += line + '\n';
+                    if (null != parts) switch (parts[0]) {
+                        case "GamesWon:":       
+                            int gamesWon = Integer.parseInt(parts[1]);
+                            int newGamesWon = gamesWon+1;
+                            input = input.replace("GamesWon: " + gamesWon, "GamesWon: " + newGamesWon);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                fh.writeSettings(input);
+            }
+        } else {
+            /**
+             * Writing to player2's user profile
+             * Incrementing games played by 1
+             * Only executed is a player's profile is loaded and not the default
+             * Guest profile and player 2 won
+             */
+            if (player2.getUsername().equals("Guest2")) {
+            } else {
+                FileHandler fh = new FileHandler(player2.getUsername());
+                String[] lines;
+                lines = fh.readStatistics();
+
+                String input = "";
+                for (String line : lines) {
+                    String[] parts = line.split(" ");
+                    input += line + '\n';
+                    if (null != parts) switch (parts[0]) {
+                        case "GamesWon:":       
+                            int gamesWon = Integer.parseInt(parts[1]);
+                            int newGamesWon = gamesWon+1;
+                            input = input.replace("GamesWon: " + gamesWon, "GamesWon: " + newGamesWon);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                fh.writeSettings(input);
+            }
+        }
+    }
+    
+    /**
+     * Update Games Played.
      * This method increments the GamePlayed attribute of the current user's profile.
      * 
      * This method creates a new instance of the FileHandler class and passes in the
@@ -142,11 +217,11 @@ public class Game extends JFrame{
      * returns all the players current statistics and uses a simple line replace
      * function we updated the gamesPlayed statistic.
      * 
-     * This method is private because it only needs to be called at the start of game.
+     * This method is private because it only needs to be called at the start of a game.
      * 
      * @throws IOException if File cannot be accessed
      */
-    private void updateUserProfile() throws IOException {
+    private void updateGamesPlayed() throws IOException {
         /**
          * Writing to player1's user profile
          * Incrementing games played by 1
@@ -204,6 +279,8 @@ public class Game extends JFrame{
             fh.writeSettings(input);
         }
     }
+    
+    
     
     /**
      * Menu Bar - Exit Application
@@ -274,7 +351,7 @@ public class Game extends JFrame{
      * 
      * Called after every turn is taken to see if any of the win cases are met. 
      */
-    public void checkWinner() {
+    public void checkWinner() throws IOException {
         /**
          * count move for X
          */

@@ -316,8 +316,35 @@ public class UserProfiles extends javax.swing.JFrame {
             profileInfo2.setText(null);
 
             for (int i = 0; i < lines.length; i++) {
-                profileInfo2.append(lines[i]);
-                profileInfo2.append(" ");
+                String[] parts = lines[i].split(" ");
+                if (null != parts) switch (parts[0]) {
+                    case "GamesPlayed:":
+                        profileInfo2.append(lines[i]);
+                        profileInfo2.append("\n");
+                        break;
+                    case "GamesWon:":                
+                        profileInfo2.append(lines[i]);
+                        profileInfo2.append("\n");
+                        break;
+                    case "ScreenResolution:":
+                        int w = Integer.parseInt(parts[1]);
+                        int h = Integer.parseInt(parts[2]);
+                        playerinfo2.setResolution(new Dimension(w,h));
+                        playerinfo2.setWindowSize(w+"x"+h);                        
+                        break;
+                    case "ColorScheme:": 
+                        Color c1 = associateColor(parts[1]);
+                        Color c2 = associateColor(parts[2]);
+                        playerinfo2.setColor1(c1);
+                        playerinfo2.setColor2(c2);
+                        playerinfo2.setColorScheme(parts[1]+"/"+parts[2]);
+                        break;
+                    case "Icons:":
+                        break;
+                    default:
+                        break;
+                
+                }
             }
         }
     }//GEN-LAST:event_p2LoadBtnActionPerformed
