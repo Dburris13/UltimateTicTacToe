@@ -391,7 +391,6 @@ public class BigBoard extends Applet  {
 
         BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
         PrintWriter pw = new PrintWriter(bufferFileWriter);
-        pw.println("");
         pw.println(name+","+score);
         pw.close();
 
