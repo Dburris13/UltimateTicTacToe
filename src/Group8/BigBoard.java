@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This class is the BigBoard class that encapsulates 9 Board classes.
@@ -371,7 +372,7 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * add winner to ranking system database rank.data file
+     * this method will add winner to ranking system database rank.data file
      * @param name
      * @param score 
      */
@@ -382,14 +383,17 @@ public class BigBoard extends Applet  {
         String path = "Rank.data";
 
         File file = new File(path);
-
+        if(!file.exists())
+            {
+                file.createNewFile();
+            }
         FileWriter fileWriter = new FileWriter(file,true);
 
         BufferedWriter bufferFileWriter  = new BufferedWriter(fileWriter);
-
-        fileWriter.append(name+","+score);
-
-        bufferFileWriter.close();
+        PrintWriter pw = new PrintWriter(bufferFileWriter);
+        pw.println("");
+        pw.println(name+","+score);
+        pw.close();
 
     }catch(Exception ex)
     {

@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Rank_table extends javax.swing.JFrame {
 
+    //player 1 and player 2 profile object.
     private UserInfo p1,p2;
     /**
      * Creates new form Rank_table
@@ -53,8 +54,12 @@ public class Rank_table extends javax.swing.JFrame {
         this.p2 = userinfo2;
         initComponents();
     }
-    
-    public ArrayList TopTen()
+    /**
+     * this method will go through player info array and get name and score
+     * then add to list.
+     * @return 
+     */
+    public ArrayList sortedList()
     {
     ArrayList<PlayerInfo> list = new ArrayList<PlayerInfo>();
     for(int i =0; i<user_List.size(); i++)
@@ -68,7 +73,7 @@ public class Rank_table extends javax.swing.JFrame {
     public void addRowtoJtable()
     {
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    ArrayList<PlayerInfo> list = TopTen();
+    ArrayList<PlayerInfo> list = sortedList();
     Object rowData[]=new Object[2];
     for(int i =0; i<list.size();i++)
     {
@@ -190,7 +195,7 @@ public class Rank_table extends javax.swing.JFrame {
                 
     
     }
-    
+    //this method will Bubble sort through user_List in ascending order.
     public void Sort_list(List<UserInfo> user_List, int count)
     {
     int i,j;

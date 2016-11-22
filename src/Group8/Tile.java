@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Font;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class represents a Tile of the Tic-Tac-Toe board.
@@ -108,7 +111,12 @@ public class Tile extends JButton implements ActionListener {
          * Advancing the state of the game using inherited methods
          */
         game.endTurn();
-        game.checkWinner();
+        
+        try {
+            game.checkWinner();
+        } catch (IOException ex) {
+            Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
+        }
         game.manageBoard(tileIndex, brdIndex);
     }
 }
