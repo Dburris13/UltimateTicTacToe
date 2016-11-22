@@ -152,6 +152,7 @@ public class MenuGUI extends javax.swing.JFrame {
         lblUsername.setText("User Name: ");
 
         txtFieldPlayer1.setText("Player1");
+        txtFieldPlayer1.setEditable(false);
         txtFieldPlayer1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFieldPlayer1ActionPerformed(evt);
@@ -191,6 +192,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
 
+        txtFieldPlayer2.setEditable(false);
         txtFieldPlayer2.setText("Player2");
         txtFieldPlayer2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

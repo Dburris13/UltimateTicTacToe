@@ -135,6 +135,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldPlayer1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="txtFieldPlayer1.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblVersus">
           <Properties>
@@ -185,6 +188,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFieldPlayer2ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtFieldPlayer2.setEditable(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JRadioButton" name="radioPlayer">
           <Properties>
