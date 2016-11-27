@@ -17,14 +17,7 @@ package Group8;
 import MenuScenes.MenuGUI;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -168,10 +161,14 @@ public class Settings extends javax.swing.JFrame {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                          
         // TODO add your handling code here:
         if (user1Settings.getUsername() != "Guest") {
-            FileSettings fh = new FileSettings(user1Settings.getUsername());
+            FileProfile fh = new FileProfile(user1Settings.getUsername());
             String[] lines = new String[6];
             lines = fh.readFile();
             
+            /**
+            * Parsing through the file and making sure were reading / updating
+            * the correct line in the User Profiles files
+            */
             String input = "";
             for (int i = 0; i < lines.length; i++) {
                 String[] parts = lines[i].split(" ");

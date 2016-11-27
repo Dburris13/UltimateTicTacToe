@@ -163,10 +163,14 @@ public class Game extends JFrame{
         if (currentPlayer.returnStatus() == false) {
             if (player1.getUsername().equals("Guest")) {
             } else {
-                FileHandler fh = new FileHandler(player1.getUsername());
+                FileProfile fh = new FileProfile(player1.getUsername());
                 String[] lines;
-                lines = fh.readStatistics();
+                lines = fh.readFile();
 
+                /**
+                * Parsing through the file and making sure were reading / updating
+                * the correct line in the User Profiles files
+                */
                 String input = "";
                 for (String line : lines) {
                     String[] parts = line.split(" ");
@@ -181,7 +185,7 @@ public class Game extends JFrame{
                             break;
                     }
                 }
-                fh.writeSettings(input);
+                fh.writeFile(input);
             }
         } else {
             /**
@@ -192,10 +196,14 @@ public class Game extends JFrame{
              */
             if (player2.getUsername().equals("Guest2")) {
             } else {
-                FileHandler fh = new FileHandler(player2.getUsername());
+                FileProfile fh = new FileProfile(player2.getUsername());
                 String[] lines;
-                lines = fh.readStatistics();
+                lines = fh.readFile();
 
+                /**
+                * Parsing through the file and making sure were reading / updating
+                * the correct line in the User Profiles files
+                */
                 String input = "";
                 for (String line : lines) {
                     String[] parts = line.split(" ");
@@ -210,7 +218,7 @@ public class Game extends JFrame{
                             break;
                     }
                 }
-                fh.writeSettings(input);
+                fh.writeFile(input);
             }
         }
     }
@@ -237,10 +245,14 @@ public class Game extends JFrame{
          */        
         if (player1.getUsername().equals("Guest")) {
         } else {
-            FileHandler fh = new FileHandler(player1.getUsername());
+            FileProfile fh = new FileProfile(player1.getUsername());
             String[] lines;
-            lines = fh.readStatistics();
+            lines = fh.readFile();
             
+            /**
+             * Parsing through the file and making sure were reading / updating
+             * the correct line in the User Profiles files
+             */
             String input = "";
             for (String line : lines) {
                 String[] parts = line.split(" ");
@@ -255,7 +267,7 @@ public class Game extends JFrame{
                         break;
                 }
             }
-            fh.writeSettings(input);
+            fh.writeFile(input);
         }
         /**
          * Writing to player2's user profile
@@ -265,10 +277,14 @@ public class Game extends JFrame{
          */
         if (player2.getUsername().equals("Guest2")) {
         } else {
-            FileHandler fh = new FileHandler(player2.getUsername());
+            FileProfile fh = new FileProfile(player2.getUsername());
             String[] lines;
-            lines = fh.readStatistics();
+            lines = fh.readFile();
             
+            /**
+            * Parsing through the file and making sure were reading / updating
+            * the correct line in the User Profiles files
+            */
             String input = "";
             for (String line : lines) {
                 String[] parts = line.split(" ");
@@ -283,7 +299,7 @@ public class Game extends JFrame{
                         break;
                 }
             }
-            fh.writeSettings(input);
+            fh.writeFile(input);
         }
     }
     

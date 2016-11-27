@@ -57,9 +57,21 @@ public class UserProfiles extends javax.swing.JFrame {
         this.playerinfo1 = user1;
         this.playerinfo2 = user2;
         
+        File upDir = new File("userProfiles");
+        if (!upDir.exists()) {
+            boolean result = false;
+            
+            try {
+                upDir.mkdir();
+                result = true;
+            }
+            catch(SecurityException se) {
+            
+            }
+        }
+        
         initComponents();
         this.setLocationRelativeTo(null);
-        userListModel.addElement("TETST");
     }  
     
     /**
@@ -228,7 +240,7 @@ public class UserProfiles extends javax.swing.JFrame {
             String selected = profilesList.getSelectedValue();
             this.playerinfo1.setUsername(selected);
             FileProfile fh = new FileProfile(selected);
-            String[] lines = new String[6];
+            String[] lines;
             lines = fh.readFile();
 
             profileInfo1.setText(null);
@@ -237,35 +249,36 @@ public class UserProfiles extends javax.swing.JFrame {
              * This switch statement interprets each line  in the userProfiles 
              * and makes actions based on those lines.
              */
-            for (int i = 0; i < lines.length; i++) {
-                String[] parts = lines[i].split(" ");
-                if (null != parts) switch (parts[0]) {
-                    case "GamesPlayed:":
-                        profileInfo1.append(lines[i]);
-                        profileInfo1.append("\n");
-                        break;
-                    case "GamesWon:":                
-                        profileInfo1.append(lines[i]);
-                        profileInfo1.append("\n");
-                        break;
-                    case "ScreenResolution:":
-                        int w = Integer.parseInt(parts[1]);
-                        int h = Integer.parseInt(parts[2]);
-                        playerinfo1.setResolution(new Dimension(w,h));
-                        playerinfo1.setWindowSize(w+"x"+h);                        
-                        break;
-                    case "ColorScheme:": 
-                        Color c1 = associateColor(parts[1]);
-                        Color c2 = associateColor(parts[2]);
-                        playerinfo1.setColor1(c1);
-                        playerinfo1.setColor2(c2);
-                        playerinfo1.setColorScheme(parts[1]+"/"+parts[2]);
-                        break;
-                    case "Icons:":
-                        break;
-                    default:
-                        break;
-                
+            for (String line : lines) {
+                String[] parts = line.split(" ");
+                if (null != parts) {
+                    switch (parts[0]) {
+                        case "GamesPlayed:":
+                            profileInfo1.append(line);
+                            profileInfo1.append("\n");
+                            break;
+                        case "GamesWon:":
+                            profileInfo1.append(line);
+                            profileInfo1.append("\n");
+                            break;
+                        case "ScreenResolution:":
+                            int w = Integer.parseInt(parts[1]);
+                            int h = Integer.parseInt(parts[2]);
+                            playerinfo1.setResolution(new Dimension(w,h));
+                            playerinfo1.setWindowSize(w+"x"+h);
+                            break;
+                        case "ColorScheme:":
+                            Color c1 = associateColor(parts[1]);
+                            Color c2 = associateColor(parts[2]);
+                            playerinfo1.setColor1(c1);
+                            playerinfo1.setColor2(c2);
+                            playerinfo1.setColorScheme(parts[1]+"/"+parts[2]);
+                            break;
+                        case "Icons:":
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
