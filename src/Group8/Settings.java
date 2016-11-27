@@ -168,9 +168,9 @@ public class Settings extends javax.swing.JFrame {
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                          
         // TODO add your handling code here:
         if (user1Settings.getUsername() != "Guest") {
-            FileHandler fh = new FileHandler(user1Settings.getUsername());
+            FileSettings fh = new FileSettings(user1Settings.getUsername());
             String[] lines = new String[6];
-            lines = fh.readStatistics();
+            lines = fh.readFile();
             
             String input = "";
             for (int i = 0; i < lines.length; i++) {
@@ -191,7 +191,7 @@ public class Settings extends javax.swing.JFrame {
                         break;
                     }
                 }
-                fh.writeSettings(input);
+                fh.writeFile(input);
             }
         
         MenuGUI s = new MenuGUI(user1Settings, user2Settings);

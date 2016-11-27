@@ -6,6 +6,7 @@
  * Daniel, Ben, Irene, Zach
  */
 package Group8;
+import AI.AI;
 import MenuScenes.MenuGUI;
 import java.awt.*;
 import java.io.IOException;
@@ -49,6 +50,7 @@ public class Game extends JFrame{
     private int count_O=0;
     private UserInfo player1;
     private UserInfo player2;    
+    private AI enemy = new AI();
     
     /**
      * Default constructor
@@ -58,7 +60,12 @@ public class Game extends JFrame{
      */
     public Game(UserInfo profile1, UserInfo profile2) {
         this.player1 = profile1;
-        this.player2 = profile2;
+        if (player1.getGamemode() == 1) {
+            this.player2 = new UserInfo();
+            player2.setUsername("Computer AI");
+        } else {
+            this.player2 = profile2;
+        }
         initGame();   
         
         try {     
@@ -313,7 +320,7 @@ public class Game extends JFrame{
      * It is a simple function that swaps the status of the Player so that the
      * Tile knows what his status will be when he is clicked.
      */
-    public void endTurn() {
+    public void endTurn(int brdindex) {
         currentPlayer.switchPlayer();
     }
     
@@ -392,9 +399,12 @@ public class Game extends JFrame{
      * @param Enabled_index
      * @param brdIndex 
      */
-     public void manageBoard(int Enabled_index, int brdIndex)
+     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex)
     {
         bboard.manageBoard(Enabled_index, brdIndex);
+        if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
+            enemy.pickMove(bboard.brdArray[tileIndex]);
+        }
     }
      
     // Variables declaration - do not modify                     

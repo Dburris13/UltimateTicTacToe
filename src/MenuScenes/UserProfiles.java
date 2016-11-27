@@ -7,7 +7,7 @@
  */
 package MenuScenes;
 
-import Group8.FileHandler;
+import Group8.FileProfile;
 import Group8.UserInfo;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -227,12 +227,16 @@ public class UserProfiles extends javax.swing.JFrame {
         if (playerinfo1 != null) {
             String selected = profilesList.getSelectedValue();
             this.playerinfo1.setUsername(selected);
-            FileHandler fh = new FileHandler(selected);
+            FileProfile fh = new FileProfile(selected);
             String[] lines = new String[6];
-            lines = fh.readStatistics();
+            lines = fh.readFile();
 
             profileInfo1.setText(null);
 
+            /**
+             * This switch statement interprets each line  in the userProfiles 
+             * and makes actions based on those lines.
+             */
             for (int i = 0; i < lines.length; i++) {
                 String[] parts = lines[i].split(" ");
                 if (null != parts) switch (parts[0]) {
@@ -309,9 +313,9 @@ public class UserProfiles extends javax.swing.JFrame {
         if (playerinfo2 != null) {
             String selected = profilesList.getSelectedValue();
             this.playerinfo2.setUsername(selected);
-            FileHandler fh = new FileHandler(selected);
+            FileProfile fh = new FileProfile(selected);
             String[] lines = new String[6];
-            lines = fh.readStatistics();
+            lines = fh.readFile();
 
             profileInfo2.setText(null);
 

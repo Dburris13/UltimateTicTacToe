@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 public class BigBoard extends Applet  {
     private String turn;
     public Board[] brdArray = new Board[9];
+    private Board returnBoard;
     private Game game;
         
     /** 
@@ -322,6 +323,7 @@ public class BigBoard extends Applet  {
              * Don't disable the next board we play on
              */
             brdArray[tileIndex].setEnabled(true);
+            returnBoard = brdArray[tileIndex];
             for(int k =0; k<9; k++)
             {
                 brdArray[tileIndex].returnTileIndex(k).setBackground(oldColor);

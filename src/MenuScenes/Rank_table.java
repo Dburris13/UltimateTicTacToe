@@ -178,7 +178,6 @@ public class Rank_table extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 
-		list.forEach(System.out::println);
                 for(int i=0; i<list.size();i++)
                 {
                 String[] details = (list.get(i)).split(",");

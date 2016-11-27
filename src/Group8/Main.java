@@ -10,18 +10,24 @@ package Group8;
 import MenuScenes.MenuGUI;
 
 /**
- *
- * @author Daniel, Irene, Ben, Zach
+ * Main. 
+ * The main simply takes us into the Main Menu of our application.
+ * 
+ * @author Daniel
+ * @author Ben
+ * @author Irene
+ * @author Zach
  */
 public class Main {
+    /**
+     * Create and show a new MenuGUI object.
+     */
     private static void createAndShowGUI() {
         MenuGUI s = new MenuGUI();
         s.setVisible(true);
     }
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-        
+    public static void main(String[] args) {        
         javax.swing.SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
