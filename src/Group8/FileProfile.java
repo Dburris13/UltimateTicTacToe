@@ -54,9 +54,13 @@ public class FileProfile extends FileManager {
         
         @Override
         public boolean writeFile(String input) throws FileNotFoundException, IOException {
-            FileOutputStream fileOut = new FileOutputStream(filePathString);
-            fileOut.write(input.getBytes());
-            fileOut.close();
-            return true;
+            if (f.exists()){
+                FileOutputStream fileOut = new FileOutputStream(filePathString);
+                fileOut.write(input.getBytes());
+                fileOut.close();
+                return true;
+            } else {
+                return false;
+            }
         }
 }

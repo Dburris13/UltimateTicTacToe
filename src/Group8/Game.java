@@ -425,7 +425,7 @@ public class Game extends JFrame{
      * @param brdIndex 
      * @param tileIndex 
      */
-     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex) throws InterruptedException
+     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex)
     {
         bboard.manageBoard(Enabled_index, brdIndex);
         if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
