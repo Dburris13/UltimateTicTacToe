@@ -108,7 +108,6 @@ public class MenuGUI extends javax.swing.JFrame {
         if (user1.getGamemode() == 1) {
             this.radioComputer.setSelected(true);
             txtFieldPlayer2.setVisible(false);
-            this.txtFieldPlayer1.setText(user1.getUsername());
         } else {
             this.radioPlayer.setSelected(true);
             txtFieldPlayer2.setVisible(true);
@@ -144,12 +143,17 @@ public class MenuGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelMainMenu.setOpaque(false);
+        jPanelMainMenu.setLayout(null);
 
         lblTitle.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Ultimate TIC TAC TOE");
+        jPanelMainMenu.add(lblTitle);
+        lblTitle.setBounds(129, 35, 525, 64);
 
         lblUsername.setText("User Name: ");
+        jPanelMainMenu.add(lblUsername);
+        lblUsername.setBounds(184, 120, 59, 14);
 
         txtFieldPlayer1.setText("Player1");
         txtFieldPlayer1.setEditable(false);
@@ -158,8 +162,12 @@ public class MenuGUI extends javax.swing.JFrame {
                 txtFieldPlayer1ActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(txtFieldPlayer1);
+        txtFieldPlayer1.setBounds(318, 117, 111, 20);
 
         lblVersus.setText("Versus:");
+        jPanelMainMenu.add(lblVersus);
+        lblVersus.setBounds(184, 159, 36, 14);
 
         btnStart.setText("Start Game");
         btnStart.setToolTipText("");
@@ -168,6 +176,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 btnStartActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(btnStart);
+        btnStart.setBounds(129, 209, 525, 23);
 
         btnSettings.setText("Settings");
         btnSettings.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +185,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 btnSettingsActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(btnSettings);
+        btnSettings.setBounds(129, 318, 525, 23);
 
         btnQuit.setText("Quit");
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +194,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 btnQuitActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(btnQuit);
+        btnQuit.setBounds(129, 352, 525, 23);
 
         btnGroupVersus.add(radioComputer);
         radioComputer.setText("Computer");
@@ -191,6 +205,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 radioComputerActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(radioComputer);
+        radioComputer.setBounds(297, 155, 111, 23);
 
         txtFieldPlayer2.setEditable(false);
         txtFieldPlayer2.setText("Player2");
@@ -199,6 +215,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 txtFieldPlayer2ActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(txtFieldPlayer2);
+        txtFieldPlayer2.setBounds(447, 117, 111, 20);
 
         btnGroupVersus.add(radioPlayer);
         radioPlayer.setText("Player");
@@ -210,6 +228,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 radioPlayerActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(radioPlayer);
+        radioPlayer.setBounds(447, 155, 111, 23);
 
         btnProfiles.setText("User Profiles");
         btnProfiles.setToolTipText("");
@@ -218,6 +238,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 btnProfilesActionPerformed(evt);
             }
         });
+        jPanelMainMenu.add(btnProfiles);
+        btnProfiles.setBounds(129, 250, 525, 23);
 
         btnRank.setText("Leaderboard");
         btnRank.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -225,66 +247,8 @@ public class MenuGUI extends javax.swing.JFrame {
                 btnRankMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanelMainMenuLayout = new javax.swing.GroupLayout(jPanelMainMenu);
-        jPanelMainMenu.setLayout(jPanelMainMenuLayout);
-        jPanelMainMenuLayout.setHorizontalGroup(
-            jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                        .addComponent(lblVersus)
-                        .addGap(77, 77, 77)
-                        .addComponent(radioComputer, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                        .addComponent(lblUsername)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtFieldPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(radioPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFieldPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSettings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnProfiles, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(138, 138, 138))
-        );
-        jPanelMainMenuLayout.setVerticalGroup(
-            jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelMainMenuLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(lblTitle)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFieldPlayer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFieldPlayer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsername))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVersus)
-                    .addComponent(radioComputer)
-                    .addComponent(radioPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnStart)
-                .addGap(18, 18, 18)
-                .addComponent(btnProfiles)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRank)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSettings)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnQuit)
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
+        jPanelMainMenu.add(btnRank);
+        btnRank.setBounds(129, 284, 525, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
