@@ -82,7 +82,7 @@ public class Game extends JFrame{
     }
     
     /**
-     * Class Initialization
+     * Class Initialization.
      * 
      * Creates the JFrame and Menu layout / design
      * A lot of this code was borrowed from the drag and drop GUI features of NetBeans
@@ -404,7 +404,7 @@ public class Game extends JFrame{
      */
     public Tile returnBoardTile(int i, int k)
     {
-        return bboard.brdArray[i].returnTileIndex(k);
+        return bboard.GetBrdArray(i).returnTileIndex(k);
     }
     
     /**
@@ -429,7 +429,7 @@ public class Game extends JFrame{
     {
         bboard.manageBoard(Enabled_index, brdIndex);
         if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
-            enemy.pickMove(bboard.brdArray[tileIndex], this);
+            enemy.pickMove(bboard.GetBrdArray(brdIndex), this);
         }
     }
      

@@ -32,27 +32,26 @@ public class Rank_table extends javax.swing.JFrame {
      */
     private  List<UserInfo> user_List = new ArrayList<>();
     
-    public class PlayerInfo
-    {
+    /**
+     * Creates a local class that contains all high score information. 
+     * Currently contains score and name.
+     */
+    public class PlayerInfo {
     public int score;
     public String name;
     
-        public PlayerInfo(String name, int score)
-        {
+        public PlayerInfo(String name, int score) {
             this.name = name;
             this.score = score;
         }
     }
     
-    
-    public Rank_table() {
-        initComponents();        
-        /**
-        * This sets the window to the center of the monitor screen
-        */
-        this.setLocationRelativeTo(null);
-    }
-    
+    /**
+     * Constructor method.
+     * 
+     * @param userinfo1 information of user 1
+     * @param userinfo2 information of user 2
+     */
     public Rank_table(UserInfo userinfo1, UserInfo userinfo2) {
         this.p1 = userinfo1;
         this.p2 = userinfo2;
@@ -62,33 +61,35 @@ public class Rank_table extends javax.swing.JFrame {
         */
         this.setLocationRelativeTo(null);
     }
-    /**
-     * this method will go through player info array and get name and score
-     * then add to list.
-     * @return 
-     */
-    public ArrayList sortedList()
-    {
-    ArrayList<PlayerInfo> list = new ArrayList<PlayerInfo>();
-    for(int i =0; i<user_List.size(); i++)
-        {
-            PlayerInfo player = new PlayerInfo(user_List.get(i).getUsername(), user_List.get(i).getScore());
-            list.add(player);
-        }
     
-    return list;
+    /**
+     * This method will go through player info array and get name and score
+     * then add to list.
+     * @return returns sorted list
+     */
+    public ArrayList sortedList() {
+        ArrayList<PlayerInfo> list = new ArrayList<PlayerInfo>();
+        for(int i =0; i<user_List.size(); i++)
+            {
+                PlayerInfo player = new PlayerInfo(user_List.get(i).getUsername(), user_List.get(i).getScore());
+                list.add(player);
+            }
+
+        return list;
     }
-    public void addRowtoJtable()
-    {
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    ArrayList<PlayerInfo> list = sortedList();
-    Object rowData[]=new Object[2];
-    for(int i =0; i<list.size();i++)
-    {
-    rowData[0]=list.get(i).name;
-    rowData[1]=list.get(i).score;
-    model.addRow(rowData);
-    }
+    /**
+     * Add a row to the jtable based on how many elements we find our we will
+     * have in the highscores table
+     */
+    public void addRowtoJtable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        ArrayList<PlayerInfo> list = sortedList();
+        Object rowData[]=new Object[2];
+        for(int i =0; i<list.size();i++) {
+            rowData[0]=list.get(i).name;
+            rowData[1]=list.get(i).score;
+            model.addRow(rowData);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,7 +164,7 @@ public class Rank_table extends javax.swing.JFrame {
      * Return Button.
      * Takes us bake to the menu.
      * 
-     * @param evt 
+     * @param evt event parameter
      */
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         MenuGUI s = new MenuGUI(p1,p2);
@@ -171,9 +172,11 @@ public class Rank_table extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
     
-    //all functions here
-    public void FileReader()
-    {
+    /**
+     * Method for reading the rank.data file, used when we want to display the 
+     * high scores to the user 
+     */
+    public void FileReader() {
     		String fileName = "Rank.data";
                 
 		List<String> list = new ArrayList<>();
@@ -203,27 +206,29 @@ public class Rank_table extends javax.swing.JFrame {
                 
     
     }
-    //this method will Bubble sort through user_List in ascending order.
-    public void Sort_list(List<UserInfo> user_List, int count)
-    {
-    int i,j;
-    UserInfo temp = new UserInfo();
-         for(i=0; i<count; i++)
-    {
-        for(j=0; j<(count-i - 1); j++)
-        {
-            if(user_List.get(j).getScore() > user_List.get(j+1).getScore())
-             {
-                 temp.setUsername(user_List.get(j).getUsername());
-                 temp.setScore(user_List.get(j).getScore());
-                 user_List.get(j).setUsername(user_List.get(j+1).getUsername());
-                 user_List.get(j).setScore(user_List.get(j+1).getScore());
-                 user_List.get(j+1).setUsername(temp.getUsername());
-                 user_List.get(j+1).setScore(temp.getScore());
-             }
-
+    
+    /**
+     * Sorts the high score table based on who had the lowest move count at the 
+     * top. 
+     * 
+     * @param user_List Array of all users in highscores
+     * @param count number of elements in highscores.
+     */
+    public void Sort_list(List<UserInfo> user_List, int count){
+        int i,j;
+        UserInfo temp = new UserInfo();
+        for(i=0; i<count; i++){
+            for(j=0; j<(count-i - 1); j++){
+                if(user_List.get(j).getScore() > user_List.get(j+1).getScore()){
+                     temp.setUsername(user_List.get(j).getUsername());
+                     temp.setScore(user_List.get(j).getScore());
+                     user_List.get(j).setUsername(user_List.get(j+1).getUsername());
+                     user_List.get(j).setScore(user_List.get(j+1).getScore());
+                     user_List.get(j+1).setUsername(temp.getUsername());
+                     user_List.get(j+1).setScore(temp.getScore());
+                 }
+            }
         }
-    }
     }
  
 

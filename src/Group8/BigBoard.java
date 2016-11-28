@@ -10,7 +10,6 @@ import GUIStuff.TieDialog;
 import GUIStuff.WinDialog;
 import java.awt.*;
 import java.applet.Applet;
-import javax.swing.JOptionPane;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -35,31 +34,39 @@ import java.io.PrintWriter;
  * @author Ben
  */
 public class BigBoard extends Applet  {
-    
-    private String turn;
-    
-    public Board[] brdArray = new Board[9];
-    
-    private Board returnBoard;
+    /**
+     * Our Array of 9 Board objects that will be aligned in the 
+     * 3x3 Grid Layout
+     */
+    private Board[] brdArray = new Board[9];
+        
+    /**
+     * Local variable of our Game class
+     */
     private Game game;
+    
+    /**
+     * Variable used update high scores
+     */
     private int winDisplayCount = 0;
         
     /** 
-     * Default Constructor 
-     * The whole game scene is interconnected with each other.
-     * @param game 
+     * Default Constructor.
+     * The whole game scene is interconnected with each other
+     * and passed to each other.
+     * @param game Our game class, containing methods such as endTurn() and checkWinner()
      */
     public BigBoard (Game game) {
         /**
          * The BigBoard itself is just a GridLayout. 
          * It places 9 Boards into each of its grid slots.
          */
-        GridLayout gl = new GridLayout (3,3, 3, 3);
+        GridLayout gl = new GridLayout (3, 3, 3, 3);
         this.setLayout(gl);
         this.game = game;
                 
         /**
-         * This FOR loop creates 9 boards that are placed into the 3x3 grid layout
+         * This FOR loop populates the brdArray variable
          */
         for (int i = 0; i < 9; i++) {
             brdArray[i] = new Board(game, (evenNumber(i) ? game.returnColor1() : game.returnColor2()));
@@ -164,15 +171,7 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(6).setBackground(Color.red);
         brd.returnTileIndex(7).setBackground(Color.BLACK);
         brd.returnTileIndex(8).setBackground(Color.red);
-        
-        /** 
-         * FIXFIX
-         * Should maintain the colors of the Icon text
-         */
-        for (int i = 0; i < 9; i++) {
-            brd.returnTileIndex(i).setForeground(Color.PINK);
-        }
-        
+                
         /**
          * board has been won and is no longer playable
          */
@@ -208,15 +207,7 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(6).setBackground(Color.red);
         brd.returnTileIndex(7).setBackground(Color.red);
         brd.returnTileIndex(8).setBackground(Color.red);  
-        
-        /** 
-         * FIXFIX
-         * Should maintain the colors of the Icon text
-         */
-        for (int i = 0; i < 9; i++) {
-            brd.returnTileIndex(i).setForeground(Color.PINK);
-        }      
-        
+                
         /**
          * board has been won and is no longer playable
          */
@@ -252,14 +243,6 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(7).setBackground(Color.red);
         brd.returnTileIndex(8).setBackground(Color.red); 
         
-        /** 
-         * FIXFIX
-         * Should maintain the colors of the Icon text
-         */
-        for (int i = 0; i < 9; i++) {
-            brd.returnTileIndex(i).setForeground(Color.PINK);
-        }        
-        
         /**
          * board has been won and is no longer playable
          */
@@ -273,6 +256,16 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(7).setEnabled(false);
         brd.returnTileIndex(8).setEnabled(false);        
     }
+    
+    /**
+     * 
+     * @param index index of board you want (0-8)
+     * @return 1 of the 9 board in the brdArray
+     */
+    public Board GetBrdArray(int index) {
+        return brdArray[index];
+    }
+    
     /**
      * This function handles the painting of the BigBoard class.
      * 
@@ -302,7 +295,6 @@ public class BigBoard extends Applet  {
                 // Changing all disabled tiles to dark_gray
                 for(int k =0; k<9; k++) {
                     brdArray[i].returnTileIndex(k).setBackground(oldColor);
-                    brdArray[i].returnTileIndex(k).setForeground(Color.PINK);
                 }
             }
             
@@ -342,7 +334,6 @@ public class BigBoard extends Applet  {
              * Don't disable the next board we play on
              */
             brdArray[tileIndex].setEnabled(true);
-            returnBoard = brdArray[tileIndex];
             for(int k =0; k<9; k++)
             {
                 brdArray[tileIndex].returnTileIndex(k).setBackground(oldColor);
@@ -416,9 +407,9 @@ public class BigBoard extends Applet  {
     }
     
     /**
-     * this method will add winner to ranking system database rank.data file
-     * @param name
-     * @param score 
+     * This method will add winner to ranking system database rank.data file
+     * @param name name of user to be added to rank.data
+     * @param score name of score attached to username
      */
     public void UserToRank(String name, int score)
     {

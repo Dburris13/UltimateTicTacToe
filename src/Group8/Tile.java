@@ -103,10 +103,6 @@ public class Tile extends JButton implements ActionListener {
         }
         
         /**
-         * Visually displaying the status of Tile
-         */
-        
-        /**
          * Dynamically scaling size of Tile text
          */
         Dimension windowSize = game.player1.getResolution();

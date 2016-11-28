@@ -6,7 +6,6 @@
  * Daniel, Ben, Irene, Zach
  */
 package GUIStuff;
-
 import Group8.Game;
 import javax.swing.JFrame;
 

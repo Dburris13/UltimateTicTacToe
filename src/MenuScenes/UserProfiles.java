@@ -6,7 +6,6 @@
  * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
-
 import Group8.FileProfile;
 import Group8.UserInfo;
 import java.awt.Color;
@@ -18,6 +17,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -242,16 +243,19 @@ public class UserProfiles extends javax.swing.JFrame {
      * This button allows player 1's user profile to be loaded.
      * Player 1's settings are used to determine game settings.
      * 
-     * @param evt 
+     * @param evt event listener
      */
     private void p1LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p1LoadBtnActionPerformed
-        // TODO add your handling code here:
         if (playerinfo1 != null) {
             String selected = profilesList.getSelectedValue();
             this.playerinfo1.setUsername(selected);
             FileProfile fh = new FileProfile(selected);
-            String[] lines;
-            lines = fh.readFile();
+            String[] lines = null;
+            try {
+                lines = fh.readFile();
+            } catch (IOException ex) {
+                Logger.getLogger(UserProfiles.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             profileInfo1.setText(null);
 
@@ -329,7 +333,7 @@ public class UserProfiles extends javax.swing.JFrame {
      * This button allows player 2's user profile to be loaded.
      * Player 2's settings are not used.
      * 
-     * @param evt 
+     * @param evt event listener
      */
     private void p2LoadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p2LoadBtnActionPerformed
         playerinfo1.setGamemode(2);
@@ -338,7 +342,11 @@ public class UserProfiles extends javax.swing.JFrame {
             this.playerinfo2.setUsername(selected);
             FileProfile fh = new FileProfile(selected);
             String[] lines = new String[6];
-            lines = fh.readFile();
+            try {
+                lines = fh.readFile();
+            } catch (IOException ex) {
+                Logger.getLogger(UserProfiles.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             profileInfo2.setText(null);
 

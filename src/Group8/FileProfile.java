@@ -18,31 +18,43 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * File I/O for userProfiles. 
+ * This class extends our abstract FileManager class. 
+ * He implements the read and write methods using BufferedReader FileOutput Stream.
+ * 
  * @author Daniel
  */
 public class FileProfile extends FileManager {
         private final String filePathString;
         private final File f;
     
+        /**
+         * Default Constructor.
+         * Takes the name of user and attaches it to pathname based on our file
+         * hierarchy. 
+         * 
+         * @param filename name of user 
+         */
         public FileProfile(String filename) {       
             super(filename);
             filePathString = "userProfiles/" + filename;
             f = new File(filePathString);     
         }
         
+        /**
+         * Reading through file line by line and appends data to String array.
+         * 
+         * @return string array of all lines in file
+         */
         @Override
-        public String[] readFile() {
+        public String[] readFile() throws FileNotFoundException, IOException {
             List<String> lines = new ArrayList<String>();
             if (f.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(f))) {
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        lines.add(line);
-                    }
-                } catch (IOException x) {
-                    System.err.format("IOException: %s%n", x);
-                }            
+                BufferedReader reader = new BufferedReader(new FileReader(f));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    lines.add(line);
+                }
             } else {
                 if ("Computer AI".equals(filename)) {
                 } else {
@@ -52,6 +64,14 @@ public class FileProfile extends FileManager {
             return lines.toArray(new String[lines.size()]);
         }
         
+        /**
+         * Writing to file with FileOutputStream.
+         * 
+         * @param input
+         * @return
+         * @throws FileNotFoundException
+         * @throws IOException 
+         */
         @Override
         public boolean writeFile(String input) throws FileNotFoundException, IOException {
             if (f.exists()){

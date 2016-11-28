@@ -59,7 +59,10 @@ public class AnimatedPanel extends JPanel{
 
 
     /**
-     * @param g
+     * Overriding the paintComponent method and placing all of our painting code
+     * in it. 
+     * 
+     * @param g Graphics objects 
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -69,9 +72,11 @@ public class AnimatedPanel extends JPanel{
         }
     }
 
+    
     /**
      * 
-    * */
+     * @return Dimension of frame to draw on
+     */
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(D_WIDTH, D_HEIGHT);

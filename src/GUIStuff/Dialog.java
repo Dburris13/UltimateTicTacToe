@@ -6,14 +6,16 @@
  * Daniel, Ben, Irene, Zach
  */
 package GUIStuff;
-
 import Group8.Game;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
- *
- * @author kcnre
+ * This is the dialog box that pops up after the game as ended.
+ * It will display different text based on if the game resulted in a tie
+ * or a win for either player or even the AI. 
+ * 
+ * @author Irene
  */
 public abstract class Dialog extends JDialog{
     private javax.swing.JLabel backgroundGif;
@@ -22,6 +24,14 @@ public abstract class Dialog extends JDialog{
     private javax.swing.JLabel playerScore1;
     private javax.swing.JButton menuReturnBtn;
     
+    /**
+     * Drawing the Dialog box.
+     * 
+     * @param frame parent frame that we're in
+     * @param game Game object that 
+     * @param Player 
+     * @param Score 
+     */
     public Dialog(JFrame frame, Game game, String Player, int Score)
     {
         super(frame, true);
