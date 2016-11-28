@@ -16,7 +16,6 @@ import java.util.Random;
  * AI (Computer Player) Class.
  * This class will be created if a game is started with the AI radio button checked. 
  * 
- * 
  * @author Daniel
  */
 public class AI {
@@ -38,6 +37,7 @@ public class AI {
     public void pickMove(Board board, Game game) {
         Random rand = new Random();
         int n;
+        int i = 0;
         
         /**
          * If the board the taken by X, by O or tied, the AI can pick any board to play on
@@ -46,7 +46,8 @@ public class AI {
               ("O".equals(board.returnStatus()))||
               ("T".equals(board.returnStatus())))
             {
-                board = game.returnBoard(rand.nextInt(8));
+                board = game.returnBoard(i);
+                i++;
             }
             
         /**

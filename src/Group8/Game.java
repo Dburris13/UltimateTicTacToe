@@ -10,6 +10,7 @@ import AI.AI;
 import MenuScenes.MenuGUI;
 import java.awt.*;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -424,7 +425,7 @@ public class Game extends JFrame{
      * @param brdIndex 
      * @param tileIndex 
      */
-     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex)
+     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex) throws InterruptedException
     {
         bboard.manageBoard(Enabled_index, brdIndex);
         if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {

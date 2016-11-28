@@ -419,8 +419,8 @@ public class BigBoard extends Applet  {
         pw.close();
 
     }catch(Exception ex)
-    {
-        System.out.println(ex);
-    }
+        {
+            System.out.println(ex);
+        }
     }
 }

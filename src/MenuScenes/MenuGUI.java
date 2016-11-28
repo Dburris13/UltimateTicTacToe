@@ -6,7 +6,6 @@
  * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
-
 import GUIStuff.AnimatedPanel;
 import Group8.Game;
 import Group8.Settings;
