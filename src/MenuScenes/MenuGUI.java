@@ -152,7 +152,7 @@ public class MenuGUI extends javax.swing.JFrame {
 
         lblUsername.setText("User Name: ");
         jPanelMainMenu.add(lblUsername);
-        lblUsername.setBounds(184, 120, 59, 14);
+        lblUsername.setBounds(133, 120, 140, 20);
 
         txtFieldPlayer1.setText("Player1");
         txtFieldPlayer1.setEditable(false);
@@ -162,11 +162,11 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(txtFieldPlayer1);
-        txtFieldPlayer1.setBounds(318, 117, 111, 20);
+        txtFieldPlayer1.setBounds(300, 120, 111, 26);
 
         lblVersus.setText("Versus:");
         jPanelMainMenu.add(lblVersus);
-        lblVersus.setBounds(184, 159, 36, 14);
+        lblVersus.setBounds(137, 159, 100, 20);
 
         btnStart.setText("Start Game");
         btnStart.setToolTipText("");
@@ -176,7 +176,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(btnStart);
-        btnStart.setBounds(129, 209, 525, 23);
+        btnStart.setBounds(129, 209, 525, 29);
 
         btnSettings.setText("Settings");
         btnSettings.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +185,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(btnSettings);
-        btnSettings.setBounds(129, 318, 525, 23);
+        btnSettings.setBounds(129, 318, 525, 29);
 
         btnQuit.setText("Quit");
         btnQuit.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +194,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(btnQuit);
-        btnQuit.setBounds(129, 352, 525, 23);
+        btnQuit.setBounds(129, 352, 525, 29);
 
         btnGroupVersus.add(radioComputer);
         radioComputer.setText("Computer");
@@ -205,7 +205,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(radioComputer);
-        radioComputer.setBounds(297, 155, 111, 23);
+        radioComputer.setBounds(297, 155, 111, 29);
 
         txtFieldPlayer2.setEditable(false);
         txtFieldPlayer2.setText("Player2");
@@ -215,7 +215,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(txtFieldPlayer2);
-        txtFieldPlayer2.setBounds(447, 117, 111, 20);
+        txtFieldPlayer2.setBounds(450, 120, 111, 26);
 
         btnGroupVersus.add(radioPlayer);
         radioPlayer.setText("Player");
@@ -228,7 +228,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(radioPlayer);
-        radioPlayer.setBounds(447, 155, 111, 23);
+        radioPlayer.setBounds(447, 155, 111, 29);
 
         btnProfiles.setText("User Profiles");
         btnProfiles.setToolTipText("");
@@ -238,7 +238,7 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(btnProfiles);
-        btnProfiles.setBounds(129, 250, 525, 23);
+        btnProfiles.setBounds(129, 250, 525, 29);
 
         btnRank.setText("Leaderboard");
         btnRank.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -247,17 +247,17 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         jPanelMainMenu.add(btnRank);
-        btnRank.setBounds(129, 284, 525, 23);
+        btnRank.setBounds(129, 284, 525, 29);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelMainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelMainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
         );
 
         pack();
