@@ -41,6 +41,7 @@ public class BigBoard extends Applet  {
     
     private Board returnBoard;
     private Game game;
+    private int winDisplayCount = 0;
         
     /** 
      * Default Constructor 
@@ -109,10 +110,14 @@ public class BigBoard extends Applet  {
             ||(brdArray[2].returnStatus().matches("X|T")) && (brdArray[5].returnStatus().matches("X|T")) && (brdArray[8].returnStatus().matches("X|T"))
             ||(brdArray[0].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[8].returnStatus().matches("X|T"))
             ||(brdArray[2].returnStatus().matches("X|T")) && (brdArray[4].returnStatus().matches("X|T")) && (brdArray[6].returnStatus().matches("X|T"))) {
-            game.updateGamesWon();
-            UserToRank(user1,score1);
-            WinDialog w = new WinDialog(game,game,user1,score1);
-            w.setVisible(true);
+            if (winDisplayCount == 0 )
+            {
+                game.updateGamesWon();
+                UserToRank(user1,score1);
+                WinDialog w = new WinDialog(game,game,user1,score1);
+                w.setVisible(true);
+                winDisplayCount ++;
+            }
         }
         
         /**
@@ -126,10 +131,14 @@ public class BigBoard extends Applet  {
             ||(brdArray[2].returnStatus().matches("O|T")) && (brdArray[5].returnStatus().matches("O|T")) && (brdArray[8].returnStatus().matches("O|T"))
             ||(brdArray[0].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[8].returnStatus().matches("O|T"))
             ||(brdArray[2].returnStatus().matches("O|T")) && (brdArray[4].returnStatus().matches("O|T")) && (brdArray[6].returnStatus().matches("O|T"))) {      
-            game.updateGamesWon();
-            UserToRank(user2, score2);
-            WinDialog w = new WinDialog(game,game,user2,score2);
-            w.setVisible(true);
+            if (winDisplayCount == 0 )
+            {
+                game.updateGamesWon();
+                UserToRank(user1,score1);
+                WinDialog w = new WinDialog(game,game,user1,score1);
+                w.setVisible(true);
+                winDisplayCount ++;
+            }
         }           
     }
     
