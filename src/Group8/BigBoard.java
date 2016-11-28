@@ -1,5 +1,11 @@
+/* 
+ * CS321 - Java Programming
+ * Final Project - Team 8 - Ultimate Tic-Tac-Toe
+ * 
+ * Members:
+ * Daniel, Ben, Irene, Zach
+ */
 package Group8;
-
 import GUIStuff.WinDialog;
 import java.awt.*;
 import java.applet.Applet;
@@ -19,7 +25,7 @@ import java.io.PrintWriter;
  * It determine whether the game has been won with its checkWinner() function.
  * 
  * It talks to all 9 of it's sub-boards to see what their return status is and
- * paints the board appropriately. It will also paint the boards based on which board is
+ * paints the boards appropriately. It will also paint the boards based on which board is
  * active and which board is not. 
  * 
  * It also handles the ranking system information.
@@ -28,8 +34,11 @@ import java.io.PrintWriter;
  * @author Ben
  */
 public class BigBoard extends Applet  {
+    
     private String turn;
+    
     public Board[] brdArray = new Board[9];
+    
     private Board returnBoard;
     private Game game;
         
