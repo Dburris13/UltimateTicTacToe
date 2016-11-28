@@ -47,8 +47,8 @@ public class Game extends JFrame{
     private JLabel lbl1 = new JLabel();
     private int count_X=0;
     private int count_O=0;
-    private UserInfo player1;
-    private UserInfo player2;    
+    UserInfo player1;
+    UserInfo player2;    
     private AI enemy = new AI();
     
     private FileProfile fh;
