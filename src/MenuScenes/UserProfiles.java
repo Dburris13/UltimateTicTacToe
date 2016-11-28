@@ -400,20 +400,23 @@ public class UserProfiles extends javax.swing.JFrame {
             /**
              * Writing default information to file
              */
-            String firstLine = "GamesPlayed: 0\n";
-            String secondLine = "GamesWon: 0\n";
-            String thirdLine = "ScreenResolution: " + (int)playerinfo1.getResolution().getWidth() + " " + (int)playerinfo1.getResolution().getHeight() + "\n";
-            String fourthLine = "ColorScheme: Blue Gray\n";
-            String fifthLine = "Icons: X O\n";
-            
-            try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
-                writer.write(firstLine, 0, firstLine.length());
-                writer.write(secondLine, 0, secondLine.length());
-                writer.write(thirdLine, 0, thirdLine.length());
-                writer.write(fourthLine, 0, fourthLine.length());
-                writer.write(fifthLine, 0, fifthLine.length());
-            } catch (IOException x) {
-                System.err.format("IOException: %s%n", x);
+            if (newname == "null" || newname == "Computer AI" || newname == "Guest" || newname == "Guest2") {
+            } else {
+                String firstLine = "GamesPlayed: 0\n";
+                String secondLine = "GamesWon: 0\n";
+                String thirdLine = "ScreenResolution: " + (int)playerinfo1.getResolution().getWidth() + " " + (int)playerinfo1.getResolution().getHeight() + "\n";
+                String fourthLine = "ColorScheme: Blue Gray\n";
+                String fifthLine = "Icons: X O\n";
+
+                try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {
+                    writer.write(firstLine, 0, firstLine.length());
+                    writer.write(secondLine, 0, secondLine.length());
+                    writer.write(thirdLine, 0, thirdLine.length());
+                    writer.write(fourthLine, 0, fourthLine.length());
+                    writer.write(fifthLine, 0, fifthLine.length());
+                } catch (IOException x) {
+                    System.err.format("IOException: %s%n", x);
+                }
             }
         }
 

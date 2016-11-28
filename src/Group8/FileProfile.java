@@ -44,7 +44,10 @@ public class FileProfile extends FileManager {
                     System.err.format("IOException: %s%n", x);
                 }            
             } else {
-                JOptionPane.showMessageDialog(null, "User Profile Not Found");
+                if ("Computer AI".equals(filename)) {
+                } else {
+                    JOptionPane.showMessageDialog(null, "User Profile Not Found");
+                }
             }
             return lines.toArray(new String[lines.size()]);
         }

@@ -8,6 +8,7 @@
 package AI;
 
 import Group8.Board;
+import Group8.Game;
 import Group8.Tile;
 import java.util.Random;
 
@@ -32,11 +33,22 @@ public class AI {
      * It will create another random number if it has been. 
      * 
      * @param board 
+     * @param game A reference to the current game.
      */
-    public void pickMove(Board board) {
+    public void pickMove(Board board, Game game) {
         Random rand = new Random();
         int n;
-
+        
+        /**
+         * If the board the taken by X, by O or tied, the AI can pick any board to play on
+         */
+        while(("X".equals(board.returnStatus()))||
+              ("O".equals(board.returnStatus()))||
+              ("T".equals(board.returnStatus())))
+            {
+                board = game.returnBoard(rand.nextInt(8));
+            }
+            
         /**
          * Picks a random number, if that tile hasn't been pressed yet, press it
          */
