@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -104,7 +105,28 @@ public class Tile extends JButton implements ActionListener {
         /**
          * Visually displaying the status of Tile
          */
-        this.setFont(new Font("Arial", Font.PLAIN, 80));
+        
+        /**
+         * Dynamically scaling size of Tile text
+         */
+        Dimension windowSize = game.player1.getResolution();
+        switch (windowSize.width) {
+            case 1920:
+                this.setFont(new Font("Arial", Font.PLAIN, 120));
+                break;
+            case 1600:
+                this.setFont(new Font("Arial", Font.PLAIN, 100));
+                break;
+            case 1280:
+                this.setFont(new Font("Arial", Font.PLAIN, 80));
+                break;
+            case 1024:
+                this.setFont(new Font("Arial", Font.PLAIN, 60));
+                break;
+            default:
+                this.setFont(new Font("Arial", Font.PLAIN, 60));
+                break;
+        }
         this.setText((game.currentPlayer.returnStatus() ? "X" : "O"));
         
         /**

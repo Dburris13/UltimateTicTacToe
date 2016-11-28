@@ -80,6 +80,7 @@ public class BigBoard extends Applet  {
      * @param score1 player1's score count
      * @param user2 player2's name
      * @param score2 player2's score count
+     * @throws java.io.IOException
      */
     public void checkWinner(String user1, int score1, String user2, int score2) throws IOException {
         /**
@@ -324,7 +325,6 @@ public class BigBoard extends Applet  {
                  */
                 for(int k =0; k<9; k++) {
                     brdArray[i].returnTileIndex(k).setBackground(Color.DARK_GRAY);
-                    brdArray[i].returnTileIndex(k).setForeground(Color.PINK);
                 }
             }
 
@@ -336,7 +336,6 @@ public class BigBoard extends Applet  {
             for(int k =0; k<9; k++)
             {
                 brdArray[tileIndex].returnTileIndex(k).setBackground(oldColor);
-                brdArray[tileIndex].returnTileIndex(k).setForeground(Color.PINK);
             }
 
             /**
@@ -364,12 +363,17 @@ public class BigBoard extends Applet  {
             for(int j =0; j<9; j++) {    
                 if(brdArray[i].returnTileIndex(j).returnStatus() == "X") {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
-                } else if (brdArray[i].returnTileIndex(j).returnStatus() == "O")
-                {
+                } else if (brdArray[i].returnTileIndex(j).returnStatus() == "O") {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
                 }
             }
         }
+                
+        /**
+         * Sets the background color to something different, so we can see it
+         * last Tile played
+         */
+        brdArray[brdIndex].returnTileIndex(tileIndex).setBackground(Color.WHITE);
     }
     
     /**

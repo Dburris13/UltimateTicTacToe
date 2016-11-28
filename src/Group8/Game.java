@@ -39,7 +39,6 @@ import javax.swing.*;
  * @author Ben
  */
 public class Game extends JFrame{
-        
     /** 
      * Player represents the active user in the game, whoever's turn it is
      */
@@ -48,9 +47,13 @@ public class Game extends JFrame{
     private JLabel lbl1 = new JLabel();
     private int count_X=0;
     private int count_O=0;
-    private UserInfo player1;
-    private UserInfo player2;    
+    UserInfo player1;
+    UserInfo player2;    
     private AI enemy = new AI();
+    
+    private FileProfile fh;
+    private FileProfile fh2;
+    private String[] lines;
     
     /**
      * Default constructor
@@ -67,6 +70,8 @@ public class Game extends JFrame{
             this.player2 = profile2;
         }
         initGame();   
+        fh = new FileProfile(player1.getUsername());
+        fh2 = new FileProfile(player2.getUsername());
         
         try {     
             updateGamesPlayed();
@@ -163,8 +168,6 @@ public class Game extends JFrame{
         if (currentPlayer.returnStatus() == false) {
             if (player1.getUsername().equals("Guest")) {
             } else {
-                FileProfile fh = new FileProfile(player1.getUsername());
-                String[] lines;
                 lines = fh.readFile();
 
                 /**
@@ -196,9 +199,7 @@ public class Game extends JFrame{
              */
             if (player2.getUsername().equals("Guest2")) {
             } else {
-                FileProfile fh = new FileProfile(player2.getUsername());
-                String[] lines;
-                lines = fh.readFile();
+                lines = fh2.readFile();
 
                 /**
                 * Parsing through the file and making sure were reading / updating
@@ -245,8 +246,6 @@ public class Game extends JFrame{
          */        
         if (player1.getUsername().equals("Guest")) {
         } else {
-            FileProfile fh = new FileProfile(player1.getUsername());
-            String[] lines;
             lines = fh.readFile();
             
             /**
@@ -277,9 +276,7 @@ public class Game extends JFrame{
          */
         if (player2.getUsername().equals("Guest2") || player2.getUsername().equals("Computer AI")) {
         } else {
-            FileProfile fh = new FileProfile(player2.getUsername());
-            String[] lines;
-            lines = fh.readFile();
+            lines = fh2.readFile();
             
             /**
             * Parsing through the file and making sure were reading / updating
