@@ -46,13 +46,21 @@ public class Rank_table extends javax.swing.JFrame {
     
     
     public Rank_table() {
-        initComponents();
+        initComponents();        
+        /**
+        * This sets the window to the center of the monitor screen
+        */
+        this.setLocationRelativeTo(null);
     }
     
     public Rank_table(UserInfo userinfo1, UserInfo userinfo2) {
         this.p1 = userinfo1;
         this.p2 = userinfo2;
         initComponents();
+        /**
+        * This sets the window to the center of the monitor screen
+        */
+        this.setLocationRelativeTo(null);
     }
     /**
      * this method will go through player info array and get name and score
@@ -167,6 +175,7 @@ public class Rank_table extends javax.swing.JFrame {
     public void FileReader()
     {
     		String fileName = "Rank.data";
+                
 		List<String> list = new ArrayList<>();
                
 		try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {

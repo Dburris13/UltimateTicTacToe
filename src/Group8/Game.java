@@ -275,7 +275,7 @@ public class Game extends JFrame{
          * Only executed is a player's profile is loaded and not the default
          * Guest profile
          */
-        if (player2.getUsername().equals("Guest2")) {
+        if (player2.getUsername().equals("Guest2") || player2.getUsername().equals("Computer AI")) {
         } else {
             FileProfile fh = new FileProfile(player2.getUsername());
             String[] lines;
@@ -357,7 +357,7 @@ public class Game extends JFrame{
      * @return returns button color 1 
      */
     public Color returnColor1() {
-        return player1.getColor1();    
+        return player1.getColor1();
     }
     
     /**
@@ -373,6 +373,7 @@ public class Game extends JFrame{
      * Status Check.
      * 
      * Called after every turn is taken to see if any of the win cases are met. 
+     * @throws java.io.IOException
      */
     public void checkWinner() throws IOException {
         /**
@@ -414,6 +415,7 @@ public class Game extends JFrame{
      * 
      * @param Enabled_index
      * @param brdIndex 
+     * @param tileIndex 
      */
      public void manageBoard(int Enabled_index, int brdIndex, int tileIndex)
     {

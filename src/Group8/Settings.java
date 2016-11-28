@@ -170,7 +170,7 @@ public class Settings extends javax.swing.JFrame {
             * the correct line in the User Profiles files
             */
             String input = "";
-            for (int i = 0; i < lines.length; i++) {
+            for (int i = 0; i < lines.length; i++) { 
                 String[] parts = lines[i].split(" ");
                 input += lines[i] + '\n';
                 if (null != parts) switch (parts[0]) {
