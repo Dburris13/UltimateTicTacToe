@@ -393,6 +393,16 @@ public class Game extends JFrame{
     }
     
     /**
+     * Returns Board located at i in Bigboard.
+     * @param i index
+     * @return Board
+     */
+    public Board returnBoard(int i)
+    {
+        return bboard.returnIndex_Board(i);
+    }
+    
+    /**
      * Board Manager.
      * Simply calls BigBoard's manageBoard method.
      * 
@@ -403,7 +413,7 @@ public class Game extends JFrame{
     {
         bboard.manageBoard(Enabled_index, brdIndex);
         if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
-            enemy.pickMove(bboard.brdArray[tileIndex]);
+            enemy.pickMove(bboard.brdArray[tileIndex], this);
         }
     }
      
