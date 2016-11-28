@@ -32,7 +32,6 @@ public class Settings extends javax.swing.JFrame {
 
     private UserInfo user1Settings;
     private UserInfo user2Settings;
-    private String username;
     
     /**
      * Default Constructor.
@@ -158,14 +157,13 @@ public class Settings extends javax.swing.JFrame {
      * 
      * @param evt 
      */
-    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {                                          
-        // TODO add your handling code here:
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException { 
         if (user1Settings.getUsername() != "Guest") {
             FileProfile fh = new FileProfile(user1Settings.getUsername());
             String[] lines = new String[6];
             lines = fh.readFile();
             
-            /**
+            /*
             * Parsing through the file and making sure were reading / updating
             * the correct line in the User Profiles files
             */
@@ -261,8 +259,7 @@ public class Settings extends javax.swing.JFrame {
      * Updated UserInfo when the combo box selection changes.
      * @param evt 
      */        
-    private void cbScreenActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+    private void cbScreenActionPerformed(java.awt.event.ActionEvent evt) {  
         String resolution = (String)cbScreen.getSelectedItem();
         if (null != resolution) switch (resolution) {
             case "1920x1080":
@@ -291,8 +288,7 @@ public class Settings extends javax.swing.JFrame {
      * Updated UserInfo when the combo box selection changes.
      * @param evt 
      */
-    private void cbColorActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
+    private void cbColorActionPerformed(java.awt.event.ActionEvent evt) {       
         String colorScheme = (String)cbColor.getSelectedItem();
         if (null != colorScheme) switch (colorScheme) {
             case "Cyan/Gray":

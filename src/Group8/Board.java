@@ -31,7 +31,7 @@ public class Board extends Applet {
     
     private char turn;
     private Color brdColor;
-    /**
+    /*
      * We know there will only be 9 tiles to a board
      */
     private Tile[] btnArray = new Tile[9];
@@ -44,18 +44,18 @@ public class Board extends Applet {
      * @param color color to be set to (user settings)
      */
     public Board (Game game, Color color) {
-        /**
+        /*
          * All nine buttons will be this color
          */
         brdColor = color;
         
-        /**
+        /*
          * Creating our Tic-Tac-Toe board layout
          */
         GridLayout gl = new GridLayout (3,3,1,1);
         this.setLayout(gl);
                 
-        /**
+        /*
          * Creating our 9 Tiles
          */
         for (int i = 0; i < 9; i++) {
@@ -73,7 +73,7 @@ public class Board extends Applet {
      * that will override this status if appropriate.
      */
     public void checkWinner() {
-        /**
+        /*
          * Checking if board is full, but not won (Tie)
          */
         if  (!"".equals(btnArray[0].returnStatus()) && !"".equals(btnArray[1].returnStatus()) && !"".equals(btnArray[2].returnStatus())
@@ -83,7 +83,7 @@ public class Board extends Applet {
             brdStatus = "T";
         }     
         
-        /**
+        /*
          * Checking if X won
          */
         if ("X".equals(btnArray[0].returnStatus()) && "X".equals(btnArray[1].returnStatus()) && "X".equals(btnArray[2].returnStatus())
@@ -98,7 +98,7 @@ public class Board extends Applet {
             brdStatus = "X";
         }
         
-        /**
+        /*
          * Checking if O won
          */
         if ("O".equals(btnArray[0].returnStatus()) && "O".equals(btnArray[1].returnStatus()) && "O".equals(btnArray[2].returnStatus())

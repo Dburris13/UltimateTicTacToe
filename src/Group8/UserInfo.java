@@ -18,7 +18,7 @@ import java.awt.*;
  */
 public class UserInfo {
     
-    /**
+    /*
      * Color of tiles, some are used for setting it (Color),
      * the other is used for saving it into file (String)
      * Default is Cyan/Gray
@@ -27,14 +27,14 @@ public class UserInfo {
     private Color btn2Color = Color.CYAN;
     private String colorScheme = "Cyan/Gray";
     
-    /**
+    /*
      * Determines whether player1 is versus AI or player
      * 1 = AI
      * 2 = player (default)
      */
     private int gamemode = 2;
     
-    /**
+    /*
      * Screen resolution, one is used for settings it (Dimension),
      * the other is used for saving it into file (string)
      * Default is 1280x720

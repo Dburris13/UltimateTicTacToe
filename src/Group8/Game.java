@@ -40,7 +40,7 @@ import javax.swing.*;
  * @author Ben
  */
 public class Game extends JFrame{
-    /** 
+    /**
      * Player represents the active user in the game, whoever's turn it is
      */
     public Player currentPlayer = new Player(true);
@@ -160,7 +160,7 @@ public class Game extends JFrame{
      * @throws IOException if File cannot be accessed
      */
     public void updateGamesWon() throws IOException {
-        /**
+        /*
          * Writing to player1's user profile
          * Incrementing games won by 1
          * Only executed is a player's profile is loaded and not the default
@@ -171,7 +171,7 @@ public class Game extends JFrame{
             } else {
                 lines = fh.readFile();
 
-                /**
+                /*
                 * Parsing through the file and making sure were reading / updating
                 * the correct line in the User Profiles files
                 */
@@ -192,7 +192,7 @@ public class Game extends JFrame{
                 fh.writeFile(input);
             }
         } else {
-            /**
+            /*
              * Writing to player2's user profile
              * Incrementing games played by 1
              * Only executed is a player's profile is loaded and not the default
@@ -202,7 +202,7 @@ public class Game extends JFrame{
             } else {
                 lines = fh2.readFile();
 
-                /**
+                /*
                 * Parsing through the file and making sure were reading / updating
                 * the correct line in the User Profiles files
                 */
@@ -239,7 +239,7 @@ public class Game extends JFrame{
      * @throws IOException if File cannot be accessed
      */
     private void updateGamesPlayed() throws IOException {
-        /**
+        /*
          * Writing to player1's user profile
          * Incrementing games played by 1
          * Only executed is a player's profile is loaded and not the default
@@ -249,7 +249,7 @@ public class Game extends JFrame{
         } else {
             lines = fh.readFile();
             
-            /**
+            /*
              * Parsing through the file and making sure were reading / updating
              * the correct line in the User Profiles files
              */
@@ -374,12 +374,12 @@ public class Game extends JFrame{
      * @throws java.io.IOException
      */
     public void checkWinner() throws IOException {
-        /**
+        /*
          * count move for X
          */
         if(currentPlayer.returnStatus()==true)
             {count_X++;}
-        /**
+        /*
          * count move for O
          */
         if(currentPlayer.returnStatus()==false)
@@ -388,7 +388,7 @@ public class Game extends JFrame{
         String text = (currentPlayer.returnStatus() ? String.format("<html> <font color = 'red'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'black'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()) : String.format("<html> <font color = 'black'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()));
         lbl1.setText(String.format("<html> <font color = 'red'> X: %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s :O </html>", player1.getUsername(), player2.getUsername()));
         lbl1.setText("<html><div style='text-align: center;'>" + text + "</div></html>");  
-        /**
+        /*
          * check overall winner and pass username and score
          */
         bboard.checkWinner(player1.getUsername(), count_X, player2.getUsername(), count_O);

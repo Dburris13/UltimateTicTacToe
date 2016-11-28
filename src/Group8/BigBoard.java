@@ -34,18 +34,18 @@ import java.io.PrintWriter;
  * @author Ben
  */
 public class BigBoard extends Applet  {
-    /**
+    /*
      * Our Array of 9 Board objects that will be aligned in the 
      * 3x3 Grid Layout
      */
     private Board[] brdArray = new Board[9];
         
-    /**
+    /*
      * Local variable of our Game class
      */
     private Game game;
     
-    /**
+    /*
      * Variable used update high scores
      */
     private int winDisplayCount = 0;
@@ -57,7 +57,7 @@ public class BigBoard extends Applet  {
      * @param game Our game class, containing methods such as endTurn() and checkWinner()
      */
     public BigBoard (Game game) {
-        /**
+        /*
          * The BigBoard itself is just a GridLayout. 
          * It places 9 Boards into each of its grid slots.
          */
@@ -65,7 +65,7 @@ public class BigBoard extends Applet  {
         this.setLayout(gl);
         this.game = game;
                 
-        /**
+        /*
          * This FOR loop populates the brdArray variable
          */
         for (int i = 0; i < 9; i++) {
@@ -100,14 +100,14 @@ public class BigBoard extends Applet  {
      * @throws java.io.IOException
      */
     public void checkWinner(String user1, int score1, String user2, int score2) throws IOException {
-        /**
+        /*
          * Grabbing the status of all 9 boards
          */
         for (int i = 0; i < 9; i++) {
             brdArray[i].checkWinner();
         }
         
-        /**
+        /*
          * Looking at all win cases for X
          */
         if (brdArray[0].returnStatus().matches("X|T") && brdArray[1].returnStatus().matches("X|T") && brdArray[2].returnStatus().matches("X|T")
@@ -128,7 +128,7 @@ public class BigBoard extends Applet  {
             }
         }
         
-        /**
+        /*
          * Looking at all win cases for O
          */
         if (brdArray[0].returnStatus().matches("O|T") && brdArray[1].returnStatus().matches("O|T") && brdArray[2].returnStatus().matches("O|T")
@@ -157,7 +157,7 @@ public class BigBoard extends Applet  {
      */
     private void paintX(Board brd) {
         
-        /**
+        /*
          *  |X| |X|
          *  | |X| |
          *  |X| |X| 
@@ -172,7 +172,7 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(7).setBackground(Color.BLACK);
         brd.returnTileIndex(8).setBackground(Color.red);
                 
-        /**
+        /*
          * board has been won and is no longer playable
          */
         brd.returnTileIndex(0).setEnabled(false);
@@ -193,7 +193,7 @@ public class BigBoard extends Applet  {
      */
     private void paintR(Board brd) {
         
-        /**
+        /*
          *  |R|R|R|
          *  |R|R|R|
          *  |R|R|R| 
@@ -208,7 +208,7 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(7).setBackground(Color.red);
         brd.returnTileIndex(8).setBackground(Color.red);  
                 
-        /**
+        /*
          * board has been won and is no longer playable
          */
         brd.returnTileIndex(0).setEnabled(false);
@@ -228,7 +228,7 @@ public class BigBoard extends Applet  {
      * @param brd board to be painted
      */    
     private void paintO(Board brd) {
-        /**
+        /*
          *  |O|O|O|
          *  |O| |O|
          *  |O|O|O| 
@@ -243,7 +243,7 @@ public class BigBoard extends Applet  {
         brd.returnTileIndex(7).setBackground(Color.red);
         brd.returnTileIndex(8).setBackground(Color.red); 
         
-        /**
+        /*
          * board has been won and is no longer playable
          */
         brd.returnTileIndex(0).setEnabled(false);
@@ -279,12 +279,12 @@ public class BigBoard extends Applet  {
      */
     public void manageBoard(int tileIndex, int brdIndex) 
     {
-        /**
+        /*
          * This variable grabs the color of the board
          */
         Color oldColor = brdArray[tileIndex].returnColor();
         
-        /**
+        /*
          * If the next board has already been won
          */
         if (brdArray[tileIndex].returnStatus() == "X" || brdArray[tileIndex].returnStatus() == "O" || brdArray[tileIndex].returnStatus() == "T") {
@@ -298,7 +298,7 @@ public class BigBoard extends Applet  {
                 }
             }
             
-            /**
+            /*
              * This FOR loop now re-enables the next board if it hasn't been closed because it was already won.
              */
             for(int i = 0; i < 9; i++) { 
@@ -314,7 +314,7 @@ public class BigBoard extends Applet  {
                 }
             }       
         } else { 
-            /**
+            /*
              * This first FOR loop disables all 9 boards, and visually 
              */
             for(int i =0; i<9; i++) {
@@ -330,7 +330,7 @@ public class BigBoard extends Applet  {
                 }
             }
 
-            /**
+            /*
              * Don't disable the next board we play on
              */
             brdArray[tileIndex].setEnabled(true);
@@ -339,7 +339,7 @@ public class BigBoard extends Applet  {
                 brdArray[tileIndex].returnTileIndex(k).setBackground(oldColor);
             }
 
-            /**
+            /*
              * This FOR loop now re-enables the next board if it hasn't been closed because it was already won.
              */
             for(int i = 0; i < 9; i++) { 
@@ -356,7 +356,7 @@ public class BigBoard extends Applet  {
             }            
         }
         
-        /**
+        /*
          * This FOR loops looks at the selected board and determines which buttons
          * have not been pressed yet
          */
@@ -370,14 +370,14 @@ public class BigBoard extends Applet  {
             }
         }
                 
-        /**
+        /*
          * Sets the background color to something different, so we can see it
          * last Tile played
          */
         brdArray[brdIndex].returnTileIndex(tileIndex).setBackground(Color.WHITE);
         
         
-        /**
+        /*
          * Checks to see if board if a tie
          */
         int dCnt = 0;

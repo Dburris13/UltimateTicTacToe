@@ -340,7 +340,6 @@ public class MenuGUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnProfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfilesActionPerformed
-        // TODO add your handling code here:
         UserProfiles s = new UserProfiles(user1, user2);     
         s.setVisible(true);  
         dispose();
@@ -351,7 +350,6 @@ public class MenuGUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnRankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankMouseClicked
-        // TODO add your handling code here:
         Rank_table ranking = new Rank_table(user1, user2);
         ranking.FileReader();
         ranking.addRowtoJtable();

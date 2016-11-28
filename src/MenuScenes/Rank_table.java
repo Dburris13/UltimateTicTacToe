@@ -79,7 +79,7 @@ public class Rank_table extends javax.swing.JFrame {
     }
     /**
      * Add a row to the jtable based on how many elements we find our we will
-     * have in the highscores table
+     * have in the highscores table.
      */
     public void addRowtoJtable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -177,34 +177,31 @@ public class Rank_table extends javax.swing.JFrame {
      * high scores to the user 
      */
     public void FileReader() {
-    		String fileName = "Rank.data";
-                
-		List<String> list = new ArrayList<>();
-               
-		try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
+        String fileName = "Rank.data";
 
-			//br returns as stream and convert it into a List
-			list = br.lines().collect(Collectors.toList());
+        List<String> list = new ArrayList<>();
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
 
-                for(int i=0; i<list.size();i++)
-                {
-                String[] details = (list.get(i)).split(",");
-                String username=details[0];
-                int score = Integer.parseInt(details[1]);
-                UserInfo player = new UserInfo();
-                player.setUsername(username);
-                player.setScore(score);
-                user_List.add(player);
-                }
-                
-                Sort_list(user_List, user_List.size());
+                //br returns as stream and convert it into a List
+                list = br.lines().collect(Collectors.toList());
 
-                
-    
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+
+        for(int i=0; i<list.size();i++)
+        {
+        String[] details = (list.get(i)).split(",");
+        String username=details[0];
+        int score = Integer.parseInt(details[1]);
+        UserInfo player = new UserInfo();
+        player.setUsername(username);
+        player.setScore(score);
+        user_List.add(player);
+        }
+
+        Sort_list(user_List, user_List.size());
     }
     
     /**

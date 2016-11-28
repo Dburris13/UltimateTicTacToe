@@ -15,7 +15,7 @@ package Group8;
  * @author Daniel
  */
 public class Player {
-    /**
+    /*
      * true = player 1, false = player 2
      */
     public boolean currentPlayer;

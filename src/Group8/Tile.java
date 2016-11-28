@@ -90,7 +90,7 @@ public class Tile extends JButton implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
-        /**
+        /*
          * Grabbing the indexes of the Tile
          */
         for(int i =0; i<9; i++) {
@@ -102,7 +102,7 @@ public class Tile extends JButton implements ActionListener {
             }
         }
         
-        /**
+        /*
          * Dynamically scaling size of Tile text
          */
         Dimension windowSize = game.player1.getResolution();
@@ -125,7 +125,7 @@ public class Tile extends JButton implements ActionListener {
         }
         this.setText((game.currentPlayer.returnStatus() ? "X" : "O"));
         
-        /**
+        /*
          * Advancing the state of the game using inherited methods
          */
         game.endTurn(tileIndex);

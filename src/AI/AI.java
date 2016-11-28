@@ -39,7 +39,7 @@ public class AI {
         int n;
         int i = 0;
         
-        /**
+        /*
          * If the board the taken by X, by O or tied, the AI can pick any board to play on
          */
         while(("X".equals(board.returnStatus()))||
@@ -50,7 +50,7 @@ public class AI {
                 i++;
             }
             
-        /**
+        /*
          * Picks a random number, if that tile hasn't been pressed yet, press it
          */
         do {
