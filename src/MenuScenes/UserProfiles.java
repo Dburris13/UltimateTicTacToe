@@ -44,6 +44,10 @@ public class UserProfiles extends javax.swing.JFrame {
     public UserProfiles() {
         initComponents();
         this.setLocationRelativeTo(null);
+        if (playerinfo1.getGamemode() == 1) {
+        } else {
+        
+        }
     }
     
     /**
@@ -72,6 +76,12 @@ public class UserProfiles extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        if (playerinfo1.getGamemode() == 1) {
+            p2Lbl.setVisible(false);
+            p2LoadBtn.setVisible(false);
+            profileInfo2.setVisible(false);
+        }
     }  
     
     /**
@@ -96,7 +106,7 @@ public class UserProfiles extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         profileInfo1 = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         userListModel = new DefaultListModel<String>() {
             public String[] ReadDirectory() {
@@ -395,12 +405,13 @@ public class UserProfiles extends javax.swing.JFrame {
         File f = new File(filePathString);
         
         if (f.exists()) {
-            JOptionPane.showMessageDialog(null, "Profile already exists for :" + newname);
+            JOptionPane.showMessageDialog(null, "Profile already exists for : " + newname);
         } else {
             /**
              * Writing default information to file
              */
-            if (newname == "null" || newname == "Computer AI" || newname == "Guest" || newname == "Guest2") {
+            if ("null".equals(newname) || "Computer AI".equals(newname) || "Guest".equals(newname) || "Guest2".equals(newname)) {
+                JOptionPane.showMessageDialog(null, "Sorry! " + newname + " is not an available username!");
             } else {
                 String firstLine = "GamesPlayed: 0\n";
                 String secondLine = "GamesWon: 0\n";
@@ -417,7 +428,10 @@ public class UserProfiles extends javax.swing.JFrame {
                 } catch (IOException x) {
                     System.err.format("IOException: %s%n", x);
                 }
-            }
+                UserProfiles s = new UserProfiles(playerinfo1, playerinfo2);
+                s.setVisible(true);
+                dispose();  
+            } 
         }
 
         userListModel.addElement(newname);

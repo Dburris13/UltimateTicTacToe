@@ -354,8 +354,7 @@ public class BigBoard extends Applet  {
             for(int j =0; j<9; j++) {    
                 if(brdArray[i].returnTileIndex(j).returnStatus() == "X") {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
-                } else if (brdArray[i].returnTileIndex(j).returnStatus() == "O")
-                {
+                } else if (brdArray[i].returnTileIndex(j).returnStatus() == "O") {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
                 }
             }
@@ -365,7 +364,7 @@ public class BigBoard extends Applet  {
          * Sets the background color to something different, so we can see it
          * last Tile played
          */
-        brdArray[brdIndex].returnTileIndex(tileIndex).setBackground(Color.BLACK);
+        brdArray[brdIndex].returnTileIndex(tileIndex).setBackground(Color.WHITE);
     }
     
     /**
