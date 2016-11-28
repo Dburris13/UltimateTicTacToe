@@ -6,6 +6,7 @@
  * Daniel, Ben, Irene, Zach
  */
 package Group8;
+import GUIStuff.TieDialog;
 import GUIStuff.WinDialog;
 import java.awt.*;
 import java.applet.Applet;
@@ -399,6 +400,8 @@ public class BigBoard extends Applet  {
         
         if (dCnt >= 81) {
             System.out.println("THIS GAME IS A TIE");
+            TieDialog t = new TieDialog(game, game, "", 0);
+            t.setVisible(true);
         }
     }
     
