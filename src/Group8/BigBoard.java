@@ -139,7 +139,7 @@ public class BigBoard extends Applet  {
                 w.setVisible(true);
                 winDisplayCount ++;
             }
-        }           
+        }
     }
     
     /**
@@ -383,6 +383,23 @@ public class BigBoard extends Applet  {
          * last Tile played
          */
         brdArray[brdIndex].returnTileIndex(tileIndex).setBackground(Color.WHITE);
+        
+        
+        /**
+         * Checks to see if board if a tie
+         */
+        int dCnt = 0;
+        for(int i =0; i<9; i++) {
+            for(int k =0; k<9; k++) {
+                if (brdArray[i].returnTileIndex(k).isEnabled() == false) {
+                    dCnt++;
+                }
+            }
+        }
+        
+        if (dCnt >= 81) {
+            System.out.println("THIS GAME IS A TIE");
+        }
     }
     
     /**

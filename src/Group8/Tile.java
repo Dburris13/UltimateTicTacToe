@@ -133,7 +133,6 @@ public class Tile extends JButton implements ActionListener {
          * Advancing the state of the game using inherited methods
          */
         game.endTurn(tileIndex);
-        
         try {
             game.checkWinner();
         } catch (IOException ex) {
