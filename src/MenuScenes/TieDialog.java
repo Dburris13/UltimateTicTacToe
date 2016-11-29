@@ -10,7 +10,8 @@ import GameFiles.Game;
 import javax.swing.JFrame;
 
 /**
- *
+ * This is an implementation of the Dialog class to display when a game is tied.
+ * It sets the JLabel text to indicate a tie
  * @author Irene
  */
 public class TieDialog extends Dialog {

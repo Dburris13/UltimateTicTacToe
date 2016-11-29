@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/GUIStuff/WinDialog.java</file>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/Group8/Board.java</file>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/Group8/Game.java</file>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/Group8/BigBoard.java</file>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/Group8/Tile.java</file>
-            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/GUIStuff/Dialog.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/UserProfiles.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/Rank_table.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/Settings.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/WinDialog.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/PlayerInfo/FileManager.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/PlayerInfo/FileProfile.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/PlayerInfo/UserInfo.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/TieDialog.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/PlayerInfo/Player.java</file>
         </group>
     </open-files>
 </project-private>
