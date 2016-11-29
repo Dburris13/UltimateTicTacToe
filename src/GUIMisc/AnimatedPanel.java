@@ -25,8 +25,8 @@ import javax.swing.Timer;
  */
 public class AnimatedPanel extends JPanel{
     
-    private static final int D_HEIGHT = 500;
-    private static final int D_WIDTH = 770;
+    private static final int HEIGHT = 500;
+    private static final int WIDTH = 770;
     private List<BackgroundChars> backChars;
     private final List<Color> colors;
     private Timer timer = null;
@@ -79,7 +79,7 @@ public class AnimatedPanel extends JPanel{
      */
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(D_WIDTH, D_HEIGHT);
+        return new Dimension(WIDTH, HEIGHT);
     }
     
     /**
@@ -108,8 +108,8 @@ public class AnimatedPanel extends JPanel{
         List<BackgroundChars> list = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 20; i++) {
-            int randXLoc = random.nextInt(D_WIDTH);
-            int randYLoc = random.nextInt(D_HEIGHT);
+            int randXLoc = random.nextInt(WIDTH);
+            int randYLoc = random.nextInt(HEIGHT);
             int randomDelayedStart = random.nextInt(100);
             int colorIndex = random.nextInt(colors.size());
             Color color = colors.get(colorIndex);

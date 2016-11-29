@@ -24,7 +24,7 @@ public class Player {
      * Default Constructor.
      * Game determines whose turn we start on.
      * 
-     * @param whoseTurn 
+     * @param whoseTurn sets current player (true = player1, false=player2)
      */
     public Player(boolean whoseTurn) {
         currentPlayer = whoseTurn;    
@@ -34,7 +34,7 @@ public class Player {
      * Status Return.
      * Returns whose turn it currently is.
      * 
-     * @return 
+     * @return the player whose turn it is
      */
     public boolean returnStatus() {
         return currentPlayer;

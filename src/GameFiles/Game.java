@@ -48,8 +48,8 @@ public class Game extends JFrame{
     public Player currentPlayer = new Player(true);
     private BigBoard bboard;
     private JLabel lbl1 = new JLabel();
-    private int count_X=0;
-    private int count_O=0;
+    private int countX=0;
+    private int countO=0;
     UserInfo player1;
     UserInfo player2;    
     private AI enemy = new AI();
@@ -61,8 +61,8 @@ public class Game extends JFrame{
     /**
      * Default constructor
      * 
-     * @param profile1
-     * @param profile2 
+     * @param profile1 player1
+     * @param profile2 player2
      */
     public Game(UserInfo profile1, UserInfo profile2) {
         this.player1 = profile1;
@@ -377,19 +377,19 @@ public class Game extends JFrame{
      * Status Check.
      * 
      * Called after every turn is taken to see if any of the win cases are met. 
-     * @throws java.io.IOException
+     * @throws java.io.IOException thrown if board reaches an invalid state
      */
     public void checkWinner() throws IOException {
         /*
          * count move for X
          */
         if(currentPlayer.returnStatus()==true)
-            {count_X++;}
+            {countX++;}
         /*
          * count move for O
          */
         if(currentPlayer.returnStatus()==false)
-            {count_O++;}
+            {countO++;}
         
         String text = (currentPlayer.returnStatus() ? String.format("<html> <font color = 'red'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'black'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()) : String.format("<html> <font color = 'black'> X &nbsp &nbsp &nbsp %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s &nbsp &nbsp &nbsp O </html>", player1.getUsername(), player2.getUsername()));
         lbl1.setText(String.format("<html> <font color = 'red'> X: %s <font color = 'black'> &nbsp &nbsp &nbsp &nbsp Player's Turn &nbsp &nbsp &nbsp &nbsp <font color = 'blue'> %s :O </html>", player1.getUsername(), player2.getUsername()));
@@ -397,7 +397,7 @@ public class Game extends JFrame{
         /*
          * check overall winner and pass username and score
          */
-        bboard.checkWinner(player1.getUsername(), count_X, player2.getUsername(), count_O);
+        bboard.checkWinner(player1.getUsername(), countX, player2.getUsername(), countO);
 
     }
     
@@ -420,20 +420,19 @@ public class Game extends JFrame{
      */
     public Board returnBoard(int i)
     {
-        return bboard.returnIndex_Board(i);
+        return bboard.returnIndexBoard(i);
     }
     
     /**
      * Board Manager.
      * Simply calls BigBoard's manageBoard method.
      * 
-     * @param Enabled_index
-     * @param brdIndex 
-     * @param tileIndex 
+     * @param EnabledIndex index of tile
+     * @param brdIndex index of board
      */
-     public void manageBoard(int Enabled_index, int brdIndex, int tileIndex)
+     public void manageBoard(int EnabledIndex, int brdIndex)
     {
-        bboard.manageBoard(Enabled_index, brdIndex);
+        bboard.manageBoard(EnabledIndex, brdIndex);
         if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
             enemy.pickMove(bboard.GetBrdArray(brdIndex), this);
         }

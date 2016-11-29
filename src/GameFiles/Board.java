@@ -140,8 +140,8 @@ public class Board extends Applet {
      * Tile Index Return.
      * 
      * This method returns the Tile at a specific index.
-     * @param btnArrayIndex
-     * @return 
+     * @param btnArrayIndex index of tile
+     * @return Tile at the index
      */
     public Tile returnTileIndex(int btnArrayIndex)
     {

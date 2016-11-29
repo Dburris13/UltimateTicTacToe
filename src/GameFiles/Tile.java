@@ -86,7 +86,7 @@ public class Tile extends JButton implements ActionListener {
      * 
      * It then advances the state of the game using it's inherited Game methods.
      * 
-     * @param ae 
+     * @param ae event object
      */
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -134,6 +134,6 @@ public class Tile extends JButton implements ActionListener {
         } catch (IOException ex) {
             Logger.getLogger(Tile.class.getName()).log(Level.SEVERE, null, ex);
         }
-        game.manageBoard(tileIndex, brdIndex, tileIndex);
+        game.manageBoard(tileIndex, brdIndex);
     }
 }

@@ -16,8 +16,8 @@ import java.awt.Graphics;
  * @author Irene
  */
 public abstract class BackgroundChars {
-    int D_HEIGHT = 500; //height of the jFrame
-    int D_WIDTH = 750; //width of the jframe
+    int HEIGHT = 500; //height of the jFrame
+    int WIDTH = 750; //width of the jframe
     int randXLoc;
     int randYLoc;
     int randomDelayedStart;

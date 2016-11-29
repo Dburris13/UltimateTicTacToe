@@ -55,8 +55,8 @@ public class UserProfiles extends javax.swing.JFrame {
      * Constructor Method.
      * Takes in two user profiles as parameters.
      * 
-     * @param user1
-     * @param user2 
+     * @param user1 player 1
+     * @param user2 player 2
      */
     public UserProfiles(UserInfo user1, UserInfo user2) {
         this.playerinfo1 = user1;

@@ -98,7 +98,7 @@ public class BigBoard extends Applet  {
      * @param score1 player1's score count
      * @param user2 player2's name
      * @param score2 player2's score count
-     * @throws java.io.IOException
+     * @throws java.io.IOException thrown if board reaches an invalid state
      */
     public void checkWinner(String user1, int score1, String user2, int score2) throws IOException {
         /*
@@ -399,10 +399,10 @@ public class BigBoard extends Applet  {
     
     /**
      * return boardArray at specific index
-     * @param brdArrayIndex
-     * @return 
+     * @param brdArrayIndex the index of a board
+     * @return the board at the given index
      */
-    public Board returnIndex_Board(int brdArrayIndex) 
+    public Board returnIndexBoard(int brdArrayIndex) 
     {
         return brdArray[brdArrayIndex];
     }

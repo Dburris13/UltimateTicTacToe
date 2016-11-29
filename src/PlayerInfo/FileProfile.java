@@ -45,8 +45,8 @@ public class FileProfile extends FileManager {
          * Reading through file line by line and appends data to String array.
          * 
          * @return string array of all lines in file
-         * @throws FileNotFoundException
-         * @throws IOException 
+         * @throws FileNotFoundException thrown if file does not exist
+         * @throws IOException throw if file cannot be read or opened
          */
         @Override
         public String[] readFile() throws FileNotFoundException, IOException {
@@ -69,10 +69,10 @@ public class FileProfile extends FileManager {
         /**
          * Writing to file with FileOutputStream.
          * 
-         * @param input
-         * @return
-         * @throws FileNotFoundException
-         * @throws IOException 
+         * @param input what will be written to the file
+         * @return true if successful false if failed
+         * @throws FileNotFoundException thrown if file does not exist
+         * @throws IOException thrown if file cannot be written to or closed
          */
         @Override
         public boolean writeFile(String input) throws FileNotFoundException, IOException {

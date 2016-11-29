@@ -349,7 +349,7 @@ public class MenuGUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnRankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRankMouseClicked
-        Rank_table ranking = new Rank_table(user1, user2);
+        RankTable ranking = new RankTable(user1, user2);
         ranking.FileReader();
         ranking.addRowtoJtable();
         ranking.setVisible(true);

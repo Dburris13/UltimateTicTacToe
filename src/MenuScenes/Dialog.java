@@ -29,8 +29,8 @@ public abstract class Dialog extends JDialog{
      * 
      * @param frame parent frame that we're in
      * @param game Game object that 
-     * @param Player 
-     * @param Score 
+     * @param Player player 1 -- may not be used in all implementations
+     * @param Score player1 score -- may not be used in all implementations
      */
     public Dialog(JFrame frame, Game game, String Player, int Score)
     {

@@ -23,14 +23,14 @@ import javax.swing.table.DefaultTableModel;
  * 
  * @author Ben
  */
-public class Rank_table extends javax.swing.JFrame {
+public class RankTable extends javax.swing.JFrame {
 
     //player 1 and player 2 profile object.
     private final UserInfo p1,p2;
     /**
-     * Creates new form Rank_table
+     * Creates new form RankTable
      */
-    private  final List<UserInfo> user_List = new ArrayList<>();
+    private  final List<UserInfo> userList = new ArrayList<>();
     
     /**
      * Creates a local class that contains all high score information. 
@@ -52,7 +52,7 @@ public class Rank_table extends javax.swing.JFrame {
      * @param userinfo1 information of user 1
      * @param userinfo2 information of user 2
      */
-    public Rank_table(UserInfo userinfo1, UserInfo userinfo2) {
+    public RankTable(UserInfo userinfo1, UserInfo userinfo2) {
         this.p1 = userinfo1;
         this.p2 = userinfo2;
         initComponents();
@@ -69,9 +69,9 @@ public class Rank_table extends javax.swing.JFrame {
      */
     public ArrayList sortedList() {
         ArrayList<PlayerInfo> list = new ArrayList<>();
-        for(int i =0; i<user_List.size(); i++)
+        for(int i =0; i<userList.size(); i++)
             {
-                PlayerInfo player = new PlayerInfo(user_List.get(i).getUsername(), user_List.get(i).getScore());
+                PlayerInfo player = new PlayerInfo(userList.get(i).getUsername(), userList.get(i).getScore());
                 list.add(player);
             }
 
@@ -198,31 +198,31 @@ public class Rank_table extends javax.swing.JFrame {
         UserInfo player = new UserInfo();
         player.setUsername(username);
         player.setScore(score);
-        user_List.add(player);
+        userList.add(player);
         }
 
-        Sort_list(user_List, user_List.size());
+        SortList(userList, userList.size());
     }
     
     /**
      * Sorts the high score table based on who had the lowest move count at the 
      * top. 
      * 
-     * @param user_List Array of all users in highscores
+     * @param userList Array of all users in highscores
      * @param count number of elements in highscores.
      */
-    public void Sort_list(List<UserInfo> user_List, int count){
+    public void SortList(List<UserInfo> userList, int count){
         int i,j;
         UserInfo temp = new UserInfo();
         for(i=0; i<count; i++){
             for(j=0; j<(count-i - 1); j++){
-                if(user_List.get(j).getScore() > user_List.get(j+1).getScore()){
-                     temp.setUsername(user_List.get(j).getUsername());
-                     temp.setScore(user_List.get(j).getScore());
-                     user_List.get(j).setUsername(user_List.get(j+1).getUsername());
-                     user_List.get(j).setScore(user_List.get(j+1).getScore());
-                     user_List.get(j+1).setUsername(temp.getUsername());
-                     user_List.get(j+1).setScore(temp.getScore());
+                if(userList.get(j).getScore() > userList.get(j+1).getScore()){
+                     temp.setUsername(userList.get(j).getUsername());
+                     temp.setScore(userList.get(j).getScore());
+                     userList.get(j).setUsername(userList.get(j+1).getUsername());
+                     userList.get(j).setScore(userList.get(j+1).getScore());
+                     userList.get(j+1).setUsername(temp.getUsername());
+                     userList.get(j+1).setScore(temp.getScore());
                  }
             }
         }

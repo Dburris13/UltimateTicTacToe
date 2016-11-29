@@ -51,7 +51,7 @@ public class YChar extends BackgroundChars{
     public void move(){
         if (draw) {
             if (randXLoc <= 20) down = true;
-            else if (randXLoc>=(D_WIDTH-20)) down = false;
+            else if (randXLoc>=(WIDTH-20)) down = false;
 
             if (down) {
                 randXLoc += INCREMENT;

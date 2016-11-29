@@ -53,7 +53,7 @@ public class XChar extends BackgroundChars{
     void move() {
         if (draw) {
             if (randYLoc <= 20) down = true;
-            else if (randYLoc>=(D_HEIGHT-20)) down = false;
+            else if (randYLoc>=(HEIGHT-20)) down = false;
 
             if (down) {
                 randYLoc += INCREMENT;

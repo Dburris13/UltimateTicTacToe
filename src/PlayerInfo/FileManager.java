@@ -28,7 +28,7 @@ public abstract class FileManager {
     /**
      * Constructor method.
      * 
-     * @param filename 
+     * @param filename name of file
      */
     public FileManager(String filename) {
         this.filename = filename;
@@ -38,8 +38,8 @@ public abstract class FileManager {
      * Reading a file.
      * 
      * @return String array of all the file data.
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws FileNotFoundException thrown if file does not exist
+     * @throws IOException thrown if file cannot be read or opened
      */
     abstract String[] readFile() throws FileNotFoundException, IOException; 
     
@@ -48,8 +48,8 @@ public abstract class FileManager {
      * 
      * @param name name of file
      * @return boolean representing if write was a success
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws FileNotFoundException thrown if file does not exist
+     * @throws IOException thrown if file cannot be written to or closed
      */
     abstract boolean writeFile(String name) throws FileNotFoundException, IOException;
 }

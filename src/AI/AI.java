@@ -31,7 +31,8 @@ public class AI {
      * see if its already been pressed. It will click it if its not pressed,
      * It will create another random number if it has been. 
      * 
-     * @param board 
+     * @param board A reference to the board the ai should play on assuming it 
+     * is not taken
      * @param game A reference to the current game.
      */
     public void pickMove(Board board, Game game) {
