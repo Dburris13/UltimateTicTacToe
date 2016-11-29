@@ -7,9 +7,9 @@
  */
 package AI;
 
-import Group8.Board;
-import Group8.Game;
-import Group8.Tile;
+import GameFiles.Board;
+import GameFiles.Game;
+import GameFiles.Tile;
 import java.util.Random;
 
 /**

@@ -5,9 +5,9 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
-import GUIStuff.TieDialog;
-import GUIStuff.WinDialog;
+package GameFiles;
+import MenuScenes.TieDialog;
+import MenuScenes.WinDialog;
 import java.awt.*;
 import java.applet.Applet;
 import java.io.BufferedWriter;

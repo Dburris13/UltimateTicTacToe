@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package GameFiles;
 import java.awt.*;
 import java.applet.Applet;
 

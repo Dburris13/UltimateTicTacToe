@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package MenuScenes;
 
 /**
  * This class represents our settings scene.
@@ -14,6 +14,8 @@ package Group8;
  * 
  * @author Daniel
  */
+import PlayerInfo.FileProfile;
+import PlayerInfo.UserInfo;
 import MenuScenes.MenuGUI;
 import java.awt.Color;
 import java.awt.Dimension;

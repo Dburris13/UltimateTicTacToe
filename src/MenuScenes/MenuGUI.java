@@ -6,10 +6,9 @@
  * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
-import GUIStuff.AnimatedPanel;
-import Group8.Game;
-import Group8.Settings;
-import Group8.UserInfo;
+import GUIMisc.AnimatedPanel;
+import GameFiles.Game;
+import PlayerInfo.UserInfo;
 import java.awt.Color;
 
 /**

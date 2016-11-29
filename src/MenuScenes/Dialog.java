@@ -5,8 +5,8 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package GUIStuff;
-import Group8.Game;
+package MenuScenes;
+import GameFiles.Game;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 

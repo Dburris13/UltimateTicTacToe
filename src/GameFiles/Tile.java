@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package GameFiles;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

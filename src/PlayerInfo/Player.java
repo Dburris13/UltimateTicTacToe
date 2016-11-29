@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package PlayerInfo;
 
 /**
  * Player Class.

@@ -5,8 +5,11 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package GameFiles;
 import AI.AI;
+import PlayerInfo.FileProfile;
+import PlayerInfo.Player;
+import PlayerInfo.UserInfo;
 import MenuScenes.MenuGUI;
 import java.awt.*;
 import java.io.IOException;

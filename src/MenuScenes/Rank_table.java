@@ -6,7 +6,7 @@
  * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
-import Group8.UserInfo;
+import PlayerInfo.UserInfo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;

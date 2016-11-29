@@ -6,8 +6,8 @@
  * Daniel, Ben, Irene, Zach
  */
 package MenuScenes;
-import Group8.FileProfile;
-import Group8.UserInfo;
+import PlayerInfo.FileProfile;
+import PlayerInfo.UserInfo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.BufferedWriter;

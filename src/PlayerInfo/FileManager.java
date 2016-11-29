@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package Group8;
+package PlayerInfo;
 
 import java.io.File;
 import java.io.FileNotFoundException;

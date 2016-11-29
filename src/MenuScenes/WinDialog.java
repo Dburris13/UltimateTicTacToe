@@ -1,6 +1,6 @@
-package GUIStuff;
+package MenuScenes;
 
-import Group8.Game;
+import GameFiles.Game;
 import javax.swing.JFrame;
 
 

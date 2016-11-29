@@ -5,7 +5,7 @@
  * Members:
  * Daniel, Ben, Irene, Zach
  */
-package GUIStuff;
+package GUIMisc;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
