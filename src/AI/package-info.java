@@ -7,6 +7,6 @@
  */
 
 /**
- * This package contains all classed used to control the AI player.
+ * This package contains all classes used to control the AI player.
  */
 package AI;

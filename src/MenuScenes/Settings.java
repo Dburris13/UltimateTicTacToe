@@ -159,8 +159,9 @@ public class Settings extends javax.swing.JFrame {
      * 
      * @param evt 
      */
-    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException { 
+    private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         if (user1Settings.getUsername().equals("Guest")) {
+        } else {
             FileProfile fh = new FileProfile(user1Settings.getUsername());
             String[] lines;
             lines = fh.readFile();
@@ -188,6 +189,7 @@ public class Settings extends javax.swing.JFrame {
                         break;
                     }
                 }
+                System.out.println(input);
                 fh.writeFile(input);
             }
         

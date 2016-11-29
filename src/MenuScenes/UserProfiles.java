@@ -46,6 +46,9 @@ public class UserProfiles extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         if (playerinfo1.getGamemode() == 1) {
+            p2Lbl.setVisible(false);
+            p2LoadBtn.setVisible(false);
+            profileInfo2.setVisible(false);            
         } else {
         
         }
@@ -426,7 +429,7 @@ public class UserProfiles extends javax.swing.JFrame {
                 String firstLine = "GamesPlayed: 0\n";
                 String secondLine = "GamesWon: 0\n";
                 String thirdLine = "ScreenResolution: " + (int)playerinfo1.getResolution().getWidth() + " " + (int)playerinfo1.getResolution().getHeight() + "\n";
-                String fourthLine = "ColorScheme: Blue Gray\n";
+                String fourthLine = "ColorScheme: Cyan Gray\n";
                 String fifthLine = "Icons: X O\n";
 
                 try (BufferedWriter writer = Files.newBufferedWriter(file, charset)) {

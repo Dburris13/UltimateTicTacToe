@@ -25,7 +25,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RankTable extends javax.swing.JFrame {
 
-    //player 1 and player 2 profile object.
+    /*
+    * player 1 and player 2 profile object.
+    */
     private final UserInfo p1,p2;
     /**
      * Creates new form RankTable
@@ -181,6 +183,9 @@ public class RankTable extends javax.swing.JFrame {
 
         List<String> list = new ArrayList<>();
 
+        /*
+        * Reading rank date information
+        */
         try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
 
                 //br returns as stream and convert it into a List
@@ -190,15 +195,18 @@ public class RankTable extends javax.swing.JFrame {
                 e.printStackTrace(System.out);
         }
 
+        /*
+        * Setting up and organizing rank table
+        */
         for(int i=0; i<list.size();i++)
         {
-        String[] details = (list.get(i)).split(",");
-        String username=details[0];
-        int score = Integer.parseInt(details[1]);
-        UserInfo player = new UserInfo();
-        player.setUsername(username);
-        player.setScore(score);
-        userList.add(player);
+            String[] details = (list.get(i)).split(",");
+            String username=details[0];
+            int score = Integer.parseInt(details[1]);
+            UserInfo player = new UserInfo();
+            player.setUsername(username);
+            player.setScore(score);
+            userList.add(player);
         }
 
         SortList(userList, userList.size());

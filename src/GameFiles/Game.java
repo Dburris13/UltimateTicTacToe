@@ -224,7 +224,7 @@ public class Game extends JFrame{
                             break;
                     }
                 }
-                fh.writeFile(input);
+                fh2.writeFile(input);
             }
         }
     }
@@ -249,6 +249,7 @@ public class Game extends JFrame{
          * Only executed is a player's profile is loaded and not the default
          * Guest profile
          */        
+        
         if (player1.getUsername().equals("Guest")) {
         } else {
             lines = fh.readFile();
@@ -301,7 +302,7 @@ public class Game extends JFrame{
                         break;
                 }
             }
-            fh.writeFile(input);
+            fh2.writeFile(input);
         }
     }
     

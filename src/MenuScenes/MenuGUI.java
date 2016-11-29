@@ -106,6 +106,7 @@ public class MenuGUI extends javax.swing.JFrame {
         if (user1.getGamemode() == 1) {
             this.radioComputer.setSelected(true);
             txtFieldPlayer2.setVisible(false);
+            this.txtFieldPlayer1.setText(user1.getUsername());
         } else {
             this.radioPlayer.setSelected(true);
             txtFieldPlayer2.setVisible(true);

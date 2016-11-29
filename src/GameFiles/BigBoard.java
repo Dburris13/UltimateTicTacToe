@@ -143,8 +143,8 @@ public class BigBoard extends Applet  {
             if (winDisplayCount == 0 )
             {
                 game.updateGamesWon();
-                UserToRank(user1,score1);
-                WinDialog w = new WinDialog(game,game,user1,score1);
+                UserToRank(user2,score2);
+                WinDialog w = new WinDialog(game,game,user2,score2);
                 w.setVisible(true);
                 winDisplayCount ++;
             }
