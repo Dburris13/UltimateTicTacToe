@@ -1,8 +1,6 @@
 package GUIStuff;
 
 import Group8.Game;
-import MenuScenes.MenuGUI;
-import GUIStuff.Dialog;
 import javax.swing.JFrame;
 
 

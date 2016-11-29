@@ -10,7 +10,6 @@ import AI.AI;
 import MenuScenes.MenuGUI;
 import java.awt.*;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -108,6 +107,7 @@ public class Game extends JFrame{
 
         jMenuItem2.setText("Return to Menu");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
@@ -117,6 +117,7 @@ public class Game extends JFrame{
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         jMenuItem1.setText("Exit");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
@@ -333,6 +334,8 @@ public class Game extends JFrame{
      * 
      * It is a simple function that swaps the status of the Player so that the
      * Tile knows what his status will be when he is clicked.
+     * 
+     * @param brdindex - Board index.
      */
     public void endTurn(int brdindex) {
         currentPlayer.switchPlayer();

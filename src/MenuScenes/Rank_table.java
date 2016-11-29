@@ -26,11 +26,11 @@ import javax.swing.table.DefaultTableModel;
 public class Rank_table extends javax.swing.JFrame {
 
     //player 1 and player 2 profile object.
-    private UserInfo p1,p2;
+    private final UserInfo p1,p2;
     /**
      * Creates new form Rank_table
      */
-    private  List<UserInfo> user_List = new ArrayList<>();
+    private  final List<UserInfo> user_List = new ArrayList<>();
     
     /**
      * Creates a local class that contains all high score information. 
@@ -68,7 +68,7 @@ public class Rank_table extends javax.swing.JFrame {
      * @return returns sorted list
      */
     public ArrayList sortedList() {
-        ArrayList<PlayerInfo> list = new ArrayList<PlayerInfo>();
+        ArrayList<PlayerInfo> list = new ArrayList<>();
         for(int i =0; i<user_List.size(); i++)
             {
                 PlayerInfo player = new PlayerInfo(user_List.get(i).getUsername(), user_List.get(i).getScore());
@@ -187,7 +187,7 @@ public class Rank_table extends javax.swing.JFrame {
                 list = br.lines().collect(Collectors.toList());
 
         } catch (IOException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.out);
         }
 
         for(int i=0; i<list.size();i++)

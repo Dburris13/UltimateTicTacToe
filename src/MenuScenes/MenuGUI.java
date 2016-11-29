@@ -28,12 +28,12 @@ public class MenuGUI extends javax.swing.JFrame {
     /**
      * Stored information for player 1
      */
-    private UserInfo user1;
+    private final UserInfo user1;
     
     /** 
      * Stores information for player 2 (if exists)
      */
-    private UserInfo user2;   
+    private final UserInfo user2;   
 
     /**
      * Default Constructor, called on application start

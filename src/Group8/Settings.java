@@ -153,14 +153,14 @@ public class Settings extends javax.swing.JFrame {
 
     /**
      * Return Button.
-     * Takes us bake to the menu.
+     * Takes us back to the menu.
      * 
      * @param evt 
      */
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) throws IOException { 
-        if (user1Settings.getUsername() != "Guest") {
+        if (user1Settings.getUsername().equals("Guest")) {
             FileProfile fh = new FileProfile(user1Settings.getUsername());
-            String[] lines = new String[6];
+            String[] lines;
             lines = fh.readFile();
             
             /*

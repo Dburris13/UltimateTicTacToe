@@ -45,10 +45,12 @@ public class FileProfile extends FileManager {
          * Reading through file line by line and appends data to String array.
          * 
          * @return string array of all lines in file
+         * @throws FileNotFoundException
+         * @throws IOException 
          */
         @Override
         public String[] readFile() throws FileNotFoundException, IOException {
-            List<String> lines = new ArrayList<String>();
+            List<String> lines = new ArrayList<>();
             if (f.exists()) {
                 BufferedReader reader = new BufferedReader(new FileReader(f));
                 String line = null;

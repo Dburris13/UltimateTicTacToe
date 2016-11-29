@@ -30,11 +30,11 @@ import java.applet.Applet;
 public class Board extends Applet {
     
     private char turn;
-    private Color brdColor;
+    private final Color brdColor;
     /*
      * We know there will only be 9 tiles to a board
      */
-    private Tile[] btnArray = new Tile[9];
+    private final Tile[] btnArray = new Tile[9];
     private String brdStatus = ""; 
     
     /**

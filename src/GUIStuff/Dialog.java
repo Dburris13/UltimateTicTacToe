@@ -18,11 +18,11 @@ import javax.swing.JFrame;
  * @author Irene
  */
 public abstract class Dialog extends JDialog{
-    private javax.swing.JLabel backgroundGif;
-    private javax.swing.JLabel messageLabel;
-    private javax.swing.JLabel playerName;
-    private javax.swing.JLabel playerScore1;
-    private javax.swing.JButton menuReturnBtn;
+    private final javax.swing.JLabel backgroundGif;
+    private final javax.swing.JLabel messageLabel;
+    private final javax.swing.JLabel playerName;
+    private final javax.swing.JLabel playerScore1;
+    private final javax.swing.JButton menuReturnBtn;
     
     /**
      * Drawing the Dialog box.

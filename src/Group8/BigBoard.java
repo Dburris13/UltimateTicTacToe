@@ -32,18 +32,19 @@ import java.io.PrintWriter;
  * 
  * @author Daniel
  * @author Ben
+ * @author Zach
  */
 public class BigBoard extends Applet  {
     /*
      * Our Array of 9 Board objects that will be aligned in the 
      * 3x3 Grid Layout
      */
-    private Board[] brdArray = new Board[9];
+    private final Board[] brdArray = new Board[9];
         
     /*
      * Local variable of our Game class
      */
-    private Game game;
+    private final Game game;
     
     /*
      * Variable used update high scores
@@ -287,7 +288,7 @@ public class BigBoard extends Applet  {
         /*
          * If the next board has already been won
          */
-        if (brdArray[tileIndex].returnStatus() == "X" || brdArray[tileIndex].returnStatus() == "O" || brdArray[tileIndex].returnStatus() == "T") {
+        if (brdArray[tileIndex].returnStatus().equals("X") || brdArray[tileIndex].returnStatus().equals("O") || brdArray[tileIndex].returnStatus().equals("T")) {
             for(int i =0; i<9; i++) {
                 oldColor = brdArray[i].returnColor();
                 // Start by enabling everything
@@ -305,11 +306,11 @@ public class BigBoard extends Applet  {
                 /**
                  * Grabbing appropriate board color
                  */
-                if (brdArray[i].returnStatus() == "X") {
+                if (brdArray[i].returnStatus().equals("X")) {
                     paintX(brdArray[i]);
-                } else if (brdArray[i].returnStatus() == "O") {
+                } else if (brdArray[i].returnStatus().equals("O")) {
                     paintO(brdArray[i]);
-                } else if (brdArray[i].returnStatus() == "T") {
+                } else if (brdArray[i].returnStatus().equals("T")) {
                     paintR(brdArray[i]);
                 }
             }       
@@ -346,11 +347,11 @@ public class BigBoard extends Applet  {
                 /**
                  * Grabbing appropriate board color
                  */
-                if (brdArray[i].returnStatus() == "X") {
+                if (brdArray[i].returnStatus().equals("X")) {
                     paintX(brdArray[i]);
-                } else if (brdArray[i].returnStatus() == "O") {
+                } else if (brdArray[i].returnStatus().equals("O")) {
                     paintO(brdArray[i]);
-                } else if (brdArray[i].returnStatus() == "T") {
+                } else if (brdArray[i].returnStatus().equals("T")) {
                     paintR(brdArray[i]);
                 }
             }            
@@ -362,9 +363,9 @@ public class BigBoard extends Applet  {
          */
         for (int i = 0; i < 9; i++) {
             for(int j =0; j<9; j++) {    
-                if(brdArray[i].returnTileIndex(j).returnStatus() == "X") {
+                if(brdArray[i].returnTileIndex(j).returnStatus().equals("X")) {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
-                } else if (brdArray[i].returnTileIndex(j).returnStatus() == "O") {
+                } else if (brdArray[i].returnTileIndex(j).returnStatus().equals("O")) {
                     brdArray[i].returnTileIndex(j).setEnabled(false);
                 }
             }
