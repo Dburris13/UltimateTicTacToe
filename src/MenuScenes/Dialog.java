@@ -29,8 +29,8 @@ public abstract class Dialog extends JDialog{
      * 
      * @param frame parent frame that we're in
      * @param game Game object that 
-     * @param Player player 1 -- may not be used in all implementations
-     * @param Score player1 score -- may not be used in all implementations
+     * @param Player winning player -- may not be used in all implementations
+     * @param Score winning player score -- may not be used in all implementations
      */
     public Dialog(JFrame frame, Game game, String Player, int Score)
     {
@@ -78,32 +78,73 @@ public abstract class Dialog extends JDialog{
         pack();
         setLocationRelativeTo(frame);
     }
+    
+    /**
+     * Returns to menu when button is clicked
+     * @param evt action object
+     * @param game reference to the game frame
+     */
     private void menuReturnBtnActionPerformed(java.awt.event.ActionEvent evt, Game game) {                                              
         game.goToMenu();
     }
     
+    /**
+     * returns backgoundGif JLabel.
+     * @return backgroundGid JLabel
+     */
     public javax.swing.JLabel getBackgroundGif()
     {
         return backgroundGif;
     }
+    
+    /**
+     * sets the backgroundGif JLabel.
+     */
     abstract void setBackgroundGif();
     
+    /**
+     * returns the primary message label.
+     * @return primary message label
+     */
     public javax.swing.JLabel getMessageLabel()
     {
         return messageLabel;
     }
+    
+    /**
+     * sets the primary message label.
+     */
     abstract void setMessageLabel();
     
+    /**
+     * returns the second message label
+     * @return  secondary message label
+     */
     public javax.swing.JLabel getPlayerName()
     {
         return playerName;
     }
+    
+    /**
+     * sets the second message label.
+     * @param name winning player -- not used in all implementations.
+     */
     abstract void setPlayerName(String name);
     
+    /**
+     * returns third message label.
+     * @return third message label
+     */
     public javax.swing.JLabel getPlayerScore()
     {
         return playerScore1;
     }
+    
+    /**
+     * sets third message label
+     * @param name winning player -- not used in all implementations.
+     * @param score winning score -- not used in all implementations
+     */
     abstract void setPlayerScore(String name, int score);
     
 }
