@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/AI/AI.java</file>
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/MenuGUI.java</file>
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/UserProfiles.java</file>
@@ -10,6 +11,11 @@
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/GameFiles/BigBoard.java</file>
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/resources/tictactoe3.gif</file>
             <file>file:/C:/Users/Daniel/Documents/GitHub/UltimateTicTacToe/src/GameFiles/Game.java</file>
+=======
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/WinDialog.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/TieDialog.java</file>
+            <file>file:/C:/Users/kcnre/Documents/GitHub/UltimateTicTacToe/src/MenuScenes/Dialog.java</file>
+>>>>>>> 65f0f8052b4a899536de76725003f56f5f00cea2
         </group>
     </open-files>
 </project-private>
