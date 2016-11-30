@@ -343,6 +343,9 @@ public class Game extends JFrame{
      */
     public void endTurn(int brdindex) {
         currentPlayer.switchPlayer();
+        if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
+            enemy.pickMove(bboard.GetBrdArray(brdindex), this);
+        }
     }
     
     /**
@@ -434,9 +437,6 @@ public class Game extends JFrame{
      public void manageBoard(int EnabledIndex, int brdIndex)
     {
         bboard.manageBoard(EnabledIndex, brdIndex);
-        if (player1.getGamemode() == 1 && currentPlayer.returnStatus() == false) {
-            enemy.pickMove(bboard.GetBrdArray(brdIndex), this);
-        }
     }
      
     // Variables declaration - do not modify                     
